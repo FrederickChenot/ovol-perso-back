@@ -2,6 +2,14 @@
 
 BEGIN;
 
-DROP TABLE "item","user";
+DROP TABLE 
+    "lift-off_has_landing",
+    "img_landing",
+    "landing",
+    "img_hiking",
+    "hiking",
+    "img_lift-off",
+    "lift-off",
+    "user";
 
 COMMIT;

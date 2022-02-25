@@ -1,7 +1,7 @@
 
 ## Scripts :
 - ### Start Developement
-        npm install && npm run dev
+        npm install && npx husky install && npm run dev 
 - ### Format all files
         npm run prettier
 - ### Lint all files
