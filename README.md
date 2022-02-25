@@ -5,12 +5,12 @@
 
 - COPY .env.example and rename in .env and uncomment line in .env and setup the file
 
-
 - Development ```npm install && npm run dev```
 then
 ```sqitch deploy```
 
 ## INSTALL with docker
+- [Docker required](https://www.docker.com/get-started)
 - COPY sqitch.conf.example and rename in sqitch.conf
 
 - COPY .env.example and rename in .env
@@ -19,20 +19,20 @@ then
 ```docker-compose up -d``` 
 then
 ```sqitch deploy```
-  - #### for log in terminal, run ```docker ps``` for get container name od ID then run
+  - #### For log in terminal, run ```docker ps``` for get container name or ID then run
 ```docker attach <container-name> or <CONTAINER_ID>``` 
 - [http://localhost:3000/api](http://localhost:3000/api)
 
-- ### STOP Docker container, run ```docker ps``` for get container name or ID
+- #### STOP Docker container 
+  - run ```docker ps``` for get container name or ID
 run ```docker stop <container-name> or <CONTAINER_ID>```
 ## Scripts :
 - ### Start Production
         npm start
 - ### Start Developement
         npm run dev
-- ### Develop with docker container
+- ### Start container
         docker-compose up -d
-
 - ### Format all files
         npm run prettier
 - ### Lint all files
@@ -49,12 +49,12 @@ run ```docker stop <container-name> or <CONTAINER_ID>```
         - sqitch verify 
         - sqitch verify heroku-staging
         - sqitch verify heroku-production
-        
 
-# Notes new project
-- ### Sqitch config
-        sqitch init <name>
+# Project Infos
+- ### add new deploy/revert/verify with sqitch
+
         sqitch add <label> -n 'message'
-- ### COMMITLINT
-   - convention : feat(index): message exemple
-   - flags : { build ,chore ,ci ,docs ,feat ,fix ,perf ,refactor ,revert ,style ,test } 
+- ### COMMIT LINT
+   - convention ex: "feat(index): message exemple"
+   - flags : { build ,chore ,ci ,docs ,feat ,fix ,perf ,refactor ,revert ,style ,test }
+   - start all new feature from develop branch

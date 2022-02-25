@@ -1,11 +1,18 @@
 node_modules
+
+#env
 .env
+
+#docs local
 docs
+
+#sqitch
 sqitch.conf
+
+# test
 coverage
 
-# permet de commit le fichier log
-# on exclus tout les fichiers mais on garde le .gitkeep
+# logger: on exclus tout les fichiers du repo log
 log/*
-# exception to the rule
+# on garde le .gitkeep pour obliger a commit le folder log
 !log/.gitkeep
