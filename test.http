@@ -1,0 +1,30 @@
+################################################################################
+# Fichier de test des routes HTTP de l'API
+# Nécessite l'extension REST Client pour VSCode
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+################################################################################
+@endpoint-dev = http://{{$dotenv HOST}}:{{$dotenv PORT}}
+
+### 404
+GET {{ endpoint-dev }}/itemm
+
+### get home route
+GET {{ endpoint-dev }}/api
+
+### get all item
+GET {{ endpoint-dev }}/api/item
+
+### Créer un item
+POST {{ endpoint-dev }}/api/item
+content-type: application/json
+
+{
+    "label": "item2"
+}
+### Créer un mauvais item
+POST {{ endpoint-dev }}/api/item
+content-type: application/json
+
+{
+    "label": 2222
+}

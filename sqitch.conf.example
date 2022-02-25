@@ -1,0 +1,9 @@
+[core]
+	engine = pg
+	top_dir = app/migrations
+[engine "pg"]
+	target = db:pg://user:pass@localhost:5432/db
+[target "heroku-staging"]
+	uri = db:<postgres-uri-staging>
+[target "heroku-production"]
+	uri = db:<postgres-uri-production>

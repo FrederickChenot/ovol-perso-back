@@ -1,0 +1,41 @@
+# docker-compose.yml
+version: '3'
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      PORT: 3000
+      HOST: localhost
+      DATABASE_URL_DEV: postgres://user:pass@postgres/db
+      NODE_ENV: development
+    ports:
+      - '3000:3000'
+    links:
+      - postgres
+    command: npm run dev
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    networks:
+      webnet:
+        ipv4_address: 10.5.0.5
+
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db
+    networks:
+      webnet:
+        ipv4_address: 10.5.0.6
+
+networks:
+  webnet:
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16

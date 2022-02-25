@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=template-api
+
+1-initialdb 2022-02-23T16:53:19Z adrien <adrien@exemple.com> # create initial table
+2-seeding 2022-02-23T16:54:17Z adrien <adrien@exemple.com> # seeding
