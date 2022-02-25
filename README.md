@@ -1,15 +1,30 @@
-## initial routes
-- /api
-- /api/item
+## INSTALL without docker
+- Setup a local postgres DB
 
-## INSTALL
-COPY sqitch.conf.example in sqitch.conf
+- COPY sqitch.conf.example and rename in sqitch.conf and setup the file
 
-COPY .env.example in .env
+- COPY .env.example and rename in .env and uncomment line in .env and setup the file
 
-docker-compose up -d
 
-sqitch deploy
+- Development ```npm install && npm run dev```
+then
+```sqitch deploy```
+
+## INSTALL with docker
+- COPY sqitch.conf.example and rename in sqitch.conf
+
+- COPY .env.example and rename in .env
+
+- Run in root
+```docker-compose up -d``` 
+then
+```sqitch deploy```
+  - #### for log in terminal, run ```docker ps``` for get container name od ID then run
+```docker attach <container-name> or <CONTAINER_ID>``` 
+- [http://localhost:3000/api](http://localhost:3000/api)
+
+- ### STOP Docker container, run ```docker ps``` for get container name or ID
+run ```docker stop <container-name> or <CONTAINER_ID>```
 ## Scripts :
 - ### Start Production
         npm start
@@ -17,8 +32,7 @@ sqitch deploy
         npm run dev
 - ### Develop with docker container
         docker-compose up -d
-  - #### Attach terminal to container ```docker ps``` for get container name
-        docker attach <container-name> 
+
 - ### Format all files
         npm run prettier
 - ### Lint all files

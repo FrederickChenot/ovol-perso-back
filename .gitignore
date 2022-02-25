@@ -2,4 +2,10 @@ node_modules
 .env
 docs
 sqitch.conf
+coverage
+
+# permet de commit le fichier log
+# on exclus tout les fichiers mais on garde le .gitkeep
 log/*
+# exception to the rule
+!log/.gitkeep
