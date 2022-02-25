@@ -2,7 +2,7 @@
 	engine = pg
 	top_dir = app/migrations
 [engine "pg"]
-	target = db:pg://user:pass@localhost:5432/db
+	target = db:pg://spedata:spedata@localhost:5432/ovol
 [target "heroku-staging"]
 	uri = db:<postgres-uri-staging>
 [target "heroku-production"]

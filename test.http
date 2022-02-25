@@ -3,7 +3,7 @@
 # Nécessite l'extension REST Client pour VSCode
 # https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 ################################################################################
-@endpoint-dev = http://{{$dotenv HOST}}:{{$dotenv PORT}}
+@endpoint-dev = http://localhost:{{$dotenv PORT}}
 
 ### 404
 GET {{ endpoint-dev }}/itemm

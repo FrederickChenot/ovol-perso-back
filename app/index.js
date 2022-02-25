@@ -1,11 +1,9 @@
-// const path = require('path');
 const express = require('express');
 const cors = require('cors');
 
 const router = require('./routes');
 
 const app = express();
-require('./helpers/apiDocs')(app);
 
 // On active le middleware pour parser le payload JSON
 app.use(express.json());
