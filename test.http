@@ -8,11 +8,11 @@
 ### 404
 GET {{ endpoint-dev }}/itemm
 
-### get home route
-GET {{ endpoint-dev }}/api
+### get All hiking
+GET {{ endpoint-dev }}/api/hiking
 
-### get all item
-GET {{ endpoint-dev }}/api/item
+### get one hiking
+GET {{ endpoint-dev }}/api/hiking/1
 
 ### Créer un item
 POST {{ endpoint-dev }}/api/item
