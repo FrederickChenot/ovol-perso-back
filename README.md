@@ -1,17 +1,27 @@
+# ovol
 
-## Scripts :
-- ### Start Developement
-        npm install && npx husky install && npm run dev 
-- ### Format all files
+## Scripts
+
+### Start Developement
+
+        npm install && npx husky install && npm run dev
+
+### Format all files
+
         npm run prettier
-- ### Lint all files
+
+### Lint all files
+
         npm run lint
-- ## sqitch DB
+
+## sqitch DB
+
         - sqitch deploy
         - sqitch revert
         - sqitch verify
 
 # Project Infos
+
 - ### add new deploy/revert/verify with sqitch
         sqitch add <label> -n 'message'
 - ### COMMIT LINT

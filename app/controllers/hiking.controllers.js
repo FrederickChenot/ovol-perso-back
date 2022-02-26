@@ -1,7 +1,6 @@
 const hikingDataMapper = require('../models/hiking');
 
 module.exports = {
-
   async getAll(_req, res) {
     const hiking = await hikingDataMapper.findAll();
     return res.json(hiking);
