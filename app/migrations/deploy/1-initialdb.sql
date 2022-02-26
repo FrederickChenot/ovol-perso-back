@@ -2,6 +2,8 @@
 
 BEGIN;
 
+DROP TABLE IF EXISTS "user", "lift-off", "img_lift-off", "hiking", "img_hiking", "landing", "img_landing", "lift-off_has_landing";
+
 CREATE TABLE "user" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "login" TEXT NOT NULL UNIQUE,
