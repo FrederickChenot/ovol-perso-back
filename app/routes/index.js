@@ -2,16 +2,19 @@ const express = require('express');
 
 const router = express.Router();
 
-const itemController = require('../controllers/item.controllers');
-
+const hikingController = require('../controllers/hiking.controllers');
 
 router
-  .route('/api/item')
-  .get(itemController.getAll)
-  .post(itemController.create);
+  .route('/api/hiking')
+  .get(hikingController.getAll);
 
-router.use((err, _, res, next) => {
-  res.json({message : 'page not found'});
+router
+  .route('/api/hiking/:id')
+  .get(hikingController.getOne);
+
+
+router.use((_req, res) => {
+  res.json({ message: 'page not found' });
 });
 
 module.exports = router;
