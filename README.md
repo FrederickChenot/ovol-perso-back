@@ -27,4 +27,4 @@
 - ### COMMIT LINT
    - convention ex: "feat(index): message exemple"
    - flags : { build ,chore ,ci ,docs ,feat ,fix ,perf ,refactor ,revert ,style ,test }
-   - start all new feature from develop branch
+   - start all new feature from develop branch..
