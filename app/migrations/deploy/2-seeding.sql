@@ -32,11 +32,13 @@ VALUES
 
 INSERT INTO "landing"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
 VALUES
-    ('Atéro Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,'O','O',576);
+    ('Atéro Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,'O','O',576),
+    ('Atéro2 Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,'O','O',576);
 
 INSERT INTO "lift-off_has_landing"("lift-off_id","landing_id")
 VALUES
-    (1,1);
+    (1,1),
+    (1,2);
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
@@ -44,7 +46,8 @@ VALUES
 
 INSERT INTO "img_landing"("title", "url", "idLanding")
 VALUES
-    ('Photo atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche.jpg', 1);
+    ('Photo atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche.jpg', 1),
+    ('Photo2 atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche2.jpg', 2);
 
 INSERT INTO "img_lift-off"("title", "url", "idLiftOff")
 VALUES
