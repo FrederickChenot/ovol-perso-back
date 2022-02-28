@@ -16,7 +16,7 @@ module.exports = {
                       JOIN "lift-off" ON "hiking"."lift-off_id" = "lift-off"."id"
                       JOIN "img_lift-off" ON "lift-off"."id" = "img_lift-off"."idLiftOff"
                       JOIN "lift-off_has_landing" ON "lift-off_has_landing"."lift-off_id" = "lift-off"."id"
-                      JOIN "landing" ON "lift-off_has_landing"."landing_id" = "landing"."landingid"
+                      JOIN "landing" ON "lift-off_has_landing"."landing_id" = "landing"."id"
                       WHERE hiking."id" = ${idHiking}`
     const result = await client.query(query);
     return result.rows;
