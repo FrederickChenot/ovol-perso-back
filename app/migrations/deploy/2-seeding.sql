@@ -6,18 +6,20 @@ BEGIN;
 INSERT INTO "user"("login","role","email","password") VALUES
 ('admin','admin','ovolclock@gmail.com','pass');
 
-INSERT INTO "lift-off"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
-VALUES
-    ('Déco Semnoz','Herbe','Facile par vent d\''Ouest. Gestion FFP',null,'https://intranet.ffvl.fr/sites_pratique/voir/980',45.7981,6.1006,'O','O',1616);
-
 INSERT INTO "hiking"("name","img_card","mountain","resume","key_stage","starting_point","hiking_plan","positive_elevation","negative_elevation","overall_lenth","land_type","ign_card_reference","hight_point","low_point","difficulty","user_id","lift-off_id")
 VALUES
     ('Semnoz Grotte des fours',
     'https://upload.wikimedia.org/wikipedia/commons/4/40/Annecy-Semnoz_%282013%29.JPG',
     'Bauges',
     'Montée soutenue en forêt avec en bonus des grottes à visiter. Attention falaise à surmonter au niveau de la grotte des four. Le sentier est balisé sur toute la longueur',
-    '',
-    '',
+    "D/A : km 0 - alt. 595m - Cimetière de Viuz-la-Chiésaz
+    1 : km 0.24 - alt. 594m - Croisement CD5/Route des Pierres
+    2 : km 1.61 - alt. 738m - Les Granges
+    3 : km 3.25 - alt. 1016m - Croisement de Combe Noire
+    4 : km 4.22 - alt. 1326m - Croisement de la Grotte des Fours
+    5 : km 5.47 - alt. 1640m - Parking près du bâtiment du Courant d'Ere
+    6 : km 6.13 - alt. 1694m - Crêt de Châtillon - Le Semnoz'",
+    'A coté du cimetière prendre le sentier tracer',
     '<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1JZCA93VmwEXRcKn9GnlKawxOtpHfI20W&ehbc=2E312F" width="640" height="480"></iframe>',
     1028,
     2,
@@ -28,7 +30,47 @@ VALUES
     587,
     'difficile',
     1,
-    1);
+    1)
+    ('Septmoncel - Montbrillant',
+    'https://upload.wikimedia.org/wikipedia/commons/c/c6/Septmoncel-Jura-Saut-du-chien.JPG',
+    'Jura',
+    'Au départ de Montbrillant, montée soutenue sur Septmoncel par le Chemin des Moines. Les chemins sont très praticables, pas de difficultés techniques.',
+    "D : km 0 - alt. 556m - Parking de Montbrillant, après la fromagerie
+    1 : km 0.5 - alt. 656m - Suite de la montée
+    2 : km 2.82 - alt. 1023m - Les Curtillets. Carrefour de la boucle",
+    '',
+    '<iframe ‘src="https://www.google.com/maps/d/embed?mid=1xD4Ypl3aj1YlMS2tHSHkquLROQbSuKOM&ehbc=2E312F" width="640" height="480"></iframe>',
+    746,
+    5,
+    3.41,
+    'Forestier',
+    'Ref. 3327ET, 3327OT, 3328OT',
+    1125,
+    543,
+    'moyenne',
+    1,
+    2);
+
+INSERT INTO "lift-off"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
+VALUES
+    ('Déco Semnoz','Herbe','Facile par vent d\''Ouest. Gestion FFP',
+    null,
+    'https://intranet.ffvl.fr/sites_pratique/voir/980',
+    45.7981,
+    6.1006,
+    'O',
+    'O',
+    1616),
+    ('Déco SEPTMONCEL',
+    'Herbe',
+    "Approche de l'atterrissage de l'Essard (contre-pente) en PT8 pour le delta. L\'atterrissage du haut est délicat en parapente en pleine journée. Toujours vérifier que la biroute du décollage parapente est bien orientée pour éviter de décoller dans le rouleau en cas de vent Est ou Nord. Les parapentes décollent à 1050 m. Les deltas décollent à 1020 m.",
+    "Ligne à haute tension au milieu du cirque.",
+    'https://intranet.ffvl.fr/sites_pratique/voir/54',
+    46.371,
+    5.8985,
+    'O',
+    null,
+    1026);
 
 INSERT INTO "landing"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
 VALUES
