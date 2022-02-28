@@ -58,8 +58,8 @@ VALUES
     'https://intranet.ffvl.fr/sites_pratique/voir/980',
     45.7981,
     6.1006,
-    'O',
-    'O',
+    ARRAY ['O'],
+    ARRAY ['O'],
     1616),
     ('Déco SEPTMONCEL',
     'Herbe',
@@ -68,31 +68,53 @@ VALUES
     'https://intranet.ffvl.fr/sites_pratique/voir/54',
     46.371,
     5.8985,
-    'O',
+    ARRAY ['O'],
     null,
     1026);
 
 INSERT INTO "landing"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
 VALUES
-    ('Atéro Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,'O','O',576),
-    ('Atéro2 Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,'O','O',576);
+    ('Atéro Viuz-la-Chiésaz',
+    'Herbe',
+    'Grand champs allongé terrain facile',
+    'Attention au gradient lorsque vent NO',
+    'https://intranet.ffvl.fr/sites_pratique/voir/980',
+    45.8106,
+    6.05917,
+    ARRAY ['O','E'],
+    null,
+    576),
+    ('Atéro Villard',
+    'Herbe',
+    'Turbulent par vent fort, surtout de Nord.',
+    null,
+    'https://intranet.ffvl.fr/sites_pratique/voir/54',
+    46.3723,
+    5.87678,
+    ARRAY ['O'],
+    ARRAY ['O'],
+    576);
 
 INSERT INTO "lift-off_has_landing"("lift-off_id","landing_id")
 VALUES
     (1,1),
-    (1,2);
+    (2,2);
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
-    ('Photo Semnoz', 'url”: “https://live.staticflickr.com/65535/50932308243_a19f408059_b.jpg', 1);
+    ('Photo Semnoz', 'https://live.staticflickr.com/65535/50932308243_a19f408059_b.jpg', 1),
+    ('Photo Semnoz 2', 'https://cdn.pixabay.com/photo/2019/12/13/13/17/landscape-4692947_1280.jpg', 1),
+    ('Photo Jura 1', 'https://upload.wikimedia.org/wikipedia/commons/4/4e/La_Petite_Montagne_vue_du_Molard_de_la_Justice%2C_Jura%2C_France.jpg', 2),
+    ('Photo Jura 2', 'https://get.pxhere.com/photo/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661.jpg', 2);
 
 INSERT INTO "img_landing"("title", "url", "idLanding")
 VALUES
     ('Photo atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche.jpg', 1),
-    ('Photo2 atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche2.jpg', 2);
+    ('Photo atero Jura', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2);
 
 INSERT INTO "img_lift-off"("title", "url", "idLiftOff")
 VALUES
     ('Photo deco Semnoz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Parapente_-_162.jpg/800px-Parapente_-_162.jpg?2015110313514', 1);
+    ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2);
 
 COMMIT;
