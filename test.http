@@ -8,11 +8,23 @@
 ### 404
 GET {{ endpoint-dev }}/itemm
 
-### get All hiking
+### get all hiking
 GET {{ endpoint-dev }}/api/hiking
 
 ### get one hiking
 GET {{ endpoint-dev }}/api/hiking/1
+
+### get all landing
+GET {{ endpoint-dev }}/api/landing
+
+### get one landing
+GET {{ endpoint-dev }}/api/landing/1
+
+### get all lift-off
+GET {{ endpoint-dev }}/api/lift-off
+
+### get one lift-off
+GET {{ endpoint-dev }}/api/lift-off/1
 
 ### Créer un item
 POST {{ endpoint-dev }}/api/item
