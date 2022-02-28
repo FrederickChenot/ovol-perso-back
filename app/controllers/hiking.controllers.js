@@ -8,7 +8,7 @@ module.exports = {
 
   async getOne(req, res) {
     const IdHiking = Number(req.params.id);
-    console.log(IdHiking);
+    console.log("id hiking",IdHiking);
     const hiking = await hikingDataMapper.findOne(IdHiking);
     return res.json(hiking);
   },
