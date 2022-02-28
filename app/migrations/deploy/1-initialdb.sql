@@ -2,9 +2,7 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "user", "lift-off", "img_lift-off", "hiking", "img_hiking", "landing", "img_landing", "lift-off_has_landing";
-
-CREATE TABLE "user" (
+CREATE TABLE "user"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "login" TEXT NOT NULL UNIQUE,
   "avatar" TEXT,
@@ -20,10 +18,10 @@ CREATE TABLE "lift-off"(
   "description" TEXT,
   "danger" TEXT,
   "fflv-link" TEXT,
-  "latitude" REAL,
-  "longitude" REAL,
-  "favorable-wind" TEXT,
-  "unfavorable-wind" TEXT,
+  "latitude" FLOAT,
+  "longitude" FLOAT,
+  "favorable-wind" TEXT [],
+  "unfavorable-wind" TEXT [],
   "altitude" INT
  );
 
@@ -69,10 +67,10 @@ CREATE TABLE "landing"(
   "description" TEXT,
   "danger" TEXT,
   "fflv-link" TEXT,
-  "latitude" INT,
-  "longitude" INT,
-  "favorable-wind" TEXT,
-  "unfavorable-wind" TEXT,
+  "latitude" FLOAT,
+  "longitude" FLOAT,
+  "favorable-wind" TEXT [],
+  "unfavorable-wind" TEXT [],
   "altitude" INT
 );
 

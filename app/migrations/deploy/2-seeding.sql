@@ -8,7 +8,7 @@ INSERT INTO "user"("login","role","email","password") VALUES
 
 INSERT INTO "lift-off"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
 VALUES
-    ('Déco Semnoz','Herbe','Facile par vent d\''Ouest. Gestion FFP',null,'https://intranet.ffvl.fr/sites_pratique/voir/980',45.7981,6.1006,'O','O',1616);
+    ('Déco Semnoz','Herbe','Facile par vent d\''Ouest. Gestion FFP',null,'https://intranet.ffvl.fr/sites_pratique/voir/980',45.7981,6.1006,ARRAY ['O'],ARRAY ['O'],1616);
 
 INSERT INTO "hiking"("name","img_card","mountain","resume","key_stage","starting_point","hiking_plan","positive_elevation","negative_elevation","overall_lenth","land_type","ign_card_reference","hight_point","low_point","difficulty","user_id","lift-off_id")
 VALUES
@@ -32,8 +32,8 @@ VALUES
 
 INSERT INTO "landing"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
 VALUES
-    ('Atéro Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,'O','O',576),
-    ('Atéro2 Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,'O','O',576);
+    ('Atéro Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,ARRAY ['O'],ARRAY ['O'],576),
+    ('Atéro2 Viuz-la-Chiésaz','Herbe','Grand champs allongé terrain facile','Attention au gradient lorsque vent NO','https://intranet.ffvl.fr/sites_pratique/voir/980',45.8106,6.05917,ARRAY ['O'],ARRAY ['O'],576);
 
 INSERT INTO "lift-off_has_landing"("lift-off_id","landing_id")
 VALUES
