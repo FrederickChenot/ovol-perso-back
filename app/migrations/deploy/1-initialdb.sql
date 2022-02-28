@@ -43,7 +43,7 @@ CREATE TABLE "hiking" (
   "hiking_plan" TEXT,
   "positive_elevation" INT,
   "negative_elevation" INT,
-  "overall_lenth" TEXT,
+  "overall_length" FLOAT,
   "land_type" TEXT,
   "ign_card_reference" TEXT,
   "hight_point" INT,
