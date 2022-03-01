@@ -11,4 +11,9 @@ module.exports = {
     const landing = await landingDataMapper.findOne(IdLanding);
     return res.json(landing);
   },
+  async getLandings(req, res) {
+    const { ids } = req.body;
+    const landings = await landingDataMapper.findLandings(ids);
+    return res.json(landings);
+  },
 };

@@ -26,6 +26,14 @@ GET {{ endpoint-dev }}/api/lift-off
 ### get one lift-off
 GET {{ endpoint-dev }}/api/lift-off/1
 
+### Test tableau landings
+POST {{ endpoint-dev }}/api/landings
+content-type: application/json
+
+{
+    "ids": [1,2,45,98]
+}
+
 ### Créer un item
 POST {{ endpoint-dev }}/api/item
 content-type: application/json
