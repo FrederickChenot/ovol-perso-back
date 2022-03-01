@@ -7,7 +7,7 @@ module.exports = {
   },
 
   async findOne(idLanding) {
-    const result = await client.query('SELECT * FROM "landing" WHERE id = $1', [idLanding]);
+    const result = await client.query('SELECT * FROM getLanding($1)', [idLanding]);
     return result.rows;
   },
 };

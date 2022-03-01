@@ -25,3 +25,11 @@ JOIN "img_lift-off" ON "lift-off"."id" = "img_lift-off"."idLiftOff"
 WHERE hiking."id" = 1
 
 SELECT json_agg(row_to_json("landing")) FROM landing
+
+
+--Avoir les rando plus un tableau de photo join
+SELECT "hiking"."id", "hiking"."name", array_agg(row_to_json("img_hiking")) AS photo_hiking FROM "hiking"
+JOIN "img_hiking"
+	ON "img_hiking"."idHiking" = "hiking"."id"
+WHERE hiking."id" = 1
+GROUP BY "hiking"."id", "hiking"."name"
