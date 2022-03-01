@@ -8,14 +8,17 @@ INSERT INTO "user"("login","role","email","password") VALUES
 
 INSERT INTO "lift-off"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
 VALUES
-    ('Déco Semnoz','Herbe','Facile par vent d\''Ouest. Gestion FFP',
+    ('Déco Semnoz',
+    'Herbe',
+    'Facile par vent d\''Ouest. Gestion FFP',
     null,
     'https://intranet.ffvl.fr/sites_pratique/voir/980',
     45.7981,
     6.1006,
     ARRAY ['O'],
-    ARRAY ['O'],
+    null,
     1616),
+
     ('Déco SEPTMONCEL',
     'Herbe',
     'Approche de l''atterrissage de l''Essard (contre-pente) en PT8 pour le delta. L''atterrissage du haut est délicat en parapente en pleine journée. Toujours vérifier que la biroute du décollage parapente est bien orientée pour éviter de décoller dans le rouleau en cas de vent Est ou Nord. Les parapentes décollent à 1050 m. Les deltas décollent à 1020 m.',
@@ -25,7 +28,18 @@ VALUES
     5.8985,
     ARRAY ['O'],
     null,
-    1026);
+    1026),
+
+    ('Déco Notre Dame D''Hermon',
+    'Herbe',
+    'Conditions idéales : Vent de Nord Ouest à Ouest.',
+    null,
+    'https://intranet.ffvl.fr/sites_pratique/voir/1192',
+    46.3073,
+    6.518,
+    ARRAY ["N","NO],
+    ARRAY ["NE","E","SE","S","SO"],
+    1290);
 
 
 INSERT INTO "hiking"("name","img_card","mountain","resume","key_stage","starting_point","hiking_plan","positive_elevation","negative_elevation","overall_length","land_type","ign_card_reference","hight_point","low_point","difficulty","user_id","lift-off_id")
@@ -60,7 +74,7 @@ VALUES
     'D : km 0 - alt. 556m - Parking de Montbrillant, après la fromagerie
     1 : km 0.5 - alt. 656m - Suite de la montée
     2 : km 2.82 - alt. 1023m - Les Curtillets. Carrefour de la boucle',
-    '',
+    null,
     '<iframe ‘src="https://www.google.com/maps/d/embed?mid=1xD4Ypl3aj1YlMS2tHSHkquLROQbSuKOM&ehbc=2E312F" width="640" height="480"></iframe>',
     746,
     5,
@@ -71,7 +85,29 @@ VALUES
     543,
     'moyenne',
     1,
-    2);
+    2),
+    ('La Chapelle d''Hermone à partir du Col du Feu',
+    'https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_d%27Hermone#/media/Fichier:Chapelle_des_Hermones.jpg',
+    'Chablais',
+    'Cette courte randonnée, qui constitue une voie usuelle pour monter à la Chapelle d''Hermone, met à l''honneur le petit patrimoine religieux, très présent tout le long du parcours, et offre au sommet de superbes points de vue sur le Léman',
+    'D/A : km 0 - alt. 1117m - Col du Feu
+    1 : km 0.71 - alt. 1149m - Le Feu
+    2 : km 1.04 - alt. 1188m - Virage en épingle
+    3 : km 1.49 - alt. 1267m - Chemin de croix
+    4 : km 1.85 - alt. 1306m - Chapelle d''Hermone - Vue sur le - Lac Léman
+    D/A : km 3.69 - alt. 1117m - Col du Feu',
+    null,
+    ' <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1IZBjGPlFWG2KH6Xs7PYNaAtJVT9kc2zO&ehbc=2E312F" width="640" height="480"></iframe>',
+    199,
+    3,
+    3.69,
+    'Forestier',
+    'Ref. 3428ET',
+    1316,
+    1117,
+    'Extrêment Facile',
+    1,
+    3);
 
 
 INSERT INTO "landing"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
@@ -95,28 +131,44 @@ VALUES
     5.87678,
     ARRAY ['O'],
     ARRAY ['O'],
-    576);
+    576),
+    ('Atéro Les Grands Champs',
+    'Herbe',
+    'Grand champs allongé terrain facile',
+    null,
+    'https://intranet.ffvl.fr/sites_pratique/voir/1192',
+    46.3192,
+    6.4844,
+    ARRAY ["N","NE”,"E","SE","SO”,"O","NO”],
+    ARRAY ['S'],
+    620);
 
 INSERT INTO "lift-off_has_landing"("lift-off_id","landing_id")
 VALUES
     (1,1),
-    (2,2);
+    (2,2),
+    (3,3);
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
     ('Photo Semnoz', 'https://live.staticflickr.com/65535/50932308243_a19f408059_b.jpg', 1),
     ('Photo Semnoz 2', 'https://cdn.pixabay.com/photo/2019/12/13/13/17/landscape-4692947_1280.jpg', 1),
     ('Photo Jura 1', 'https://upload.wikimedia.org/wikipedia/commons/4/4e/La_Petite_Montagne_vue_du_Molard_de_la_Justice%2C_Jura%2C_France.jpg', 2),
-    ('Photo Jura 2', 'https://get.pxhere.com/photo/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661.jpg', 2);
+    ('Photo Jura 2', 'https://get.pxhere.com/photo/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661.jpg', 2),
+    ('Photo Vailly 1', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Town_hall_of_Vailly_02.jpg/1200px-Town_hall_of_Vailly_02.jpg?20200825173820', 3),
+    ('Photo Vailly 2', 'https://upload.wikimedia.org/wikipedia/commons/4/41/Landscape_in_commune_of_of_Vailly.jpg', 3),
+    ('Photo Vailly 3', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG/1200px-Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG?20120712174044', 3);
 
 INSERT INTO "img_landing"("title", "url", "idLanding")
 VALUES
     ('Photo atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche.jpg', 1),
     ('Photo atero Jura', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2);
+    ('Photo atero Vailly', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3);
 
 INSERT INTO "img_lift-off"("title", "url", "idLiftOff")
 VALUES
     ('Photo deco Semnoz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Parapente_-_162.jpg/800px-Parapente_-_162.jpg?2015110313514', 1),
     ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2);
+    ('Photo deco Vailly', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 3);
 
 COMMIT;
