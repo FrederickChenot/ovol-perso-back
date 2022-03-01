@@ -8,9 +8,8 @@ module.exports = {
 
   async findOne(idHiking) {
     let result = await client.query('SELECT * FROM getOneHiking($1)', [idHiking]);
-    const liftOff = await client.query(`SELECT * FROM getLiftOff($1)`,[result.rows[0]['lift-off_id']])
+    const liftOff = await client.query(`SELECT * FROM getLiftOff($1)`, [result.rows[0]['lift-off_id']])
     result.rows[0].liftOff = liftOff.rows
-    // console.log(result.rows)
     return result.rows;
   },
 };

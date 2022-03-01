@@ -8,7 +8,7 @@ module.exports = {
 
   async findOne(idLanding) {
     const result = await client.query('SELECT * FROM getLanding($1)', [idLanding]);
-    console.log(result.rows[0].altitude)
+    console.log(result.rows[0])
     return result.rows;
   },
 };

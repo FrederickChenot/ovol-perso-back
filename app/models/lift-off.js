@@ -8,6 +8,7 @@ module.exports = {
 
   async findOne(idLiftOff) {
     const result = await client.query('SELECT * FROM getLiftOff($1)', [idLiftOff]);
+    console.log(result.rows[0]['landings'])
     return result.rows;
   },
 };

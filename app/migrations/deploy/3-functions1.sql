@@ -26,7 +26,7 @@ SELECT "landing"."id",
 	"landing"."favorable-wind",
 	"landing"."unfavorable-wind",
 	"landing"."altitude",
-array_agg(row_to_json("img_landing")) AS photo_landing FROM "landing"
+array_agg(row_to_json("img_landing")) AS "photo_landing" FROM "landing"
 JOIN "img_landing" 
 	ON "img_landing"."idLanding" = "landing"."id"
 WHERE "landing"."id" = $1
