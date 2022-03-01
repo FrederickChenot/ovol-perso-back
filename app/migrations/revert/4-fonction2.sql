@@ -3,6 +3,6 @@
 BEGIN;
 
 -- XXX Add DDLs here.
-DROP FUNCTION getOneHiking(int)
+DROP FUNCTION getOneHiking;
 
 COMMIT;
