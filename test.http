@@ -34,6 +34,14 @@ content-type: application/json
     "ids": [1,2,45,98]
 }
 
+### Test tableau landings heroku
+POST https://apiovol.herokuapp.com/api/landings
+content-type: application/json
+
+{
+    "ids": [1,2,45,98]
+}
+
 ### Créer un item
 POST {{ endpoint-dev }}/api/item
 content-type: application/json
