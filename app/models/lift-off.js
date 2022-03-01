@@ -7,7 +7,7 @@ module.exports = {
   },
 
   async findOne(idLiftOff) {
-    const result = await client.query('SELECT * FROM "lift-off" WHERE id = $1', [idLiftOff]);
+    const result = await client.query('SELECT * FROM getLiftOff($1)', [idLiftOff]);
     return result.rows;
   },
 };
