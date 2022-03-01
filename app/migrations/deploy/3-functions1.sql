@@ -45,7 +45,7 @@ CREATE OR REPLACE FUNCTION getLiftOff(int) RETURNS TABLE (
 	"favorable-wind" text[],
 	"unfavorable-wind" text[],
 	"altitude" int,
-	"landings" json[],
+	"idLandings" int[],
 	"photo_lift-off" json[]
 ) AS $$
 SELECT "lift-off"."id",
@@ -59,7 +59,7 @@ SELECT "lift-off"."id",
 	"lift-off"."favorable-wind",
 	"lift-off"."unfavorable-wind",
 	"lift-off"."altitude",
-	array_agg(row_to_json("landing")) AS "landings",
+	array_agg("landing"."id") AS "idLandings",
 	array_agg(row_to_json("img_lift-off")) AS "photo_lift-off" FROM "lift-off"
 JOIN "img_lift-off" 
 	ON "img_lift-off"."idLiftOff" = "lift-off"."id"
