@@ -18,7 +18,8 @@ router
 
 router
   .route('/api/hiking/:id')
-  .get(hikingController.getOne);
+  .get(hikingController.getOne)
+  .patch(hikingController.updateOne);
 
 router
   .route('/api/hiking')

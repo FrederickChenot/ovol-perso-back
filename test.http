@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp
 content-type: application/json
 
 {
-    "name": "rando oliv3",
+    "name": "rando oliv21",
     "imgCard" : "https://upload.wikimedia.org/wikipedia/commons/7/78/Ch%C3%A8vre_naine_-_S%C3%A9rent_8.jpg",
     "mountain": "jura",
     "resume": "Une rando qui monte",
@@ -33,11 +33,13 @@ content-type: application/json
     "lowPoint": 1000,
     "difficulty": "Très difficile",
     "userId": 1,
-    "liftOffId": 3
+    "liftOffId": 3,
+    "photos": [{"name": "photo rando pourri", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
+      {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
 }
 
 ### get one hiking
-GET {{ endpoint-dev }}/api/hiking/1
+GET {{ endpoint-dev }}/api/hiking/10
 
 ### get all landing
 GET {{ endpoint-dev }}/api/landing

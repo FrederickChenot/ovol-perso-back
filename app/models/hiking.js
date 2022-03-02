@@ -13,25 +13,7 @@ module.exports = {
     return result.rows;
   },
 
-  async creatOne(
-    name,
-    imgCard,
-    mountain,
-    resume,
-    keyStage,
-    startingPoint,
-    hikingPlan,
-    positiveElevation,
-    negativeElevation,
-    overallLength,
-    landType,
-    ignCardReference,
-    hightPoint,
-    lowPoint,
-    difficulty,
-    userId,
-    liftOffId,
-  ) {
+  async creatOne(data) {
     const query = {
       text: `INSERT INTO "hiking"
             ("name",
@@ -54,25 +36,46 @@ module.exports = {
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
             RETURNING id`,
       values: [
-        name,
-        imgCard,
-        mountain,
-        resume,
-        keyStage,
-        startingPoint,
-        hikingPlan,
-        positiveElevation,
-        negativeElevation,
-        overallLength,
-        landType,
-        ignCardReference,
-        hightPoint,
-        lowPoint,
-        difficulty,
-        userId,
-        liftOffId],
+        data.name,
+        data.imgCard,
+        data.mountain,
+        data.resume,
+        data.keyStage,
+        data.startingPoint,
+        data.hikingPlan,
+        data.positiveElevation,
+        data.negativeElevation,
+        data.overallLength,
+        data.landType,
+        data.ignCardReference,
+        data.hightPoint,
+        data.lowPoint,
+        data.difficulty,
+        data.userId,
+        data.liftOffId],
     };
     const result = await client.query(query);
+    // Request to put photo in the img_hiking table
+    data.photos.forEach(async (photo) => {
+      const query2 = {
+        text: `INSERT INTO "img_hiking"
+        ("title",
+        "url",
+        "idHiking")
+        VALUES ($1, $2, $3)`,
+        values: [
+          photo.name,
+          photo.url,
+          result.rows[0].id,
+        ],
+      };
+      await client.query(query2);
+    });
+
     return result.rows;
+  },
+
+  async updateOne(id) {
+    // ss
   },
 };
