@@ -77,3 +77,23 @@ content-type: application/json
 ### Post a hiking : recuperer l'accessToken avant avec la route login et le copier si dessous
 POST {{ endpoint-dev }}/api/hiking
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+
+### Post a landing
+POST {{ endpoint-dev }}/api/landing
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+      "name":"new landing",
+      "typeOfTerrain":"new type de terrain",
+      "description":"new description",
+      "danger":"new danger",
+      "fflvLink":"new fflvLink",
+      "latitude":23.234,
+      "longitude":34.23,
+      "favorableWind":["O"],
+      "unfavorableWind":["O"],
+      "altitude":23123
+}
+
+     
