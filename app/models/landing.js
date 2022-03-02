@@ -27,4 +27,47 @@ module.exports = {
     const result = await client.query(query);
     return result.rows;
   },
+
+  async createOne(
+    name,
+    typeOfTerrain,
+    description,
+    danger,
+    fflvLink,
+    latitude,
+    longitude,
+    favorableWind,
+    unfavorableWind,
+    altitude,
+  ) {
+    const query = {
+      text: `INSERT INTO "landing"
+                ("name",
+                "type-of-terrain",
+                "description",
+                "danger",
+                "fflv-link",
+                "latitude",
+                "longitude",
+                "favorable-wind",
+                "unfavorable-wind",
+                "altitude")
+          VALUES
+              ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
+      values: [name,
+        typeOfTerrain,
+        description,
+        danger,
+        fflvLink,
+        latitude,
+        longitude,
+        favorableWind,
+        unfavorableWind,
+        altitude],
+    };
+
+    const result = await client.query(query);
+    console.log('post landing id', result.rows);
+    return result.rows;
+  },
 };
