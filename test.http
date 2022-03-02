@@ -56,3 +56,24 @@ content-type: application/json
 {
     "label": 2222
 }
+
+### login
+POST {{ endpoint-dev }}/api/login
+content-type: application/json
+
+{
+    "user": "admin",
+    "pass": "pass"
+}
+### bad login
+POST {{ endpoint-dev }}/api/login
+content-type: application/json
+
+{
+    "user": "adminnnn",
+    "pass": "pass"
+}
+
+### Post a hiking : recuperer l'accessToken avant avec la route login et le copier si dessous
+POST {{ endpoint-dev }}/api/hiking
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4

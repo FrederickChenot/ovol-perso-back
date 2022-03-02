@@ -2,22 +2,48 @@ const express = require('express');
 
 const router = express.Router();
 
+const userController = require('../controllers/auth.controllers');
+
 const hikingController = require('../controllers/hiking.controllers');
 
 const liftOffController = require('../controllers/lift-off.controllers');
 
 const landingController = require('../controllers/landing.controllers');
 
-router.route('/api/hiking/:id').get(hikingController.getOne);
-router.route('/api/hiking').get(hikingController.getAll);
+const auth = require('../helpers/auth.helpers');
 
-router.route('/api/lift-off/:id').get(liftOffController.getOne);
-router.route('/api/lift-off').get(liftOffController.getAll);
+router
+  .route('/api/login')
+  .post(userController.login);
 
-router.route('/api/landing/:id').get(landingController.getOne);
-router.route('/api/landing').get(landingController.getAll);
+router
+  .route('/api/hiking/:id')
+  .get(hikingController.getOne);
 
-router.route('/api/landings').post(landingController.getLandings);
+router
+  .route('/api/hiking')
+  .get(hikingController.getAll)
+  .post(auth(), hikingController.create);
+
+router
+  .route('/api/lift-off/:id')
+  .get(liftOffController.getOne);
+
+router
+  .route('/api/lift-off')
+  .get(liftOffController.getAll);
+
+router
+  .route('/api/landing/:id')
+  .get(landingController.getOne);
+
+router
+  .route('/api/landing')
+  .get(landingController.getAll);
+
+router
+  .route('/api/landings')
+  .post(landingController.getLandings);
 
 router.use((_req, res) => {
   res.json({ message: 'page not found' });
