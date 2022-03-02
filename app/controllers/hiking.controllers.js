@@ -52,4 +52,32 @@ module.exports = {
     );
     return res.json(hiking);
   },
+
+  async updateOne(req, res) {
+    const {
+      id,
+      name,
+      imgCard,
+      mountain,
+      resume,
+      keyStage,
+      startingPoint,
+      hikingPlan,
+      positiveElevation,
+      negativeElevation,
+      overallLength,
+      landType,
+      ignCardReference,
+      hightPoint,
+      lowPoint,
+      difficulty,
+      userId,
+      liftOffId,
+     } = req.body;
+
+     const hiking = getOne(id).toJson;
+     console.log(hiking);
+    // const hiking = await hikingDataMapper.updateOne(id);
+    return res.json(hiking);
+  }
 };
