@@ -37,8 +37,8 @@ VALUES
     'https://intranet.ffvl.fr/sites_pratique/voir/1192',
     46.3073,
     6.518,
-    ARRAY ["N","NO],
-    ARRAY ["NE","E","SE","S","SO"],
+    ARRAY ['N','NO'],
+    ARRAY ['NE', 'E', 'SE', 'S', 'SO'],
     1290);
 
 
@@ -130,7 +130,7 @@ VALUES
     46.3723,
     5.87678,
     ARRAY ['O'],
-    ARRAY ['O'],
+    null,
     576),
     ('Atéro Les Grands Champs',
     'Herbe',
@@ -139,7 +139,7 @@ VALUES
     'https://intranet.ffvl.fr/sites_pratique/voir/1192',
     46.3192,
     6.4844,
-    ARRAY ["N","NE”,"E","SE","SO”,"O","NO”],
+    ARRAY ['N','NE','E','SE','SO','O','NO'],
     ARRAY ['S'],
     620);
 
@@ -162,13 +162,13 @@ VALUES
 INSERT INTO "img_landing"("title", "url", "idLanding")
 VALUES
     ('Photo atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche.jpg', 1),
-    ('Photo atero Jura', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2);
+    ('Photo atero Jura', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
     ('Photo atero Vailly', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3);
 
 INSERT INTO "img_lift-off"("title", "url", "idLiftOff")
 VALUES
     ('Photo deco Semnoz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Parapente_-_162.jpg/800px-Parapente_-_162.jpg?2015110313514', 1),
-    ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2);
+    ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2),
     ('Photo deco Vailly', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 3);
 
 COMMIT;
