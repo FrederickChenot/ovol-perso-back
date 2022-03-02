@@ -2,7 +2,6 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = () => async (req, res, next) => {
-  console.log('hello');
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1]; // Bearer <token> => on recupere seulement le token
   if (!token) {
