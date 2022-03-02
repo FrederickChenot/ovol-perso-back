@@ -8,12 +8,48 @@ module.exports = {
 
   async getOne(req, res) {
     const IdHiking = Number(req.params.id);
-    console.log('id hiking', IdHiking);
     const hiking = await hikingDataMapper.findOne(IdHiking);
     return res.json(hiking);
   },
-   create(req, res) {
-    console.log('bienvenu sur le formulaire post');
-    return res.send('bienvenu sur le formulaire post');
+  async create(req, res) {
+    const {
+      name,
+      imgCard,
+      mountain,
+      resume,
+      keyStage,
+      startingPoint,
+      hikingPlan,
+      positiveElevation,
+      negativeElevation,
+      overallLength,
+      landType,
+      ignCardReference,
+      hightPoint,
+      lowPoint,
+      difficulty,
+      userId,
+      liftOffId,
+    } = req.body;
+    const hiking = await hikingDataMapper.creatOne(
+      name,
+      imgCard,
+      mountain,
+      resume,
+      keyStage,
+      startingPoint,
+      hikingPlan,
+      positiveElevation,
+      negativeElevation,
+      overallLength,
+      landType,
+      ignCardReference,
+      hightPoint,
+      lowPoint,
+      difficulty,
+      userId,
+      liftOffId,
+    );
+    return res.json(hiking);
   },
 };

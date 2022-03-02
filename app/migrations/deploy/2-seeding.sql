@@ -87,7 +87,7 @@ VALUES
     1,
     2),
     ('La Chapelle d''Hermone à partir du Col du Feu',
-    'https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_d%27Hermone#/media/Fichier:Chapelle_des_Hermones.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Chapelle_des_Hermones.jpg/1920px-Chapelle_des_Hermones.jpg',
     'Chablais',
     'Cette courte randonnée, qui constitue une voie usuelle pour monter à la Chapelle d''Hermone, met à l''honneur le petit patrimoine religieux, très présent tout le long du parcours, et offre au sommet de superbes points de vue sur le Léman',
     'D/A : km 0 - alt. 1117m - Col du Feu
