@@ -39,7 +39,8 @@ router
 
 router
   .route('/api/landing')
-  .get(landingController.getAll);
+  .get(landingController.getAll)
+  .post(auth(), landingController.create);
 
 router
   .route('/api/landings')
