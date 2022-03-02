@@ -45,13 +45,13 @@ GET {{ endpoint-dev }}/api/hiking/10
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/1
+GET {{ endpoint-dev }}/api/landing/4
 
 ### get all lift-off
 GET {{ endpoint-dev }}/api/lift-off
 
 ### get one lift-off
-GET {{ endpoint-dev }}/api/lift-off/1
+GET {{ endpoint-dev }}/api/lift-off/4
 
 ### Test tableau landings
 POST {{ endpoint-dev }}/api/landings
@@ -111,7 +111,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp
 content-type: application/json
 
 {
-      "name":"new landing",
+      "name":"new lift-off",
       "typeOfTerrain":"new type de terrain",
       "description":"new description",
       "danger":"new danger",
@@ -120,5 +120,28 @@ content-type: application/json
       "longitude":34.23,
       "favorableWind":["O"],
       "unfavorableWind":["O"],
-      "altitude":23123
+      "altitude":23123,
+       "photos": [{"name": "photo rando pourri", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
+      {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
 }
+### Post a liftOff
+POST {{ endpoint-dev }}/api/lift-off
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+      "name":"new lift-off",
+      "typeOfTerrain":"new type de terrain",
+      "description":"new description",
+      "danger":"new danger",
+      "fflvLink":"new fflvLink",
+      "latitude":23.234,
+      "longitude":34.23,
+      "favorableWind":["O"],
+      "unfavorableWind":["O"],
+      "altitude":23123,
+      "idLandings": [{"id":1},{"id":2}],
+       "photos": [{"name": "photo rando pourri", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
+      {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
+}
+

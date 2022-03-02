@@ -11,4 +11,11 @@ module.exports = {
     const hiking = await liftOffDataMapper.findOne(IdHiking);
     return res.json(hiking);
   },
+  async create(req, res) {
+    const result = await liftOffDataMapper.createOne(req.body);
+    if (result) {
+      return res.send(result);
+    }
+    return res.send('erreur liftOff');
+  },
 };

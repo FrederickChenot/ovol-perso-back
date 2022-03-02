@@ -1,0 +1,37 @@
+// hiking
+{
+    "name": "rando oliv3",
+    "imgCard": "https://upload.wikimedia.org/wikipedia/commons/7/78/Ch%C3%A8vre_naine_-_S%C3%A9rent_8.jpg",
+    "mountain": "jura",
+    "resume": "Une rando qui monte",
+    "keyStage": "A/D: km 0 départ /n 1: km 3.2 tounre à gauche",
+    "startingPoint": "45.88847701585252, 6.240168998430284",
+    "hikingPlan": "test",
+    "positiveElevation": 1235,
+    "negativeElevation": 4321,
+    "overallLength": 5.5,
+    "landType": "Forestier",
+    "ignCardReference": "Réf 987654321",
+    "hightPoint": 2543,
+    "lowPoint": 1000,
+    "difficulty": "Très difficile",
+    "userId": 1,
+    "liftOffId": 3
+},
+// landing & lift-off 
+{
+    "name": "new landing",
+    "typeOfTerrain": "new type de terrain",
+    "description": "new description",
+    "danger": "new danger",
+    "fflvLink": "new fflvLink",
+    "latitude": 23.234,
+    "longitude": 34.23,
+    "favorableWind": [
+        "O"
+    ],
+    "unfavorableWind": [
+        "O"
+    ],
+    "altitude": 23123
+}
