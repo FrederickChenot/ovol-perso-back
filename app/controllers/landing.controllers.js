@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 const landingDataMapper = require('../models/landing');
-const { create } = require('./hiking.controllers');
 
 module.exports = {
   async getAll(_req, res) {
@@ -19,32 +18,9 @@ module.exports = {
     return res.json(landings);
   },
   async create(req, res) {
-    const {
-      name,
-      typeOfTerrain,
-      description,
-      danger,
-      fflvLink,
-      latitude,
-      longitude,
-      favorableWind,
-      unfavorableWind,
-      altitude,
-    } = req.body;
-    const result = await landingDataMapper.createOne(
-      name,
-      typeOfTerrain,
-      description,
-      danger,
-      fflvLink,
-      latitude,
-      longitude,
-      favorableWind,
-      unfavorableWind,
-      altitude,
-    );
+    const result = await landingDataMapper.createOne(req.body);
     if (result) {
-      return res.send('Ok');
+      return res.send(result);
     }
     return res.send('erreur landing');
   },

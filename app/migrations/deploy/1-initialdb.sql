@@ -27,8 +27,8 @@ CREATE TABLE "lift-off"(
 
 CREATE TABLE "img_lift-off"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "title" TEXT NOT NULL UNIQUE,
-  "url" TEXT NOT NULL UNIQUE,
+  "title" TEXT NOT NULL,
+  "url" TEXT NOT NULL,
   "idLiftOff" INT REFERENCES "lift-off"("id")
 );
 
@@ -55,8 +55,8 @@ CREATE TABLE "hiking" (
 
 CREATE TABLE "img_hiking"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "title" TEXT NOT NULL UNIQUE,
-  "url" TEXT NOT NULL UNIQUE,
+  "title" TEXT NOT NULL,
+  "url" TEXT NOT NULL,
   "idHiking" INT REFERENCES "hiking"("id")
 );
 
@@ -76,8 +76,8 @@ CREATE TABLE "landing"(
 
 CREATE TABLE "img_landing"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "title" TEXT NOT NULL UNIQUE,
-  "url" TEXT NOT NULL UNIQUE,
+  "title" TEXT NOT NULL,
+  "url" TEXT NOT NULL,
   "idLanding" INT REFERENCES "landing"("id")
 );
 

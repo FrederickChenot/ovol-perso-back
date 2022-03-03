@@ -32,7 +32,8 @@ router
 
 router
   .route('/api/lift-off')
-  .get(liftOffController.getAll);
+  .get(liftOffController.getAll)
+  .post(auth(), liftOffController.create);
 
 router
   .route('/api/landing/:id')
