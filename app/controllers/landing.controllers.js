@@ -9,7 +9,7 @@ module.exports = {
 
   async getOne(req, res) {
     const IdLanding = Number(req.params.id);
-    const landing = await landingDataMapper.findOne(IdLanding);
+    const landing = await landingDataMapper.findByPk(IdLanding);
     return res.json(landing);
   },
   async getLandings(req, res) {
@@ -24,5 +24,4 @@ module.exports = {
     }
     return res.send('erreur landing');
   },
-
 };

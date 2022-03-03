@@ -6,7 +6,7 @@ module.exports = {
     return result.rows;
   },
 
-  async findOne(idLanding) {
+  async findByPk(idLanding) {
     const result = await client.query('SELECT * FROM getLanding($1)', [idLanding]);
     if (result.rowCount === 0) {
       return null;
@@ -60,7 +60,24 @@ module.exports = {
 
     const result = await client.query(query1);
     // Request to put photo in the img_landing table
-    data.photos.forEach(async (photo) => {
+    // TODO : si data.photos est null ,on insert une photo par default
+    if (data.photos.length > 0) {
+      data.photos.forEach(async (photo) => {
+        const query2 = {
+          text: `INSERT INTO "img_landing"
+        ("title",
+        "url",
+        "idLanding")
+        VALUES ($1, $2, $3)`,
+          values: [
+            photo.name,
+            photo.url,
+            result.rows[0].id,
+          ],
+        };
+        await client.query(query2);
+      });
+    } else {
       const query2 = {
         text: `INSERT INTO "img_landing"
         ("title",
@@ -68,13 +85,58 @@ module.exports = {
         "idLanding")
         VALUES ($1, $2, $3)`,
         values: [
-          photo.name,
-          photo.url,
+          'default_landing',
+          'https://res.cloudinary.com/ovol/image/upload/v1646311339/assets/parachute-landing_mbaiu0.jpg',
           result.rows[0].id,
         ],
       };
       await client.query(query2);
-    });
+    }
     return result.rows;
   },
+  /*
+  async update(id, data) {
+    const landing = await client.query('SELECT * FROM landing WHERE id = $1', [id]);
+    if (landing.rowCount === 0) {
+      return null;
+    }
+    const oldLanding = landing.rows[0];
+    const newLanding = { ...oldLanding, ...data };
+    const query = {
+      text: `UPDATE "landing" SET
+                ("name" = $1,
+                "typeOfTerrain" = $2,
+                "description" = $3,
+                "danger" = $4,
+                "fflvLink" = $5,
+                "latitude" = $6,
+                "longitude" = $7,
+                "favorableWind" = $8,
+                "unfavorableWind" = $9,
+                "altitude" = $10)
+    WHERE "id" = ${id}
+    RETURNING *`,
+      values: [
+        newLanding.name,
+        newLanding.typeOfTerrain,
+        newLanding.description,
+        newLanding.danger,
+        newLanding.fflvLink,
+        newLanding.latitude,
+        newLanding.longitude,
+        newLanding.favorableWind,
+        newLanding.unfavorableWind,
+        newLanding.altitude],
+    }
+    const result = await client.query(query);
+    return result.rows[0];
+  },
+
+  async delete(id) {
+    // TODO: delete les photos dans img_Landing
+    // const result = await client.query('DELETE FROM "landing" WHERE id = $1', [id]);
+    // TODO : chercher dans lifOff_has_landing et delete les associations avec landing id
+    return !!result.rowCount;
+  },
+*/
 };
