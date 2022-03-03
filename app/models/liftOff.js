@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 const client = require('../config/postgres');
 
 module.exports = {
@@ -64,8 +65,24 @@ module.exports = {
 
     const result = await client.query(query1);
     // Request to put photo in the img_liftOff table
-    console.log('data photo', data.photos);
-    data.photos.forEach(async (photo) => {
+    // TODO : si data.photos est null ,on insert une photo par default
+    if (data.photos.length > 0) {
+      data.photos.forEach(async (photo) => {
+        const query2 = {
+          text: `INSERT INTO "img_liftOff"
+        ("title",
+        "url",
+        "idLiftOff")
+        VALUES ($1, $2, $3)`,
+          values: [
+            photo.name,
+            photo.url,
+            result.rows[0].id,
+          ],
+        };
+        await client.query(query2);
+      });
+    } else {
       const query2 = {
         text: `INSERT INTO "img_liftOff"
         ("title",
@@ -73,16 +90,14 @@ module.exports = {
         "idLiftOff")
         VALUES ($1, $2, $3)`,
         values: [
-          photo.name,
-          photo.url,
+          'default_liftOff',
+          'https://res.cloudinary.com/ovol/image/upload/v1646312780/assets/parachute_liftOff_wau7fx.jpg',
           result.rows[0].id,
         ],
       };
       await client.query(query2);
-    });
-    let boucle = 1;
+    }
     data.idLandings.forEach(async (landing) => {
-      boucle += 1;
       const query3 = {
         text: `INSERT INTO "liftOff_has_landing"
         ("liftOff_id",
@@ -95,7 +110,6 @@ module.exports = {
       };
       await client.query(query3);
     });
-    console.log('Nbr de tour',)
     return result.rows;
   },
 };
