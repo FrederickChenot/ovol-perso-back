@@ -45,7 +45,7 @@ GET {{ endpoint-dev }}/api/hiking/10
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/4
+GET {{ endpoint-dev }}/api/landing/2
 
 ### get all lift-off
 GET {{ endpoint-dev }}/api/lift-off
@@ -140,7 +140,7 @@ content-type: application/json
       "favorableWind":["O"],
       "unfavorableWind":["O"],
       "altitude":23123,
-      "idLandings": [{"id":1},{"id":2}],
+      "idLandings": [1,2],
        "photos": [{"name": "photo rando pourri", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
       {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
 }

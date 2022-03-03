@@ -147,7 +147,8 @@ INSERT INTO "lift-off_has_landing"("lift-off_id","landing_id")
 VALUES
     (1,1),
     (2,2),
-    (3,3);
+    (3,3),
+    (3,2);
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
@@ -163,7 +164,8 @@ INSERT INTO "img_landing"("title", "url", "idLanding")
 VALUES
     ('Photo atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche.jpg', 1),
     ('Photo atero Jura', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
-    ('Photo atero Vailly', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3);
+    ('Photo atero Jura2', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
+    ('Photo atero Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3);
 
 INSERT INTO "img_lift-off"("title", "url", "idLiftOff")
 VALUES

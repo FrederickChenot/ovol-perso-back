@@ -11,8 +11,9 @@ module.exports = {
     if (result.rowCount === 0) {
       return null;
     }
+    console.log('model', result.rows[0]);
     // on supprime les photos en doublon dans l'array photo_lift-off
-    const array = result.rows[0]['photo_lift-off'].filter((v, i, a) => a.findIndex((t) => (JSON.stringify(t) === JSON.stringify(v))) === i);
+    const array = result.rows[0]['photo_lift-off'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
     result.rows[0]['photo_lift-off'] = array;
     return result.rows;
   },
@@ -63,6 +64,7 @@ module.exports = {
 
     const result = await client.query(query1);
     // Request to put photo in the img_liftOff table
+    console.log('data photo', data.photos);
     data.photos.forEach(async (photo) => {
       const query2 = {
         text: `INSERT INTO "img_lift-off"
@@ -78,8 +80,9 @@ module.exports = {
       };
       await client.query(query2);
     });
-
+    let boucle = 1;
     data.idLandings.forEach(async (landing) => {
+      boucle += 1;
       const query3 = {
         text: `INSERT INTO "lift-off_has_landing"
         ("lift-off_id",
@@ -87,12 +90,12 @@ module.exports = {
         VALUES ($1, $2)`,
         values: [
           result.rows[0].id,
-          landing.id,
+          landing,
         ],
       };
       await client.query(query3);
     });
-
+    console.log('Nbr de tour', )
     return result.rows;
   },
 };
