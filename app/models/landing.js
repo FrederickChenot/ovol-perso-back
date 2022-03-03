@@ -94,8 +94,9 @@ module.exports = {
     }
     return result.rows;
   },
-  /*
+
   async update(id, data) {
+    // TODO: update les photos
     const landing = await client.query('SELECT * FROM landing WHERE id = $1', [id]);
     if (landing.rowCount === 0) {
       return null;
@@ -104,7 +105,7 @@ module.exports = {
     const newLanding = { ...oldLanding, ...data };
     const query = {
       text: `UPDATE "landing" SET
-                ("name" = $1,
+                "name" = $1,
                 "typeOfTerrain" = $2,
                 "description" = $3,
                 "danger" = $4,
@@ -113,9 +114,8 @@ module.exports = {
                 "longitude" = $7,
                 "favorableWind" = $8,
                 "unfavorableWind" = $9,
-                "altitude" = $10)
-    WHERE "id" = ${id}
-    RETURNING *`,
+                "altitude" = $10
+    WHERE "id" = $11 RETURNING *`,
       values: [
         newLanding.name,
         newLanding.typeOfTerrain,
@@ -126,12 +126,14 @@ module.exports = {
         newLanding.longitude,
         newLanding.favorableWind,
         newLanding.unfavorableWind,
-        newLanding.altitude],
-    }
+        newLanding.altitude,
+        id],
+    };
     const result = await client.query(query);
-    return result.rows[0];
+    return result.rows;
   },
-
+  // TODO delete
+  /*
   async delete(id) {
     // TODO: delete les photos dans img_Landing
     // const result = await client.query('DELETE FROM "landing" WHERE id = $1', [id]);

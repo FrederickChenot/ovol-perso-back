@@ -37,7 +37,8 @@ router
 
 router
   .route('/api/landing/:id')
-  .get(landingController.getOne);
+  .get(landingController.getOne)
+  .patch(auth(), landingController.patch);
 
 router
   .route('/api/landing')
