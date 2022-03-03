@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 const client = require('../config/postgres');
 
 module.exports = {
@@ -8,7 +9,13 @@ module.exports = {
 
   async findOne(idHiking) {
     const result = await client.query('SELECT * FROM getOneHiking($1)', [idHiking]);
+    if (result.rowCount === 0) {
+      return null;
+    }
     const liftOff = await client.query('SELECT * FROM getLiftOff($1)', [result.rows[0]['liftOff_id']]);
+    if (result.rowCount === 0) {
+      return null;
+    }
     result.rows[0].idLandings = liftOff.rows[0].idLandings;
     return result.rows;
   },

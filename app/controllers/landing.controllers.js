@@ -9,8 +9,11 @@ module.exports = {
 
   async getOne(req, res) {
     const IdLanding = Number(req.params.id);
-    const landing = await landingDataMapper.findByPk(IdLanding);
-    return res.json(landing);
+    const result = await landingDataMapper.findByPk(IdLanding);
+    if (!result) {
+      return res.status(404).json({ message: 'page not found' });
+    }
+    return res.json(result);
   },
   async getLandings(req, res) {
     const { ids } = req.body;
