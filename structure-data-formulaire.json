@@ -18,7 +18,7 @@
     "userId": 1,
     "liftOffId": 3
 },
-// landing & lift-off 
+// landing & liftOff 
 {
     "name": "new landing",
     "typeOfTerrain": "new type de terrain",

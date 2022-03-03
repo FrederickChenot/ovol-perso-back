@@ -46,29 +46,29 @@ CREATE OR REPLACE FUNCTION getLiftOff(int) RETURNS TABLE (
 	"unfavorable-wind" text[],
 	"altitude" int,
 	"idLandings" int[],
-	"photo_lift-off" json[]
+	"photo_liftOff" json[]
 ) AS $$
-SELECT "lift-off"."id",
-	"lift-off"."name",
-	"lift-off"."type-of-terrain",
-	"lift-off"."description",
-	"lift-off"."danger",
-	"lift-off"."fflv-link",
-	"lift-off"."latitude",
-	"lift-off"."longitude",
-	"lift-off"."favorable-wind",
-	"lift-off"."unfavorable-wind",
-	"lift-off"."altitude",
+SELECT "liftOff"."id",
+	"liftOff"."name",
+	"liftOff"."type-of-terrain",
+	"liftOff"."description",
+	"liftOff"."danger",
+	"liftOff"."fflv-link",
+	"liftOff"."latitude",
+	"liftOff"."longitude",
+	"liftOff"."favorable-wind",
+	"liftOff"."unfavorable-wind",
+	"liftOff"."altitude",
 	array_agg(DISTINCT "landing"."id") AS "idLandings",
-    array_agg(row_to_json("img_lift-off")) AS "photo_lift-off" FROM "lift-off"
-JOIN "img_lift-off" 
-	ON "img_lift-off"."idLiftOff" = "lift-off"."id"
-JOIN "lift-off_has_landing"
-	ON "lift-off_has_landing"."lift-off_id" = "lift-off"."id"
+    array_agg(row_to_json("img_liftOff")) AS "photo_liftOff" FROM "liftOff"
+JOIN "img_liftOff" 
+	ON "img_liftOff"."idLiftOff" = "liftOff"."id"
+JOIN "liftOff_has_landing"
+	ON "liftOff_has_landing"."liftOff_id" = "liftOff"."id"
 JOIN "landing"
-	ON "landing"."id" = "lift-off_has_landing"."landing_id"
-WHERE "lift-off"."id" = $1
-GROUP BY "lift-off"."id"
+	ON "landing"."id" = "liftOff_has_landing"."landing_id"
+WHERE "liftOff"."id" = $1
+GROUP BY "liftOff"."id"
 $$ LANGUAGE sql;
 
 COMMIT;

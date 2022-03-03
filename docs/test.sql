@@ -5,23 +5,23 @@ WHERE hiking."id" = 1
 -- cette requete fonctionne
 SELECT * FROM "hiking"
 JOIN "img_hiking" ON img_hiking."idHiking" = "hiking"."id"
-JOIN "lift-off" ON "hiking"."lift-off_id" = "lift-off"."id"
-JOIN "img_lift-off" ON "lift-off"."id" = "img_lift-off"."idLiftOff"
-JOIN "lift-off_has_landing" ON "lift-off_has_landing"."lift-off_id" = "lift-off"."id"
-JOIN "landing" ON "lift-off_has_landing"."landing_id" = "landing"."id"
+JOIN "liftOff" ON "hiking"."liftOff_id" = "liftOff"."id"
+JOIN "img_liftOff" ON "liftOff"."id" = "img_liftOff"."idLiftOff"
+JOIN "liftOff_has_landing" ON "liftOff_has_landing"."liftOff_id" = "liftOff"."id"
+JOIN "landing" ON "liftOff_has_landing"."landing_id" = "landing"."id"
 WHERE hiking."id" = 1
 
 
 
-SELECT DISTINCT *,array_agg("landing") AS landings FROM "lift-off"
-JOIN "lift-off_has_landing" ON "lift-off_has_landing"."lift-off_id" = "lift-off"."id"
-JOIN "landing" ON "lift-off_has_landing"."landing_id" = "landing"."id"
-group by "lift-off"."id","lift-off_has_landing"."id","landing"."id"
+SELECT DISTINCT *,array_agg("landing") AS landings FROM "liftOff"
+JOIN "liftOff_has_landing" ON "liftOff_has_landing"."liftOff_id" = "liftOff"."id"
+JOIN "landing" ON "liftOff_has_landing"."landing_id" = "landing"."id"
+group by "liftOff"."id","liftOff_has_landing"."id","landing"."id"
 
 SELECT * FROM "hiking"
 JOIN "img_hiking" ON img_hiking."idHiking" = "hiking"."id"
-JOIN "lift-off" ON "hiking"."lift-off_id" = "lift-off"."id"
-JOIN "img_lift-off" ON "lift-off"."id" = "img_lift-off"."idLiftOff"
+JOIN "liftOff" ON "hiking"."liftOff_id" = "liftOff"."id"
+JOIN "img_liftOff" ON "liftOff"."id" = "img_liftOff"."idLiftOff"
 WHERE hiking."id" = 1
 
 SELECT json_agg(row_to_json("landing")) FROM landing

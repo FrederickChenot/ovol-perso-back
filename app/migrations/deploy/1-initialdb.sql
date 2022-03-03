@@ -11,7 +11,7 @@ CREATE TABLE "user"(
   "password" TEXT NOT NULL
 );
 
-CREATE TABLE "lift-off"(
+CREATE TABLE "liftOff"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL UNIQUE,
   "type-of-terrain" TEXT,
@@ -25,11 +25,11 @@ CREATE TABLE "lift-off"(
   "altitude" INT
  );
 
-CREATE TABLE "img_lift-off"(
+CREATE TABLE "img_liftOff"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "title" TEXT NOT NULL,
   "url" TEXT NOT NULL,
-  "idLiftOff" INT REFERENCES "lift-off"("id")
+  "idLiftOff" INT REFERENCES "liftOff"("id")
 );
 
 CREATE TABLE "hiking" (
@@ -50,7 +50,7 @@ CREATE TABLE "hiking" (
   "low_point" INT,
   "difficulty" TEXT,
   "user_id" INT NOT NULL REFERENCES "user"("id"),
-  "lift-off_id" INT NOT NULL REFERENCES "lift-off"("id")
+  "liftOff_id" INT NOT NULL REFERENCES "liftOff"("id")
 );
 
 CREATE TABLE "img_hiking"(
@@ -81,9 +81,9 @@ CREATE TABLE "img_landing"(
   "idLanding" INT REFERENCES "landing"("id")
 );
 
-CREATE TABLE "lift-off_has_landing"(
+CREATE TABLE "liftOff_has_landing"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "lift-off_id" INT REFERENCES "lift-off"("id"),
+  "liftOff_id" INT REFERENCES "liftOff"("id"),
   "landing_id" INT REFERENCES "landing"("id")
 );
 

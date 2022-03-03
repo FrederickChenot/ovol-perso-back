@@ -6,7 +6,7 @@ BEGIN;
 INSERT INTO "user"("login","role","email","password") VALUES
 ('admin','admin','ovolclock@gmail.com','pass');
 
-INSERT INTO "lift-off"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
+INSERT INTO "liftOff"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
 VALUES
     ('Déco Semnoz',
     'Herbe',
@@ -53,7 +53,7 @@ VALUES
     2020);
 
 
-INSERT INTO "hiking"("name","img_card","mountain","resume","key_stage","starting_point","hiking_plan","positive_elevation","negative_elevation","overall_length","land_type","ign_card_reference","hight_point","low_point","difficulty","user_id","lift-off_id")
+INSERT INTO "hiking"("name","img_card","mountain","resume","key_stage","starting_point","hiking_plan","positive_elevation","negative_elevation","overall_length","land_type","ign_card_reference","hight_point","low_point","difficulty","user_id","liftOff_id")
 VALUES
     ('Semnoz Grotte des fours',
     'https://upload.wikimedia.org/wikipedia/commons/4/40/Annecy-Semnoz_%282013%29.JPG',
@@ -191,7 +191,7 @@ VALUES
     null,
     926);
 
-INSERT INTO "lift-off_has_landing"("lift-off_id","landing_id")
+INSERT INTO "liftOff_has_landing"("liftOff_id","landing_id")
 VALUES
     (1,1),
     (2,2),
@@ -217,7 +217,7 @@ VALUES
     ('Photo atero Vailly', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3),
     ('Photo atero grand Bornand', 'https://c.pxhere.com/photos/65/b3/skydiving_parachute_parachutist_sport_sunset_landing-1392169.jpg!d', 4);
 
-INSERT INTO "img_lift-off"("title", "url", "idLiftOff")
+INSERT INTO "img_liftOff"("title", "url", "idLiftOff")
 VALUES
     ('Photo deco Semnoz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Parapente_-_162.jpg/800px-Parapente_-_162.jpg?2015110313514', 1),
     ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2),

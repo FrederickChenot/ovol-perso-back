@@ -1,4 +1,4 @@
-const liftOffDataMapper = require('../models/lift-off');
+const liftOffDataMapper = require('../models/liftOff');
 
 module.exports = {
   async getAll(_req, res) {

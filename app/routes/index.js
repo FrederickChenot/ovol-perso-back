@@ -6,7 +6,7 @@ const userController = require('../controllers/auth.controllers');
 
 const hikingController = require('../controllers/hiking.controllers');
 
-const liftOffController = require('../controllers/lift-off.controllers');
+const liftOffController = require('../controllers/liftOff.controllers');
 
 const landingController = require('../controllers/landing.controllers');
 
@@ -27,11 +27,11 @@ router
   .post(auth(), hikingController.create);
 
 router
-  .route('/api/lift-off/:id')
+  .route('/api/liftOff/:id')
   .get(liftOffController.getOne);
 
 router
-  .route('/api/lift-off')
+  .route('/api/liftOff')
   .get(liftOffController.getAll)
   .post(auth(), liftOffController.create);
 
