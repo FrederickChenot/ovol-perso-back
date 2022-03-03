@@ -39,7 +39,18 @@ VALUES
     6.518,
     ARRAY ['N','NO'],
     ARRAY ['NE', 'E', 'SE', 'S', 'SO'],
-    1290);
+    1290),
+
+    ('Déco MONT-LACHAT',
+    'Herbe',
+    'Vue sur le Mont Blanc. Infos en direct sur http://twitter.com/AravisParapente',
+    null,
+    'https://intranet.ffvl.fr/sites_pratique/voir/118',
+    45.9587,
+    6.4765,
+    ARRAY ['SO'],
+    null,
+    2020);
 
 
 INSERT INTO "hiking"("name","img_card","mountain","resume","key_stage","starting_point","hiking_plan","positive_elevation","negative_elevation","overall_length","land_type","ign_card_reference","hight_point","low_point","difficulty","user_id","lift-off_id")
@@ -55,7 +66,7 @@ VALUES
     4 : km 4.22 - alt. 1326m - Croisement de la Grotte des Fours
     5 : km 5.47 - alt. 1640m - Parking près du bâtiment du Courant d''Ere
     6 : km 6.13 - alt. 1694m - Crêt de Châtillon - Le Semnoz',
-    'A coté du cimetière prendre le sentier tracer',
+    'https://goo.gl/maps/WQPNLEjkxyw5KAbv7',
     '<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1JZCA93VmwEXRcKn9GnlKawxOtpHfI20W&ehbc=2E312F" width="640" height="480"></iframe>',
     1028,
     2,
@@ -67,6 +78,7 @@ VALUES
     'difficile',
     1,
     1),
+
     ('Septmoncel - Montbrillant',
     'https://upload.wikimedia.org/wikipedia/commons/c/c6/Septmoncel-Jura-Saut-du-chien.JPG',
     'Jura',
@@ -74,7 +86,7 @@ VALUES
     'D : km 0 - alt. 556m - Parking de Montbrillant, après la fromagerie
     1 : km 0.5 - alt. 656m - Suite de la montée
     2 : km 2.82 - alt. 1023m - Les Curtillets. Carrefour de la boucle',
-    null,
+    'https://goo.gl/maps/QumnS33fvqxVPbfA6',
     '<iframe ‘src="https://www.google.com/maps/d/embed?mid=1xD4Ypl3aj1YlMS2tHSHkquLROQbSuKOM&ehbc=2E312F" width="640" height="480"></iframe>',
     746,
     5,
@@ -86,6 +98,7 @@ VALUES
     'moyenne',
     1,
     2),
+
     ('La Chapelle d''Hermone à partir du Col du Feu',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Chapelle_des_Hermones.jpg/1920px-Chapelle_des_Hermones.jpg',
     'Chablais',
@@ -96,8 +109,8 @@ VALUES
     3 : km 1.49 - alt. 1267m - Chemin de croix
     4 : km 1.85 - alt. 1306m - Chapelle d''Hermone - Vue sur le - Lac Léman
     D/A : km 3.69 - alt. 1117m - Col du Feu',
-    null,
-    ' <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1IZBjGPlFWG2KH6Xs7PYNaAtJVT9kc2zO&ehbc=2E312F" width="640" height="480"></iframe>',
+    'https://goo.gl/maps/L1dXdvQPq8CvwGGb9',
+    '<iframe src="https://www.google.com/maps/d/u/1/embed?mid=1IZBjGPlFWG2KH6Xs7PYNaAtJVT9kc2zO&ehbc=2E312F" width="640" height="480"></iframe>',
     199,
     3,
     3.69,
@@ -107,7 +120,29 @@ VALUES
     1117,
     'Extrêment Facile',
     1,
-    3);
+    3),
+
+    ('MONT-LACHAT',
+    'https://upload.wikimedia.org/wikipedia/commons/a/ab/Th%C3%B4nes_mont_lachat.jpg',
+    'Bornes',
+    'Au départ d''une auberge de montagne pleine de charme, voici une boucle qui vous offrira une vue somptueuse sur la chaîne des Aravis et une exposition plein Sud. Au col, vous aurez la vue sur la chaîne du Bargy et le Jalouvre. Le circuit peut se faire tant en été qu''en hiver avec des raquettes.',
+    'D/A : km 0 - alt. 1348m - Parking du Croix
+    1 : km 1.16 - alt. 1454m - Les Touillettes, croisement de la boucle
+    2 : km 3.06 - alt. 1599m - La Grand-Montagne
+    3 : km 4.24 - alt. 1680m - Embranchement de la descente
+    4 : km 4.37 - alt. 1683m - Col du Châtillon - Mont Lachat de Châtillon',
+    'https://goo.gl/maps/zY81oEAgeQ6CZRot6',
+    '<iframe src="https://www.google.com/maps/d/u/4/embed?mid=1cYuZ9HBVGJAs3BTWQh6-zdU79EOkObIQ&ehbc=2E312F" width="640" height="480"></iframe>',
+    335,
+    158,
+    4.58,
+    'Caillouteux',
+    'Ref. 3430ET, 3430ETR',
+    1683,
+    1346,
+    'Extrêment Facile',
+    1,
+    4);
 
 
 INSERT INTO "landing"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
@@ -122,6 +157,7 @@ VALUES
     ARRAY ['O','E'],
     null,
     576),
+
     ('Atéro Villard',
     'Herbe',
     'Turbulent par vent fort, surtout de Nord.',
@@ -132,6 +168,7 @@ VALUES
     ARRAY ['O'],
     null,
     576),
+
     ('Atéro Les Grands Champs',
     'Herbe',
     'Grand champs allongé terrain facile',
@@ -141,14 +178,24 @@ VALUES
     6.4844,
     ARRAY ['N','NE','E','SE','SO','O','NO'],
     ARRAY ['S'],
-    620);
+    620),
+
+    ('Atéro Le Grand Bornand',
+    'Herbe',
+    'Atterrissage très turbulent par vent de Nord (carrefour de vallées). Sinon prévisible.',
+    null,
+    'https://intranet.ffvl.fr/sites_pratique/voir/118',
+    45.9407,
+    6.43168,
+    ARRAY ['O'],
+    null,
+    926);
 
 INSERT INTO "lift-off_has_landing"("lift-off_id","landing_id")
 VALUES
     (1,1),
     (2,2),
-    (3,3),
-    (3,2);
+    (3,3);
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
@@ -158,7 +205,8 @@ VALUES
     ('Photo Jura 2', 'https://get.pxhere.com/photo/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661.jpg', 2),
     ('Photo Vailly 1', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Town_hall_of_Vailly_02.jpg/1200px-Town_hall_of_Vailly_02.jpg?20200825173820', 3),
     ('Photo Vailly 2', 'https://upload.wikimedia.org/wikipedia/commons/4/41/Landscape_in_commune_of_of_Vailly.jpg', 3),
-    ('Photo Vailly 3', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG/1200px-Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG?20120712174044', 3);
+    ('Photo Vailly 3', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG/1200px-Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG?20120712174044', 3),
+    ('Photo grand Bornand', 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Mont_Lachat_-_panoramio.jpg', 4);
 
 INSERT INTO "img_landing"("title", "url", "idLanding")
 VALUES
@@ -166,6 +214,8 @@ VALUES
     ('Photo atero Jura', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
     ('Photo atero Jura2', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
     ('Photo atero Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3);
+    ('Photo atero Vailly', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3),
+    ('Photo atero grand Bornand', 'https://c.pxhere.com/photos/65/b3/skydiving_parachute_parachutist_sport_sunset_landing-1392169.jpg!d', 4);
 
 INSERT INTO "img_lift-off"("title", "url", "idLiftOff")
 VALUES
