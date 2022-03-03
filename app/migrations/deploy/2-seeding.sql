@@ -195,7 +195,8 @@ INSERT INTO "liftOff_has_landing"("liftOff_id","landing_id")
 VALUES
     (1,1),
     (2,2),
-    (3,3);
+    (3,3),
+    (4,4);
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
@@ -222,6 +223,6 @@ VALUES
     ('Photo deco Semnoz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Parapente_-_162.jpg/800px-Parapente_-_162.jpg?2015110313514', 1),
     ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2),
     ('Photo deco Vailly', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 3),
-    ('Photo deco Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 3);
+    ('Photo deco Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 4);
 
 COMMIT;

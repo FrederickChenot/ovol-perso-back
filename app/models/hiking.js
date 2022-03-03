@@ -77,11 +77,11 @@ module.exports = function datamapper() {
 
   const updateOne = async (id, data) => {
     const oldData = await findByPk(id);
-    const newData = { ...oldData[0], ...data };
-    console.log(newData);
-    console.log(newData.imgCard);
-    console.log(newData.img_card);
 
+    //!!Faire de destructuring de la sous table photo avant le déstructuring de la rando
+    //TODO URGENT OLIVIER !!
+    const newData = { ...oldData[0], ...data }; // on écrase les données qui on étaient modifié
+    console.log(newData);
     const query = {
       text: `UPDATE "hiking" SET
       "name" = $1,
@@ -101,29 +101,47 @@ module.exports = function datamapper() {
       "difficulty" = $15,
       "user_id" = $16,
       "liftOff_id" = $17
-      WHERE id = $18
-      RETURNING *`,
+      WHERE id = $18`,
       values: [
         newData.name,
-        newData.imgCard,
+        newData.img_card,
         newData.mountain,
         newData.resume,
-        newData.keyStage,
-        newData.startingPoint,
-        newData.hikingPlan,
-        newData.positiveElevation,
-        newData.negativeElevation,
-        newData.overallLength,
-        newData.landType,
-        newData.ignCardReference,
-        newData.hightPoint,
-        newData.lowPoint,
+        newData.key_stage,
+        newData.starting_point,
+        newData.hiking_plan,
+        newData.positive_elevation,
+        newData.negative_elevation,
+        newData.overall_length,
+        newData.land_type,
+        newData.ign_card_reference,
+        newData.hight_point,
+        newData.low_point,
         newData.difficulty,
-        newData.userId,
-        newData.liftOffId,
+        newData.user_id,
+        newData.liftOff_id,
         id],
     };
     const result = await client.query(query);
+
+    //!! A dé-commenté quand le déstructuring est opérationnel
+    // newData.photo_hiking.forEach(async (photo) => {
+    //   console.log('format photo: ', photo);
+    //   const query2 = {
+    //     text: `UPDATE "img_hiking" SET
+    //     "title" = $1,
+    //     "url" = $2,
+    //     "idHiking" = $3
+    //     WHERE id = $4`,
+    //     values: [
+    //       photo.title,
+    //       photo.url,
+    //       photo.idHiking,
+    //       photo.id,
+    //     ],
+    //   };
+    //   await client.query(query2);
+    // });
     return result.rows;
   };
 
