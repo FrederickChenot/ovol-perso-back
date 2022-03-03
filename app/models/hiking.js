@@ -1,5 +1,27 @@
 const client = require('../config/postgres');
 
+/**
+ * @typedef {object} Hiking
+ * @property {number} id - Indentifiant unique, Pk de la table
+ * @property {string} name - name of the hiking
+ * @property {string} img_card - url of hiking image
+ * @property {string} mountain - name of the moutain
+ * @property {string} resume - resume of the hiking
+ * @property {string} key_stage - keys stage of the hiking
+ * @property {string} starting_point - starting point of the hiking
+ * @property {string} hiking_plan - url of the hiking plan
+ * @property {number} positive_elevation - positive elevation of the hiking
+ * @property {number} negative_elevation - negative elevation of the hiking
+ * @property {number} overall_length - overall length of the hiking
+ * @property {string} land_type - land_type length of the hiking
+ * @property {string} ign_card_reference - ign card reference length of the hiking
+ * @property {number} hight_point - hight point length of the hiking
+ * @property {number} low_point - low point length of the hiking
+ * @property {string} difficulty - difficulty length of the hiking
+ * @property {number} user_id - id of the owner
+ * @property {number} liftOff_id - id of the liftoff
+ */
+
 module.exports = {
   async findAll() {
     const result = await client.query('SELECT * FROM "hiking"');

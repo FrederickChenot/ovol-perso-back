@@ -12,6 +12,12 @@ router.route('/:id(\\d+)')
 
 // all
 router.route('/')
+  /**
+  * GET /api/landing
+  * @summary Get all landing
+  * @tags Landing
+  * @return {[Landing]} 200 - success response - application/json
+  */
   .get(landingController.getAll)
   .post(auth(), landingController.create);
 

@@ -1,6 +1,21 @@
 /* eslint-disable dot-notation */
 const client = require('../config/postgres');
 
+/**
+ * @typedef {object} LiftOff
+ * @property {number} id - Indentifiant unique, Pk de la table
+ * @property {string} name - name
+ * @property {string} typeOfTerrain - type of terrain
+ * @property {string} description - description
+ * @property {string} danger - danger
+ * @property {string} fflvLink - url fflv
+ * @property {number} latitude - latitude
+ * @property {number} longitude - longitude
+ * @property {[string]} favorableWind - favorable Wind
+ * @property {[string]} unfavorableWind - unfavorableWind
+ * @property {number} altitude - altitude
+ */
+
 module.exports = {
   async findAll() {
     const result = await client.query('SELECT * FROM "liftOff"');

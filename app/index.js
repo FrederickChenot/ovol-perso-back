@@ -4,7 +4,7 @@ const cors = require('cors');
 const router = require('./routes');
 
 const app = express();
-
+require('./helpers/doc')(app);
 // On active le middleware pour parser le payload JSON
 app.use(express.json());
 // On active le middleware pour parser le payload urlencoded

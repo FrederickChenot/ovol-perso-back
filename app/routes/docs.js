@@ -2,10 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const authController = require('../controllers/auth.controllers');
+const docsController = require('../controllers/docs.controllers');
 
+// all
 router.route('/')
-  .post(authController.login);
+  .get(docsController.home);
 
 router.use((_req, res) => {
   res.json({ message: 'page not found' });

@@ -5,9 +5,13 @@ const router = express.Router();
 const hikingRouter = require('./hiking');
 const liftOffRouter = require('./liftoff');
 const landingRouter = require('./landing');
+const docRouter = require('./docs');
 const authRouter = require('./auth');
 
 const landingController = require('../controllers/landing.controllers');
+
+router
+  .use('/api/docs', docRouter);
 
 router
   .use('/api/login', authRouter);

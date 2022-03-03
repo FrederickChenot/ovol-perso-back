@@ -11,6 +11,12 @@ router.route('/:id(\\d+)')
   .patch(auth(), hikingController.updateOne);
 // all
 router.route('/')
+  /**
+   * GET /api/hiking
+   * @summary Get all hiking
+   * @tags Hiking
+   * @return {[Hiking]} 200 - success response - application/json
+   */
   .get(hikingController.getAll)
   .post(auth(), hikingController.create);
 
