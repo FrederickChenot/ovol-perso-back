@@ -3,13 +3,13 @@
 BEGIN;
 
 DROP TABLE 
-    "lift-off_has_landing",
+    "liftOff_has_landing",
     "img_landing",
     "landing",
     "img_hiking",
     "hiking",
-    "img_lift-off",
-    "lift-off",
+    "img_liftOff",
+    "liftOff",
     "user";
 
 COMMIT;

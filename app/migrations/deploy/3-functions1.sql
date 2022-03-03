@@ -5,26 +5,26 @@ BEGIN;
 CREATE OR REPLACE FUNCTION getLanding(int) RETURNS TABLE (
 	"id" int,
 	"name" text,
-	"type-of-terrain" text,
+	"typeOfTerrain" text,
 	"description" text,
 	"danger" text,
-	"fflv-link" text,
+	"fflvLink" text,
 	"latitude" float,
 	"longitude" float,
-	"favorable-wind" text[],
-	"unfavorable-wind" text[],
+	"favorableWind" text[],
+	"unfavorableWind" text[],
 	"altitude" int,
 	"photo_landing" json[]) AS $$
 SELECT "landing"."id",
 	"landing"."name",
-	"landing"."type-of-terrain",
+	"landing"."typeOfTerrain",
 	"landing"."description",
 	"landing"."danger",
-	"landing"."fflv-link",
+	"landing"."fflvLink",
 	"landing"."latitude",
 	"landing"."longitude",
-	"landing"."favorable-wind",
-	"landing"."unfavorable-wind",
+	"landing"."favorableWind",
+	"landing"."unfavorableWind",
 	"landing"."altitude",
 array_agg(row_to_json("img_landing")) AS "photo_landing" FROM "landing"
 JOIN "img_landing" 
@@ -36,39 +36,39 @@ $$ LANGUAGE sql;
 CREATE OR REPLACE FUNCTION getLiftOff(int) RETURNS TABLE (
 	"id" int,
 	"name" text,
-	"type-of-terrain" text,
+	"typeOfTerrain" text,
 	"description" text,
 	"danger" text,
-	"fflv-link" text,
+	"fflvLink" text,
 	"latitude" float,
 	"longitude" float,
-	"favorable-wind" text[],
-	"unfavorable-wind" text[],
+	"favorableWind" text[],
+	"unfavorableWind" text[],
 	"altitude" int,
 	"idLandings" int[],
-	"photo_lift-off" json[]
+	"photo_liftOff" json[]
 ) AS $$
-SELECT "lift-off"."id",
-	"lift-off"."name",
-	"lift-off"."type-of-terrain",
-	"lift-off"."description",
-	"lift-off"."danger",
-	"lift-off"."fflv-link",
-	"lift-off"."latitude",
-	"lift-off"."longitude",
-	"lift-off"."favorable-wind",
-	"lift-off"."unfavorable-wind",
-	"lift-off"."altitude",
+SELECT "liftOff"."id",
+	"liftOff"."name",
+	"liftOff"."typeOfTerrain",
+	"liftOff"."description",
+	"liftOff"."danger",
+	"liftOff"."fflvLink",
+	"liftOff"."latitude",
+	"liftOff"."longitude",
+	"liftOff"."favorableWind",
+	"liftOff"."unfavorableWind",
+	"liftOff"."altitude",
 	array_agg(DISTINCT "landing"."id") AS "idLandings",
-    array_agg(row_to_json("img_lift-off")) AS "photo_lift-off" FROM "lift-off"
-JOIN "img_lift-off" 
-	ON "img_lift-off"."idLiftOff" = "lift-off"."id"
-JOIN "lift-off_has_landing"
-	ON "lift-off_has_landing"."lift-off_id" = "lift-off"."id"
+    array_agg(row_to_json("img_liftOff")) AS "photo_liftOff" FROM "liftOff"
+JOIN "img_liftOff" 
+	ON "img_liftOff"."idLiftOff" = "liftOff"."id"
+JOIN "liftOff_has_landing"
+	ON "liftOff_has_landing"."liftOff_id" = "liftOff"."id"
 JOIN "landing"
-	ON "landing"."id" = "lift-off_has_landing"."landing_id"
-WHERE "lift-off"."id" = $1
-GROUP BY "lift-off"."id"
+	ON "landing"."id" = "liftOff_has_landing"."landing_id"
+WHERE "liftOff"."id" = $1
+GROUP BY "liftOff"."id"
 $$ LANGUAGE sql;
 
 COMMIT;

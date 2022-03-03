@@ -17,7 +17,7 @@ Doublons des lignes jointe à la table en cas de multiple ateerisage (landing)
 ## Pour reproduire
 Les étapes pour reproduire le bug :
 
-De base il n'y a pas de décollage (Lift-off) qui possède plusieurs attérisage (Landing), il faut donc rajouté un landing par rapport au seeding de base.
+De base il n'y a pas de décollage (liftOff) qui possède plusieurs attérisage (Landing), il faut donc rajouté un landing par rapport au seeding de base.
 1. sqitch revert
 2. sqitch deploy
 3. fichier test.http à la racine faire Send request (line 127) => Associe un atéro au décollage id 4
@@ -30,17 +30,17 @@ Résultat attendu
 {
   id: 3,
   name: "Déco Notre Dame D'Hermon",
-  'type-of-terrain': 'Herbe',
+  'typeOfTerrain': 'Herbe',
   description: 'Conditions idéales : Vent de Nord Ouest à Ouest.',
   danger: null,
-  'fflv-link': 'https://intranet.ffvl.fr/sites_pratique/voir/1192',
+  'fflvLink': 'https://intranet.ffvl.fr/sites_pratique/voir/1192',
   latitude: 46.3073,
   longitude: 6.518,
-  'favorable-wind': [ 'N', 'NO' ],
-  'unfavorable-wind': [ 'NE', 'E', 'SE', 'S', 'SO' ],
+  'favorableWind': [ 'N', 'NO' ],
+  'unfavorableWind': [ 'NE', 'E', 'SE', 'S', 'SO' ],
   altitude: 1290,
   idLandings: [ 1,2 ],
-  'photo_lift-off': [
+  'photo_liftOff': [
     {
       id: 3,
       title: 'Photo deco Vailly',
@@ -63,39 +63,39 @@ Résultat attendu
 CREATE OR REPLACE FUNCTION getLiftOff(int) RETURNS TABLE (
 	"id" int,
 	"name" text,
-	"type-of-terrain" text,
+	"typeOfTerrain" text,
 	"description" text,
 	"danger" text,
-	"fflv-link" text,
+	"fflvLink" text,
 	"latitude" float,
 	"longitude" float,
-	"favorable-wind" text[],
-	"unfavorable-wind" text[],
+	"favorableWind" text[],
+	"unfavorableWind" text[],
 	"altitude" int,
 	"idLandings" int[],
-	"photo_lift-off" json[]
+	"photo_liftOff" json[]
 ) AS $$
-SELECT "lift-off"."id",
-	"lift-off"."name",
-	"lift-off"."type-of-terrain",
-	"lift-off"."description",
-	"lift-off"."danger",
-	"lift-off"."fflv-link",
-	"lift-off"."latitude",
-	"lift-off"."longitude",
-	"lift-off"."favorable-wind",
-	"lift-off"."unfavorable-wind",
-	"lift-off"."altitude",
+SELECT "liftOff"."id",
+	"liftOff"."name",
+	"liftOff"."typeOfTerrain",
+	"liftOff"."description",
+	"liftOff"."danger",
+	"liftOff"."fflvLink",
+	"liftOff"."latitude",
+	"liftOff"."longitude",
+	"liftOff"."favorableWind",
+	"liftOff"."unfavorableWind",
+	"liftOff"."altitude",
 	array_agg(DISTINCT "landing"."id") AS "idLandings",
-    array_agg(row_to_json("img_lift-off")) AS "photo_lift-off" FROM "lift-off"
-JOIN "img_lift-off" 
-	ON "img_lift-off"."idLiftOff" = "lift-off"."id"
-JOIN "lift-off_has_landing"
-	ON "lift-off_has_landing"."lift-off_id" = "lift-off"."id"
+    array_agg(row_to_json("img_liftOff")) AS "photo_liftOff" FROM "liftOff"
+JOIN "img_liftOff" 
+	ON "img_liftOff"."idLiftOff" = "liftOff"."id"
+JOIN "liftOff_has_landing"
+	ON "liftOff_has_landing"."liftOff_id" = "liftOff"."id"
 JOIN "landing"
-	ON "landing"."id" = "lift-off_has_landing"."landing_id"
-WHERE "lift-off"."id" = $1
-GROUP BY "lift-off"."id"
+	ON "landing"."id" = "liftOff_has_landing"."landing_id"
+WHERE "liftOff"."id" = $1
+GROUP BY "liftOff"."id"
 $$ LANGUAGE sql;
 ```
 
@@ -106,18 +106,18 @@ Résultat obtenu
 ``` json
 {
   id: 4,
-  name: 'new lift-off',
-  'type-of-terrain': 'new type de terrain',
+  name: 'new liftOff',
+  'typeOfTerrain': 'new type de terrain',
   description: 'new description',
   danger: 'new danger',
-  'fflv-link': 'new fflvLink',
+  'fflvLink': 'new fflvLink',
   latitude: 23.234,
   longitude: 34.23,
-  'favorable-wind': [ 'O' ],
-  'unfavorable-wind': [ 'O' ],
+  'favorableWind': [ 'O' ],
+  'unfavorableWind': [ 'O' ],
   altitude: 23123,
   idLandings: [ 1, 2 ],
-  'photo_lift-off': [
+  'photo_liftOff': [
     {
       id: 5,
       title: 'photo rando pourri',
@@ -152,16 +152,16 @@ Après avoir isolé le problème au niveau de la fonction sql
 on a trouvé une solution "bricolo" en javascript au niveau du modèle mais pas satisfaisant
 
 ```javascript
-    // app/models/lift-off.js  
+    // app/models/liftOff.js  
   async findOne(idLiftOff) {
     const result = await client.query('SELECT * FROM getLiftOff($1)', [idLiftOff]);
     if (result.rowCount === 0) {
       return null;
     }
     console.log('model', result.rows[0]);
-    // on supprime les photos en doublon dans l'array photo_lift-off
-    const array = result.rows[0]['photo_lift-off'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
-    result.rows[0]['photo_lift-off'] = array;
+    // on supprime les photos en doublon dans l'array photo_liftOff
+    const array = result.rows[0]['photo_liftOff'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
+    result.rows[0]['photo_liftOff'] = array;
     return result.rows;
   },
 ```

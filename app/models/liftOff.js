@@ -2,7 +2,7 @@ const client = require('../config/postgres');
 
 module.exports = {
   async findAll() {
-    const result = await client.query('SELECT * FROM "lift-off"');
+    const result = await client.query('SELECT * FROM "liftOff"');
     return result.rows;
   },
 
@@ -12,9 +12,9 @@ module.exports = {
       return null;
     }
     console.log('model', result.rows[0]);
-    // on supprime les photos en doublon dans l'array photo_lift-off
-    const array = result.rows[0]['photo_lift-off'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
-    result.rows[0]['photo_lift-off'] = array;
+    // on supprime les photos en doublon dans l'array photo_liftOff
+    const array = result.rows[0]['photo_liftOff'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
+    result.rows[0]['photo_liftOff'] = array;
     return result.rows;
   },
 
@@ -36,16 +36,16 @@ module.exports = {
 
   async createOne(data) {
     const query1 = {
-      text: `INSERT INTO "lift-off"
+      text: `INSERT INTO "liftOff"
                 ("name",
-                "type-of-terrain",
+                "typeOfTerrain",
                 "description",
                 "danger",
-                "fflv-link",
+                "fflvLink",
                 "latitude",
                 "longitude",
-                "favorable-wind",
-                "unfavorable-wind",
+                "favorableWind",
+                "unfavorableWind",
                 "altitude")
           VALUES
               ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
@@ -67,7 +67,7 @@ module.exports = {
     console.log('data photo', data.photos);
     data.photos.forEach(async (photo) => {
       const query2 = {
-        text: `INSERT INTO "img_lift-off"
+        text: `INSERT INTO "img_liftOff"
         ("title",
         "url",
         "idLiftOff")
@@ -84,8 +84,8 @@ module.exports = {
     data.idLandings.forEach(async (landing) => {
       boucle += 1;
       const query3 = {
-        text: `INSERT INTO "lift-off_has_landing"
-        ("lift-off_id",
+        text: `INSERT INTO "liftOff_has_landing"
+        ("liftOff_id",
         "landing_id")
         VALUES ($1, $2)`,
         values: [
@@ -95,7 +95,7 @@ module.exports = {
       };
       await client.query(query3);
     });
-    console.log('Nbr de tour', )
+    console.log('Nbr de tour',)
     return result.rows;
   },
 };

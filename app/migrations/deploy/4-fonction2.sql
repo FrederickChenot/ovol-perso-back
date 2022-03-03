@@ -22,7 +22,7 @@ CREATE OR REPLACE FUNCTION getOneHiking(int) RETURNS TABLE (
   low_point int,
   difficulty text,
   user_id int,
-  "lift-off_id" int,
+  "liftOff_id" int,
   photo_hiking JSON[])
     AS $$
 SELECT
@@ -43,7 +43,7 @@ SELECT
   "hiking"."low_point",
   "hiking"."difficulty",
   "hiking"."user_id",
-  "hiking"."lift-off_id",
+  "hiking"."liftOff_id",
   array_agg(row_to_json("img_hiking"))
   AS photo_hiking FROM "hiking"
     JOIN "img_hiking"
@@ -68,7 +68,7 @@ GROUP BY
   "hiking"."low_point",
   "hiking"."difficulty",
   "hiking"."user_id",
-  "hiking"."lift-off_id"
+  "hiking"."liftOff_id"
 
 $$ LANGUAGE sql;
 

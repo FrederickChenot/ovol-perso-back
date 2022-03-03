@@ -3,5 +3,5 @@
 
 1-initialdb 2022-02-23T16:53:19Z adrien <adrien@exemple.com> # create initial table
 2-seeding 2022-02-23T16:54:17Z adrien <adrien@exemple.com> # seeding
-3-functions1 2022-03-01T09:48:16Z adrien <adrien@exemple.com> # add function landing & lift-off
+3-functions1 2022-03-01T09:48:16Z adrien <adrien@exemple.com> # add function landing & liftOff
 4-fonction2 2022-03-01T10:04:47Z Olivier Reboul <olivier.reboul@gmail.com> # fct GetOneHiking with his photos

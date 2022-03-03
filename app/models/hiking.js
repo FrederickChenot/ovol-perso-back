@@ -8,7 +8,7 @@ module.exports = {
 
   async findOne(idHiking) {
     const result = await client.query('SELECT * FROM getOneHiking($1)', [idHiking]);
-    const liftOff = await client.query('SELECT * FROM getLiftOff($1)', [result.rows[0]['lift-off_id']]);
+    const liftOff = await client.query('SELECT * FROM getLiftOff($1)', [result.rows[0]['liftOff_id']]);
     result.rows[0].idLandings = liftOff.rows[0].idLandings;
     return result.rows;
   },
@@ -32,7 +32,7 @@ module.exports = {
             "low_point",
             "difficulty",
             "user_id",
-            "lift-off_id")
+            "liftOff_id")
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
             RETURNING id`,
       values: [
