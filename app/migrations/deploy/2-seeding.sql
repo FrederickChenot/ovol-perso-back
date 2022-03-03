@@ -6,7 +6,7 @@ BEGIN;
 INSERT INTO "user"("login","role","email","password") VALUES
 ('admin','admin','ovolclock@gmail.com','pass');
 
-INSERT INTO "liftOff"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
+INSERT INTO "liftOff"("name","typeOfTerrain","description","danger","fflvLink","latitude","longitude","favorableWind","unfavorableWind","altitude")
 VALUES
     ('Déco Semnoz',
     'Herbe',
@@ -145,7 +145,7 @@ VALUES
     4);
 
 
-INSERT INTO "landing"("name","type-of-terrain","description","danger","fflv-link","latitude","longitude","favorable-wind","unfavorable-wind","altitude")
+INSERT INTO "landing"("name","typeOfTerrain","description","danger","fflvLink","latitude","longitude","favorableWind","unfavorableWind","altitude")
 VALUES
     ('Atéro Viuz-la-Chiésaz',
     'Herbe',

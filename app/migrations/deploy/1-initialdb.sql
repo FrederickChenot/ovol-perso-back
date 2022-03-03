@@ -14,14 +14,14 @@ CREATE TABLE "user"(
 CREATE TABLE "liftOff"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL UNIQUE,
-  "type-of-terrain" TEXT,
+  "typeOfTerrain" TEXT,
   "description" TEXT,
   "danger" TEXT,
-  "fflv-link" TEXT,
+  "fflvLink" TEXT,
   "latitude" FLOAT,
   "longitude" FLOAT,
-  "favorable-wind" TEXT [],
-  "unfavorable-wind" TEXT [],
+  "favorableWind" TEXT [],
+  "unfavorableWind" TEXT [],
   "altitude" INT
  );
 
@@ -63,14 +63,14 @@ CREATE TABLE "img_hiking"(
 CREATE TABLE "landing"(
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL UNIQUE,
-  "type-of-terrain" TEXT,
+  "typeOfTerrain" TEXT,
   "description" TEXT,
   "danger" TEXT,
-  "fflv-link" TEXT,
+  "fflvLink" TEXT,
   "latitude" FLOAT,
   "longitude" FLOAT,
-  "favorable-wind" TEXT [],
-  "unfavorable-wind" TEXT [],
+  "favorableWind" TEXT [],
+  "unfavorableWind" TEXT [],
   "altitude" INT
 );
 
