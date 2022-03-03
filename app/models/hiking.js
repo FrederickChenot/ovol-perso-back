@@ -1,19 +1,19 @@
 const client = require('../config/postgres');
 
-module.exports = {
-  async findAll() {
+module.exports = function datamapper() {
+  const findAll = async () => {
     const result = await client.query('SELECT * FROM "hiking"');
     return result.rows;
-  },
+  };
 
-  async findOne(idHiking) {
+  const findByPk = async (idHiking) => {
     const result = await client.query('SELECT * FROM getOneHiking($1)', [idHiking]);
-    const liftOff = await client.query('SELECT * FROM getLiftOff($1)', [result.rows[0]['liftOff_id']]);
+    const liftOff = await client.query('SELECT * FROM getLiftOff($1)', [result.rows[0].liftOff_id]);
     result.rows[0].idLandings = liftOff.rows[0].idLandings;
     return result.rows;
-  },
+  };
 
-  async creatOne(data) {
+  const creatOne = async (data) => {
     const query = {
       text: `INSERT INTO "hiking"
             ("name",
@@ -73,9 +73,65 @@ module.exports = {
     });
 
     return result.rows;
-  },
+  };
 
-  async updateOne(id) {
-    // ss
-  },
+  const updateOne = async (id, data) => {
+    const oldData = await findByPk(id);
+    const newData = { ...oldData[0], ...data };
+    console.log(newData);
+    console.log(newData.imgCard);
+    console.log(newData.img_card);
+
+    const query = {
+      text: `UPDATE "hiking" SET
+      "name" = $1,
+      "img_card" = $2,
+      "mountain" = $3,
+      "resume"  = $4,
+      "key_stage" = $5,
+      "starting_point" = $6,
+      "hiking_plan" = $7,
+      "positive_elevation" = $8,
+      "negative_elevation" = $9,
+      "overall_length" = $10,
+      "land_type" = $11,
+      "ign_card_reference" = $12,
+      "hight_point" = $13,
+      "low_point" = $14,
+      "difficulty" = $15,
+      "user_id" = $16,
+      "liftOff_id" = $17
+      WHERE id = $18
+      RETURNING *`,
+      values: [
+        newData.name,
+        newData.imgCard,
+        newData.mountain,
+        newData.resume,
+        newData.keyStage,
+        newData.startingPoint,
+        newData.hikingPlan,
+        newData.positiveElevation,
+        newData.negativeElevation,
+        newData.overallLength,
+        newData.landType,
+        newData.ignCardReference,
+        newData.hightPoint,
+        newData.lowPoint,
+        newData.difficulty,
+        newData.userId,
+        newData.liftOffId,
+        id],
+    };
+    const result = await client.query(query);
+    return result.rows;
+  };
+
+  const retunrDatamapper = {
+    findAll,
+    findByPk,
+    creatOne,
+    updateOne,
+  };
+  return retunrDatamapper;
 };

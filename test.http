@@ -145,3 +145,13 @@ content-type: application/json
       {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
 }
 
+### Patch hiking for create a hiking
+PATCH  {{ endpoint-dev }}/api/hiking/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+    "name": "rando Renomé",
+    "mountain": "Himalaya",
+    "img_card" : "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"
+}

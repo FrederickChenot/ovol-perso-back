@@ -2,45 +2,22 @@ const hikingDataMapper = require('../models/hiking');
 
 module.exports = {
   async getAll(_req, res) {
-    const hiking = await hikingDataMapper.findAll();
+    const hiking = await hikingDataMapper().findAll();
     return res.json(hiking);
   },
 
   async getOne(req, res) {
     const IdHiking = Number(req.params.id);
-    const hiking = await hikingDataMapper.findOne(IdHiking);
+    const hiking = await hikingDataMapper().findBypk(IdHiking);
     return res.json(hiking);
   },
   async create(req, res) {
-    const hiking = await hikingDataMapper.creatOne(req.body);
+    const hiking = await hikingDataMapper().creatOne(req.body);
     return res.json(hiking);
   },
 
   async updateOne(req, res) {
-    // const {
-    //   id,
-    //   name,
-    //   imgCard,
-    //   mountain,
-    //   resume,
-    //   keyStage,
-    //   startingPoint,
-    //   hikingPlan,
-    //   positiveElevation,
-    //   negativeElevation,
-    //   overallLength,
-    //   landType,
-    //   ignCardReference,
-    //   hightPoint,
-    //   lowPoint,
-    //   difficulty,
-    //   userId,
-    //   liftOffId,
-    //  } = req.body;
-
-    //  const hiking = getOne(id).toJson;
-    //  console.log(hiking);
-    // // const hiking = await hikingDataMapper.updateOne(id);
-    // return res.json(hiking);
+    const hiking = await hikingDataMapper().updateOne(req.params.id, req.body);
+    return res.json(hiking);
   },
 };
