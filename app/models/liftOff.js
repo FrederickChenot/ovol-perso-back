@@ -112,4 +112,8 @@ module.exports = {
     });
     return result.rows;
   },
+  //TODO : update
+    // gerer les photos et les landings
+  //TODO : delete
+    // gerer les photos et les landings
 };

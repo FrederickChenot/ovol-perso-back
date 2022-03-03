@@ -24,4 +24,11 @@ module.exports = {
     }
     return res.send('erreur landing');
   },
+  async patch(req, res) {
+    const result = await landingDataMapper.update(Number(req.params.id), req.body);
+    if (result) {
+      return res.send(result);
+    }
+    return res.send('erreur update landing');
+  },
 };
