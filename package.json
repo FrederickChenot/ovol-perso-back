@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon index.js",
+    "resetDb": "sqitch revert -y; sqitch deploy",
     "lint": "npx eslint . --fix",
     "prettier": "npx prettier --write ."
   },
