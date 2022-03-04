@@ -87,7 +87,7 @@ VALUES
     1 : km 0.5 - alt. 656m - Suite de la montée
     2 : km 2.82 - alt. 1023m - Les Curtillets. Carrefour de la boucle',
     'https://goo.gl/maps/QumnS33fvqxVPbfA6',
-    '<iframe ‘src="https://www.google.com/maps/d/embed?mid=1xD4Ypl3aj1YlMS2tHSHkquLROQbSuKOM&ehbc=2E312F" width="640" height="480"></iframe>',
+    '<iframe src="https://www.google.com/maps/d/embed?mid=1xD4Ypl3aj1YlMS2tHSHkquLROQbSuKOM&ehbc=2E312F" width="640" height="480"></iframe>',
     746,
     5,
     3.41,
