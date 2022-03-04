@@ -8,7 +8,7 @@ router.route('/')
   .post(userController.login);
 
 router.use((_req, res) => {
-  res.json({ message: 'page not found' });
+  res.status(404).json({ message: 'page not found' });
 });
 
 module.exports = router;
