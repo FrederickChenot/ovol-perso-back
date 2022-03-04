@@ -10,6 +10,12 @@ router.route('/:id(\\d+)')
   .get(liftOffController.getOne);
 // all
 router.route('/')
+  /**
+ * GET /api/liftoff
+ * @summary Get all liftoff
+ * @tags LiftOff
+ * @return {[LiftOff]} 200 - success response - application/json
+ */
   .get(liftOffController.getAll)
   .post(auth(), liftOffController.create);
 

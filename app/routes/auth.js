@@ -2,10 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-const userController = require('../controllers/auth.controllers');
+const authController = require('../controllers/auth.controllers');
 
 router.route('/')
-  .post(userController.login);
+  .post(authController.login);
 
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });
