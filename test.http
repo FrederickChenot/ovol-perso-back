@@ -39,19 +39,19 @@ content-type: application/json
 }
 
 ### get one hiking
-GET {{ endpoint-dev }}/api/hiking/5
+GET {{ endpoint-dev }}/api/hiking/4
 
 ### get all landing
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/5
+GET {{ endpoint-dev }}/api/landing/2
 
 ### get all liftOff
 GET {{ endpoint-dev }}/api/liftOff
 
 ### get one liftOff
-GET {{ endpoint-dev }}/api/liftOff/5
+GET {{ endpoint-dev }}/api/liftOff/2
 
 ### Test tableau landings
 POST {{ endpoint-dev }}/api/landings
@@ -105,13 +105,13 @@ content-type: application/json
 POST {{ endpoint-dev }}/api/hiking
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 
-### Post a landing without photo
+### Post a landing
 POST {{ endpoint-dev }}/api/landing
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 content-type: application/json
 
 {
-      "name":"new landing",
+      "name":"new liftOff",
       "typeOfTerrain":"new type de terrain",
       "description":"new description",
       "danger":"new danger",
@@ -121,21 +121,9 @@ content-type: application/json
       "favorableWind":["O"],
       "unfavorableWind":["O"],
       "altitude":23123,
-       "photos": []
+       "photos": [{"name": "photo rando pourri", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
+      {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
 }
-
-### update a landing
-PATCH {{ endpoint-dev }}/api/landing/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
-content-type: application/json
-
-{
-      "name":"new landing update",
-      "typeOfTerrain":"new type de terrain"
-}
-
-
-
 ### Post a liftOff
 POST {{ endpoint-dev }}/api/liftOff
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
@@ -157,22 +145,50 @@ content-type: application/json
       {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
 }
 
-### Post a liftOff without photo
-POST {{ endpoint-dev }}/api/liftOff
+### Patch hiking for modify a hiking sans modif de photo
+PATCH  {{ endpoint-dev }}/api/hiking/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 content-type: application/json
 
 {
-      "name":"new liftOff",
-      "typeOfTerrain":"new type de terrain",
-      "description":"new description",
-      "danger":"new danger",
-      "fflvLink":"new fflvLink",
-      "latitude":23.234,
-      "longitude":34.23,
-      "favorableWind":["O"],
-      "unfavorableWind":["O"],
-      "altitude":23123,
-      "idLandings": [1,2],
-       "photos": []
+    "name": "rando Renomé",
+    "mountain": "Himalaya",
+    "img_card" : "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"
+}
+
+### Patch hiking for modify a hiking avec modif de photo mais pas de manque d'info
+PATCH  {{ endpoint-dev }}/api/hiking/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+    "name": "rando Renomé",
+    "mountain": "Himalaya",
+    "img_card" : "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg",
+    "photo_hiking" : [{
+      "id": 3,
+      "title": "titre modifier OLIVIER",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/La_Petite_Montagne_vue_du_Molard_de_la_Justice%2C_Jura%2C_France.jpg",
+      "idHiking": 2
+    },
+    {
+      "id": 4,
+      "title": "Photo Jura 2",
+      "url": "https://get.pxhere.com/photo/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661.jpg",
+      "idHiking": 2
+    }]
+}
+### Patch hiking for modify a hiking avec photo mais modif partiel
+PATCH  {{ endpoint-dev }}/api/hiking/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+    "name": "rando Renomé",
+    "mountain": "Himalaya",
+    "img_card" : "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg",
+    "photo_hiking" : [{
+      "id": 3,
+      "titre": "title changé patch"
+    }]
 }

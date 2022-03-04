@@ -87,7 +87,7 @@ VALUES
     1 : km 0.5 - alt. 656m - Suite de la montée
     2 : km 2.82 - alt. 1023m - Les Curtillets. Carrefour de la boucle',
     'https://goo.gl/maps/QumnS33fvqxVPbfA6',
-    '<iframe ‘src="https://www.google.com/maps/d/embed?mid=1xD4Ypl3aj1YlMS2tHSHkquLROQbSuKOM&ehbc=2E312F" width="640" height="480"></iframe>',
+    '<iframe src="https://www.google.com/maps/d/embed?mid=1xD4Ypl3aj1YlMS2tHSHkquLROQbSuKOM&ehbc=2E312F" width="640" height="480"></iframe>',
     746,
     5,
     3.41,
@@ -189,13 +189,26 @@ VALUES
     6.43168,
     ARRAY ['O'],
     null,
-    926);
+    926),
+
+     ('Atéro Gruffy',
+    'Herbe',
+    'Attention des arbres et des vaches partout l''enfer.',
+    null,
+    'atéro non officiel',
+    45.792968,
+    6.058227,
+    ARRAY ['O', 'OE'],
+    null,
+    580)    ;
 
 INSERT INTO "liftOff_has_landing"("liftOff_id","landing_id")
 VALUES
     (1,1),
     (2,2),
-    (3,3);
+    (3,3),
+    (4,4),
+    (1,5);
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
@@ -215,13 +228,14 @@ VALUES
     ('Photo atero Jura2', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
     ('Photo atero Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3),
     ('Photo atero Vailly', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3),
-    ('Photo atero grand Bornand', 'https://c.pxhere.com/photos/65/b3/skydiving_parachute_parachutist_sport_sunset_landing-1392169.jpg!d', 4);
+    ('Photo atero grand Bornand', 'https://c.pxhere.com/photos/65/b3/skydiving_parachute_parachutist_sport_sunset_landing-1392169.jpg!d', 4),
+    ('Photo atero Guffy', 'https://c.pxhere.com/photos/65/b3/skydiving_parachute_parachutist_sport_sunset_landing-1392169.jpg!d', 5);
 
 INSERT INTO "img_liftOff"("title", "url", "idLiftOff")
 VALUES
     ('Photo deco Semnoz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Parapente_-_162.jpg/800px-Parapente_-_162.jpg?2015110313514', 1),
     ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2),
     ('Photo deco Vailly', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 3),
-    ('Photo deco Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 3);
+    ('Photo deco Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 4);
 
 COMMIT;

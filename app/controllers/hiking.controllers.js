@@ -13,37 +13,15 @@ module.exports = {
       return res.status(404).json({ message: 'page not found' });
     }
     return res.json(result);
+
   },
   async create(req, res) {
-    const hiking = await hikingDataMapper.creatOne(req.body);
+    const hiking = await hikingDataMapper().creatOne(req.body);
     return res.json(hiking);
   },
 
   async updateOne(req, res) {
-    // const {
-    //   id,
-    //   name,
-    //   imgCard,
-    //   mountain,
-    //   resume,
-    //   keyStage,
-    //   startingPoint,
-    //   hikingPlan,
-    //   positiveElevation,
-    //   negativeElevation,
-    //   overallLength,
-    //   landType,
-    //   ignCardReference,
-    //   hightPoint,
-    //   lowPoint,
-    //   difficulty,
-    //   userId,
-    //   liftOffId,
-    //  } = req.body;
-
-    //  const hiking = getOne(id).toJson;
-    //  console.log(hiking);
-    // // const hiking = await hikingDataMapper.updateOne(id);
-    // return res.json(hiking);
+    const hiking = await hikingDataMapper().updateOne(req.params.id, req.body);
+    return res.json(hiking);
   },
 };
