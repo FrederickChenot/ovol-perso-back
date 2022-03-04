@@ -13,7 +13,6 @@ module.exports = {
       return res.status(404).json({ message: 'page not found' });
     }
     return res.json(result);
-
   },
   async create(req, res) {
     const hiking = await hikingDataMapper().creatOne(req.body);

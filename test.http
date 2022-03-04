@@ -178,7 +178,7 @@ content-type: application/json
       "idHiking": 2
     }]
 }
-### Patch hiking for modify a hiking avec photo mais modif partiel
+### Patch hiking for modify a hiking avec photo mais modif parciel
 PATCH  {{ endpoint-dev }}/api/hiking/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 content-type: application/json

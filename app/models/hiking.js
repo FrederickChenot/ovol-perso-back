@@ -106,11 +106,65 @@ module.exports = function datamapper() {
 
   const updateOne = async (id, data) => {
     const oldData = await findByPk(id);
-
-    //!!Faire de destructuring de la sous table photo avant le déstructuring de la rando
-    //TODO URGENT OLIVIER !!
     const newData = { ...oldData[0], ...data }; // on écrase les données qui on étaient modifié
-    console.log(newData);
+
+    const oldPhoto = oldData[0].photo_hiking;
+    const newPhotoUpdate = [];
+    const newPhotoCreate = [];
+
+    if (data.photo_hiking) {
+      const newPhoto = data.photo_hiking;
+
+      oldPhoto.forEach((photo, index) => {
+        newPhotoUpdate[index] = { ...photo, ...newPhoto[index] };
+      });
+
+      if (newPhoto.length > oldPhoto.length) {
+        newPhoto.forEach((photo, index) => {
+          if (index >= oldPhoto.length) {
+            newPhotoCreate.push({ ...photo });
+          }
+        });
+      }
+    }
+
+    console.log('Les Photo update:', newPhotoUpdate);
+    console.log('Les Photo create:', newPhotoCreate);
+
+    newPhotoUpdate.forEach(async (photo) => {
+      console.log('format photo: ', photo);
+      const query2 = {
+        text: `UPDATE "img_hiking" SET
+        "title" = $1,
+        "url" = $2,
+        "idHiking" = $3
+        WHERE id = $4`,
+        values: [
+          photo.title,
+          photo.url,
+          photo.idHiking,
+          photo.id,
+        ],
+      };
+      await client.query(query2);
+    });
+
+    newPhotoCreate.forEach(async (photo) => {
+      const query2 = {
+        text: `INSERT INTO "img_hiking"
+        ("title",
+        "url",
+        "idHiking")
+        VALUES ($1, $2, $3)`,
+        values: [
+          photo.title,
+          photo.url,
+          id,
+        ],
+      };
+      await client.query(query2);
+    });
+
     const query = {
       text: `UPDATE "hiking" SET
       "name" = $1,
@@ -153,25 +207,7 @@ module.exports = function datamapper() {
     };
     const result = await client.query(query);
 
-    //!! A dé-commenté quand le déstructuring est opérationnel
-    // newData.photo_hiking.forEach(async (photo) => {
-    //   console.log('format photo: ', photo);
-    //   const query2 = {
-    //     text: `UPDATE "img_hiking" SET
-    //     "title" = $1,
-    //     "url" = $2,
-    //     "idHiking" = $3
-    //     WHERE id = $4`,
-    //     values: [
-    //       photo.title,
-    //       photo.url,
-    //       photo.idHiking,
-    //       photo.id,
-    //     ],
-    //   };
-    //   await client.query(query2);
-    // });
-    return result.rows;
+    return findByPk(id);
   };
 
   const retunrDatamapper = {
