@@ -2,14 +2,17 @@ const liftOffDataMapper = require('../models/liftOff');
 
 module.exports = {
   async getAll(_req, res) {
-    const hiking = await liftOffDataMapper.findAll();
-    return res.json(hiking);
+    const result = await liftOffDataMapper.findAll();
+    return res.json(result);
   },
 
   async getOne(req, res) {
     const IdHiking = Number(req.params.id);
-    const hiking = await liftOffDataMapper.findOne(IdHiking);
-    return res.json(hiking);
+    const result = await liftOffDataMapper.findOne(IdHiking);
+    if (!result) {
+      return res.status(404).json({ message: 'page not found' });
+    }
+    return res.json(result);
   },
   async create(req, res) {
     const result = await liftOffDataMapper.createOne(req.body);

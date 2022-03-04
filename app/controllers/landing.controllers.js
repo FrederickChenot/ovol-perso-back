@@ -9,8 +9,11 @@ module.exports = {
 
   async getOne(req, res) {
     const IdLanding = Number(req.params.id);
-    const landing = await landingDataMapper.findOne(IdLanding);
-    return res.json(landing);
+    const result = await landingDataMapper.findByPk(IdLanding);
+    if (!result) {
+      return res.status(404).json({ message: 'page not found' });
+    }
+    return res.json(result);
   },
   async getLandings(req, res) {
     const { ids } = req.body;
@@ -24,5 +27,11 @@ module.exports = {
     }
     return res.send('erreur landing');
   },
-
+  async patch(req, res) {
+    const result = await landingDataMapper.update(Number(req.params.id), req.body);
+    if (result) {
+      return res.send(result);
+    }
+    return res.send('erreur update landing');
+  },
 };
