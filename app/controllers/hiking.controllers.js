@@ -2,13 +2,13 @@ const hikingDataMapper = require('../models/hiking');
 
 module.exports = {
   async getAll(_req, res) {
-    const result = await hikingDataMapper.findAll();
+    const result = await hikingDataMapper().findAll();
     return res.json(result);
   },
 
   async getOne(req, res) {
     const IdHiking = Number(req.params.id);
-    const result = await hikingDataMapper.findOne(IdHiking);
+    const result = await hikingDataMapper().findByPk(IdHiking);
     if (!result) {
       return res.status(404).json({ message: 'page not found' });
     }

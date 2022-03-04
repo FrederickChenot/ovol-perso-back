@@ -39,7 +39,7 @@ content-type: application/json
 }
 
 ### get one hiking
-GET {{ endpoint-dev }}/api/hiking/4
+GET {{ endpoint-dev }}/api/hiking/1
 
 ### get all landing
 GET {{ endpoint-dev }}/api/landing
