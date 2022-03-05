@@ -10,7 +10,7 @@ router.route('/:id(\\d+)')
 /**
    * GET /api/hiking/{id}
    * @summary Get one hiking with the associated photo(s) on the id
-   * @tags Hiking Id
+   * @tags GET  on Hiking  on Id
    * @return {[Hiking]} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
    */
@@ -24,13 +24,21 @@ router.route('/:id(\\d+)')
    * @param {hiking} request.body.required - hiking info
    */
   .patch(auth(), hikingController.updateOne)
+  /**
+   * DELETE /api/hiking/{id}
+   * @summary Delete one hiking with the associated photo(s) on the id
+   * @tags DELETE one Hiking with associed photo(s) on Id
+   * @security BearerAuth
+   * @return {string} 200 - success response - application/json
+   * @param {number} id.path - id of the hiking
+   */
   .delete(auth(), hikingController.deleteOne);
 // all
 router.route('/')
   /**
    * GET /api/hiking
    * @summary Get all hiking
-   * @tags All The Hikings
+   * @tags GET all The Hikings
    * @return {array<Hiking>} 200 - success response - application/json
    */
   .get(hikingController.getAll)
@@ -40,11 +48,11 @@ router.route('/')
    * @tags Create a Hiking
    * @security BearerAuth
    * @param {[Hiking]} request.body.required - hiking info
-   * @return {json} [200] - success response - application/json
+   * @return {json} 200 - success response - application/json
    * {
    * "id": 5
    * }
-   * @example request - [hiking info]
+   * @example request - hiking info
   {
     "name": "rando test",
     "imgCard" : "https://upload.wikimedia.org/wikipedia/commons/7/78/Ch%C3%A8vre_naine_-_S%C3%A9rent_8.jpg",
@@ -66,7 +74,7 @@ router.route('/')
     "photos": [{"name": "photo rando test", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
       {"name": "photo rando test2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
   }
-   *@example response - [200] - [Return json with the new id of the hiking]
+   *@example response - 200 - Return json with the new id of the hiking
   {
     "id": 5
   }
