@@ -41,6 +41,10 @@ content-type: application/json
 ### get one hiking
 GET {{ endpoint-dev }}/api/hiking/2
 
+### delete one hiking
+DELETE  {{ endpoint-dev }}/api/hiking/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+
 ### login
 POST {{ endpoint-dev }}/api/login
 content-type: application/json

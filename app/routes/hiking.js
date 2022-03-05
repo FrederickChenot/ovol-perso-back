@@ -23,7 +23,8 @@ router.route('/:id(\\d+)')
    * @param {number} id.path - id of the hiking
    * @param {hiking} request.body.required - hiking info
    */
-  .patch(auth(), hikingController.updateOne);
+  .patch(auth(), hikingController.updateOne)
+  .delete(auth(), hikingController.deleteOne);
 // all
 router.route('/')
   /**

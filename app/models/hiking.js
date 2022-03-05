@@ -25,6 +25,9 @@ const client = require('../config/postgres');
 module.exports = function datamapper() {
   const findAll = async () => {
     const result = await client.query('SELECT * FROM "hiking"');
+    if (result.rowCount === 0) {
+      return null;
+    }
     return result.rows;
   };
 
@@ -39,6 +42,9 @@ module.exports = function datamapper() {
     }
 
     result.rows[0].idLandings = liftOff.rows[0].idLandings;
+    if (result.rowCount === 0) {
+      return null;
+    }
     return result.rows;
   };
 
@@ -101,7 +107,9 @@ module.exports = function datamapper() {
       };
       await client.query(query2);
     });
-
+    if (result.rowCount === 0) {
+      return null;
+    }
     return result.rows;
   };
 
@@ -205,16 +213,25 @@ module.exports = function datamapper() {
         newData.liftOff_id,
         id],
     };
-    const result = await client.query(query);
+    await client.query(query);
 
     return findByPk(id);
   };
 
+  const deleteOne = async (id) => {
+    await client.query('DELETE FROM "img_hiking" WHERE "idHiking" = $1', [id]);
+    const result = await client.query('DELETE FROM "hiking" WHERE "id" = $1', [id]);
+    if (result.rowCount === 0) {
+      return null;
+    }
+    return result.command;
+  };
   const retunrDatamapper = {
     findAll,
     findByPk,
     creatOne,
     updateOne,
+    deleteOne,
   };
   return retunrDatamapper;
 };
