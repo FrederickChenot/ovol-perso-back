@@ -6,6 +6,13 @@ const options = {
     title: 'Ovol',
     description: 'Documentation de l\'api Ovol',
   },
+  security: {
+    BearerAuth: {
+      type: 'http',
+      scheme: 'bearer',
+    },
+  },
+
   baseDir: __dirname,
   // On analyse tous les fichiers du projet
   filesPattern: ['../routes/**/*.js', '../models/*.js', '../errors/*.js'],

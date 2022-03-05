@@ -43,6 +43,7 @@ module.exports = function datamapper() {
   };
 
   const creatOne = async (data) => {
+    console.log(data);
     const query = {
       text: `INSERT INTO "hiking"
             ("name",
@@ -128,8 +129,8 @@ module.exports = function datamapper() {
       }
     }
 
-    // TODO voir pour factorisé ce code avec le createOne
-    // !Difèrence sur l'id et le titre entre les deux
+    // TODO voir pour factorisé cl code avec le createOne
+    // !Différence sur l'id et le titre entre les deux
     newPhotoUpdate.forEach(async (photo) => {
       console.log('format photo: ', photo);
       const query2 = {
