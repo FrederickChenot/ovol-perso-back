@@ -106,11 +106,11 @@ module.exports = function datamapper() {
 
   const updateOne = async (id, data) => {
     const oldData = await findByPk(id);
-    const newData = { ...oldData[0], ...data }; // on écrase les données qui on étaient modifié
+    const newData = { ...oldData[0], ...data }; // Replace the old data by the new
 
     const oldPhoto = oldData[0].photo_hiking;
-    const newPhotoUpdate = [];
-    const newPhotoCreate = [];
+    const newPhotoUpdate = []; // Array for the phot who exist before yhe update
+    const newPhotoCreate = []; // Array for new photo who are add to the hiking
 
     if (data.photo_hiking) {
       const newPhoto = data.photo_hiking;
@@ -128,9 +128,8 @@ module.exports = function datamapper() {
       }
     }
 
-    console.log('Les Photo update:', newPhotoUpdate);
-    console.log('Les Photo create:', newPhotoCreate);
-
+    // TODO voir pour factorisé ce code avec le createOne
+    // !Difèrence sur l'id et le titre entre les deux
     newPhotoUpdate.forEach(async (photo) => {
       console.log('format photo: ', photo);
       const query2 = {
