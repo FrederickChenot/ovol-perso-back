@@ -75,7 +75,6 @@ module.exports = {
 
     const result = await client.query(query1);
     // Request to put photo in the img_landing table
-    // TODO : si data.photos est null ,on insert une photo par default
     if (data.photos.length > 0) {
       data.photos.forEach(async (photo) => {
         const query2 = {
@@ -144,7 +143,28 @@ module.exports = {
         newLanding.altitude,
         id],
     };
+
     const result = await client.query(query);
+    // PHOTOS
+    const oldPhotos = landing.rows[0].photo_landing;
+    console.log('old photo', oldPhotos);
+    const newPhotos = { ...oldLanding, ...data.photos };
+    newPhotos.forEach(async (photo) => {
+      const query2 = {
+        text: `UPDATE "img_landing" SET
+        ("title",
+        "url",
+        "idLanding")
+        VALUES ($1, $2, $3)`,
+        values: [
+          photo.name,
+          photo.url,
+          result.rows[0].id,
+        ],
+      };
+      await client.query(query2);
+    });
+    //
     return result.rows;
   },
   // TODO delete
