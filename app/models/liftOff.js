@@ -22,7 +22,7 @@ module.exports = function datamapper() {
     return result.rows;
   };
 
-  const findOne = async (idLiftOff) => {
+  const findByPk = async (idLiftOff) => {
     const result = await client.query('SELECT * FROM getLiftOff($1)', [idLiftOff]);
     if (result.rowCount === 0) {
       return null;
@@ -110,14 +110,115 @@ module.exports = function datamapper() {
     });
     return result.rows;
   };
-  // TODO : update
-  // gerer les photos et les landings
-  // TODO : delete
-  // gerer les photos et les landings
+
+  const deleteOne = async (id) => {
+    await client.query('DELETE FROM "liftOff_has_landing" WHERE "liftOff_id" = $1', [id]);
+    // TODO V2 delete les photos sur cloudinary avant supprimer table
+    // Récupère les lien cloudinary sur
+    // axios suppression photos
+    await client.query('DELETE FROM "img_liftOff"" WHERE "idLiftOff" = $1', [id]);
+    const result = await client.query('DELETE FROM "liftOff" WHERE id = $1', [id]);
+    return !!result.rowCount;
+  };
+
+  // TODO : update gerer les photos et les landings
+  const updateOne = async (id, data) => {
+    const oldData = await findByPk(id);
+    if (!oldData) {
+      return !!oldData;
+    }
+    const newData = { ...oldData[0], ...data }; // Replace the old data by the new
+
+    const oldPhoto = oldData[0].photo_hiking;
+    const newPhotoUpdate = []; // Array for the phot who exist before yhe update
+    const newPhotoCreate = []; // Array for new photo who are add to the hiking
+
+    if (data.photo_hiking) {
+      const newPhoto = data.photo_hiking;
+
+      oldPhoto.forEach((photo, index) => {
+        newPhotoUpdate[index] = { ...photo, ...newPhoto[index] };
+      });
+
+      if (newPhoto.length > oldPhoto.length) {
+        newPhoto.forEach((photo, index) => {
+          if (index >= oldPhoto.length) {
+            newPhotoCreate.push({ ...photo });
+          }
+        });
+      }
+    }
+
+    newPhotoUpdate.forEach(async (photo) => {
+      const query2 = {
+        text: `UPDATE "img_liftOff" SET
+        "title" = $1,
+        "url" = $2,
+        "idLiftOff" = $3
+        WHERE id = $4`,
+        values: [
+          photo.title,
+          photo.url,
+          photo.idLiftOff,
+          photo.id,
+        ],
+      };
+      await client.query(query2);
+    });
+
+    newPhotoCreate.forEach(async (photo) => {
+      const query2 = {
+        text: `INSERT INTO "img_liftOff"
+        ("title",
+        "url",
+        "idLiftOff")
+        VALUES ($1, $2, $3)`,
+        values: [
+          photo.title,
+          photo.url,
+          id,
+        ],
+      };
+      await client.query(query2);
+    });
+
+    const query = {
+      text: `UPDATE "liftOff" SET
+                "name" = $1,
+                "typeOfTerrain" = $2,
+                "description" = $3,
+                "danger" = $4,
+                "fflvLink" = $5,
+                "latitude" = $6,
+                "longitude" = $7,
+                "favorableWind" = $8,
+                "unfavorableWind" = $9,
+                "altitude" = $10
+            WHERE id = $11`,
+      values: [
+        data.name,
+        data.typeOfTerrain,
+        data.description,
+        data.danger,
+        data.fflvLink,
+        data.latitude,
+        data.longitude,
+        data.favorableWind,
+        data.unfavorableWind,
+        data.altitude,
+        id],
+    };
+    await client.query(query);
+
+    return findByPk(id);
+  };
+
   const returnDatamapper = {
     findAll,
-    findOne,
+    findByPk,
     createOne,
+    deleteOne,
+    updateOne,
   };
   return returnDatamapper;
 };

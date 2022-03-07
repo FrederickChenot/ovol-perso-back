@@ -1,3 +1,6 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */
 const client = require('../config/postgres');
 
@@ -105,11 +108,13 @@ module.exports = function datamapper() {
 
   const update = async (id, data) => {
     // TODO: update les photos
-    const landing = await client.query('SELECT * FROM landing WHERE id = $1', [id]);
+    const landing = await findByPk(id);
+    console.log(landing);
     if (landing.rowCount === 0) {
       return null;
     }
-    const oldLanding = landing.rows[0];
+    const oldLanding = landing[0];
+    console.log('oldLanding', oldLanding);
     const newLanding = { ...oldLanding, ...data };
     const query = {
       text: `UPDATE "landing" SET
@@ -140,24 +145,30 @@ module.exports = function datamapper() {
 
     const result = await client.query(query);
     // PHOTOS
-    const oldPhotos = landing.rows[0].photo_landing;
-    console.log('old photo', oldPhotos);
-    const newPhotos = { ...oldLanding, ...data.photos };
-    newPhotos.forEach(async (photo) => {
-      const query2 = {
-        text: `UPDATE "img_landing" SET
+
+    if (data.photos) {
+      const oldPhotos = landing[0].photo_landing;
+      console.log('data.photo', data.photos);
+      console.log('old photo', oldPhotos);
+      const newPhotos = { ...oldLanding, ...data.photos };
+      console.log('newPhoto', newPhotos);
+      newPhotos.forEach(async (photo) => {
+        const query2 = {
+          text: `INSERT INTO "img_landing" VALUES
         ("title",
         "url",
         "idLanding")
         VALUES ($1, $2, $3)`,
-        values: [
-          photo.name,
-          photo.url,
-          result.rows[0].id,
-        ],
-      };
-      await client.query(query2);
-    });
+          values: [
+            photo.name,
+            photo.url,
+            landing[0].id,
+          ],
+        };
+        await client.query(query2);
+      }
+      );
+    }
     //
     return result.rows;
   };
