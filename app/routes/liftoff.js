@@ -7,7 +7,9 @@ const auth = require('../helpers/auth.helpers');
 
 // id
 router.route('/:id(\\d+)')
-  .get(liftOffController.getOne);
+  .get(liftOffController.getOne)
+  .patch(liftOffController.update)
+  .delete(liftOffController.delete);
 // all
 router.route('/')
   /**

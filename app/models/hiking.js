@@ -1,5 +1,7 @@
 /* eslint-disable dot-notation */
 const client = require('../config/postgres');
+const landingDataMapper = require('./landing');
+const liftOffDataMapper = require('./liftOff');
 
 /**
  * @typedef {object} Hiking
@@ -115,7 +117,9 @@ module.exports = function datamapper() {
 
   const updateOne = async (id, data) => {
     const oldData = await findByPk(id);
-    // TODO Check if id existe for this operation
+    if (!oldData) {
+      return !!oldData;
+    }
     const newData = { ...oldData[0], ...data }; // Replace the old data by the new
 
     const oldPhoto = oldData[0].photo_hiking;
@@ -138,10 +142,7 @@ module.exports = function datamapper() {
       }
     }
 
-    // TODO voir pour factorisé cl code avec le createOne
-    // !Différence sur l'id et le titre entre les deux
     newPhotoUpdate.forEach(async (photo) => {
-      console.log('format photo: ', photo);
       const query2 = {
         text: `UPDATE "img_hiking" SET
         "title" = $1,
@@ -158,6 +159,8 @@ module.exports = function datamapper() {
       await client.query(query2);
     });
 
+    // TODO voir pour factorisé cl code avec le createOne
+    // !Différence sur l'id et le titre entre les deux
     newPhotoCreate.forEach(async (photo) => {
       const query2 = {
         text: `INSERT INTO "img_hiking"
@@ -223,6 +226,8 @@ module.exports = function datamapper() {
     // TODO V2 delete les photos sur cloudinary avant supprimer table
     // Récupère les lien cloudinary sur
     // axios suppression photos
+    await landingDataMapper().deleteOne(id);
+    await liftOffDataMapper().deleteOne(id);
     await client.query('DELETE FROM "img_hiking" WHERE "idHiking" = $1', [id]);
     const result = await client.query('DELETE FROM "hiking" WHERE "id" = $1', [id]);
     if (result.rowCount === 0) {
