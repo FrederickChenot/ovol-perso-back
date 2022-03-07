@@ -168,12 +168,11 @@ module.exports = {
     return result.rows;
   },
   // TODO delete
-  /*
   async delete(id) {
     // TODO: delete les photos dans img_Landing
-    // const result = await client.query('DELETE FROM "landing" WHERE id = $1', [id]);
+    await client.query('DELETE FROM "img_landing" WHERE "idLanding" = $1', [id]);
+    const result = await client.query('DELETE FROM "landing" WHERE id = $1', [id]);
     // TODO : chercher dans lifOff_has_landing et delete les associations avec landing id
     return !!result.rowCount;
   },
-*/
 };
