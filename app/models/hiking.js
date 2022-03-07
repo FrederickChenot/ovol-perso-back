@@ -115,6 +115,7 @@ module.exports = function datamapper() {
 
   const updateOne = async (id, data) => {
     const oldData = await findByPk(id);
+    // TODO Check if id existe for this operation
     const newData = { ...oldData[0], ...data }; // Replace the old data by the new
 
     const oldPhoto = oldData[0].photo_hiking;
@@ -219,6 +220,9 @@ module.exports = function datamapper() {
   };
 
   const deleteOne = async (id) => {
+    // TODO V2 delete les photos sur cloudinary avant supprimer table
+    // Récupère les lien cloudinary sur
+    // axios suppression photos
     await client.query('DELETE FROM "img_hiking" WHERE "idHiking" = $1', [id]);
     const result = await client.query('DELETE FROM "hiking" WHERE "id" = $1', [id]);
     if (result.rowCount === 0) {

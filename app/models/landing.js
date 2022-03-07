@@ -15,21 +15,21 @@ const client = require('../config/postgres');
  * @property {number} altitude - altitude
  */
 
-module.exports = {
-  async findAll() {
+module.exports = function datamapper() {
+  const findAll =  async () => {
     const result = await client.query('SELECT * FROM "landing"');
     return result.rows;
-  },
+  };
 
-  async findByPk(idLanding) {
+  const findByPk = async (idLanding) => {
     const result = await client.query('SELECT * FROM getLanding($1)', [idLanding]);
     if (result.rowCount === 0) {
       return null;
     }
     return result.rows;
-  },
+  };
 
-  async findLandings(ids) {
+  const findLandings = async (ids) => {
     let query = 'SELECT * FROM "landing" JOIN "img_landing" ON "img_landing"."idLanding" = "landing"."id" WHERE "landing"."id" IN ';
     let querytempo = '(';
     const tablelongeur = ids.length;
@@ -43,9 +43,9 @@ module.exports = {
     });
     const result = await client.query(query);
     return result.rows;
-  },
+  };
 
-  async createOne(data) {
+  const createOne = async (data) => {
     const query1 = {
       text: `INSERT INTO "landing"
                 ("name",
@@ -107,9 +107,9 @@ module.exports = {
       await client.query(query2);
     }
     return result.rows;
-  },
+  };
 
-  async update(id, data) {
+  const update = async (id, data) => {
     // TODO: update les photos
     const landing = await client.query('SELECT * FROM landing WHERE id = $1', [id]);
     if (landing.rowCount === 0) {
@@ -166,13 +166,25 @@ module.exports = {
     });
     //
     return result.rows;
-  },
+  };
   // TODO delete
-  async delete(id) {
-    // TODO: delete les photos dans img_Landing
+  const deleteOne = async (id) => {
+    await client.query('DELETE FROM "liftOff_has_landing" WHERE "landing_id" = $1', [id]);
+    // TODO V2 delete les photos sur cloudinary avant supprimer table
+    // Récupère les lien cloudinary sur
+    // axios suppression photos
     await client.query('DELETE FROM "img_landing" WHERE "idLanding" = $1', [id]);
     const result = await client.query('DELETE FROM "landing" WHERE id = $1', [id]);
-    // TODO : chercher dans lifOff_has_landing et delete les associations avec landing id
     return !!result.rowCount;
-  },
+  };
+
+  const returnDatamapper = {
+    findAll,
+    findByPk,
+    findLandings,
+    createOne,
+    update,
+    deleteOne,
+  }
+  return returnDatamapper;
 };
