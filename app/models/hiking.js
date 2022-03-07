@@ -25,6 +25,9 @@ const client = require('../config/postgres');
 module.exports = function datamapper() {
   const findAll = async () => {
     const result = await client.query('SELECT * FROM "hiking"');
+    if (result.rowCount === 0) {
+      return null;
+    }
     return result.rows;
   };
 
@@ -39,10 +42,14 @@ module.exports = function datamapper() {
     }
 
     result.rows[0].idLandings = liftOff.rows[0].idLandings;
+    if (result.rowCount === 0) {
+      return null;
+    }
     return result.rows;
   };
 
   const creatOne = async (data) => {
+    console.log(data);
     const query = {
       text: `INSERT INTO "hiking"
             ("name",
@@ -100,17 +107,72 @@ module.exports = function datamapper() {
       };
       await client.query(query2);
     });
-
+    if (result.rowCount === 0) {
+      return null;
+    }
     return result.rows;
   };
 
   const updateOne = async (id, data) => {
     const oldData = await findByPk(id);
+    const newData = { ...oldData[0], ...data }; // Replace the old data by the new
 
-    //!!Faire de destructuring de la sous table photo avant le déstructuring de la rando
-    //TODO URGENT OLIVIER !!
-    const newData = { ...oldData[0], ...data }; // on écrase les données qui on étaient modifié
-    console.log(newData);
+    const oldPhoto = oldData[0].photo_hiking;
+    const newPhotoUpdate = []; // Array for the phot who exist before yhe update
+    const newPhotoCreate = []; // Array for new photo who are add to the hiking
+
+    if (data.photo_hiking) {
+      const newPhoto = data.photo_hiking;
+
+      oldPhoto.forEach((photo, index) => {
+        newPhotoUpdate[index] = { ...photo, ...newPhoto[index] };
+      });
+
+      if (newPhoto.length > oldPhoto.length) {
+        newPhoto.forEach((photo, index) => {
+          if (index >= oldPhoto.length) {
+            newPhotoCreate.push({ ...photo });
+          }
+        });
+      }
+    }
+
+    // TODO voir pour factorisé cl code avec le createOne
+    // !Différence sur l'id et le titre entre les deux
+    newPhotoUpdate.forEach(async (photo) => {
+      console.log('format photo: ', photo);
+      const query2 = {
+        text: `UPDATE "img_hiking" SET
+        "title" = $1,
+        "url" = $2,
+        "idHiking" = $3
+        WHERE id = $4`,
+        values: [
+          photo.title,
+          photo.url,
+          photo.idHiking,
+          photo.id,
+        ],
+      };
+      await client.query(query2);
+    });
+
+    newPhotoCreate.forEach(async (photo) => {
+      const query2 = {
+        text: `INSERT INTO "img_hiking"
+        ("title",
+        "url",
+        "idHiking")
+        VALUES ($1, $2, $3)`,
+        values: [
+          photo.title,
+          photo.url,
+          id,
+        ],
+      };
+      await client.query(query2);
+    });
+
     const query = {
       text: `UPDATE "hiking" SET
       "name" = $1,
@@ -151,34 +213,25 @@ module.exports = function datamapper() {
         newData.liftOff_id,
         id],
     };
-    const result = await client.query(query);
+    await client.query(query);
 
-    //!! A dé-commenté quand le déstructuring est opérationnel
-    // newData.photo_hiking.forEach(async (photo) => {
-    //   console.log('format photo: ', photo);
-    //   const query2 = {
-    //     text: `UPDATE "img_hiking" SET
-    //     "title" = $1,
-    //     "url" = $2,
-    //     "idHiking" = $3
-    //     WHERE id = $4`,
-    //     values: [
-    //       photo.title,
-    //       photo.url,
-    //       photo.idHiking,
-    //       photo.id,
-    //     ],
-    //   };
-    //   await client.query(query2);
-    // });
-    return result.rows;
+    return findByPk(id);
   };
 
+  const deleteOne = async (id) => {
+    await client.query('DELETE FROM "img_hiking" WHERE "idHiking" = $1', [id]);
+    const result = await client.query('DELETE FROM "hiking" WHERE "id" = $1', [id]);
+    if (result.rowCount === 0) {
+      return null;
+    }
+    return result.command;
+  };
   const retunrDatamapper = {
     findAll,
     findByPk,
     creatOne,
     updateOne,
+    deleteOne,
   };
   return retunrDatamapper;
 };

@@ -8,12 +8,11 @@ module.exports = {
 
   async getOne(req, res) {
     const IdHiking = Number(req.params.id);
-    const result = await hikingDataMapper().findByPk(IdHiking);
-    if (!result) {
+    const hiking = await hikingDataMapper().findByPk(IdHiking);
+    if (!hiking) {
       return res.status(404).json({ message: 'page not found' });
     }
-    return res.json(result);
-
+    return res.json(hiking);
   },
   async create(req, res) {
     const hiking = await hikingDataMapper().creatOne(req.body);
@@ -22,6 +21,12 @@ module.exports = {
 
   async updateOne(req, res) {
     const hiking = await hikingDataMapper().updateOne(req.params.id, req.body);
+    return res.json(hiking);
+  },
+
+  async deleteOne(req, res) {
+    const IdHiking = Number(req.params.id);
+    const hiking = await hikingDataMapper().deleteOne(IdHiking);
     return res.json(hiking);
   },
 };

@@ -39,50 +39,11 @@ content-type: application/json
 }
 
 ### get one hiking
-GET {{ endpoint-dev }}/api/hiking/1
+GET {{ endpoint-dev }}/api/hiking/2
 
-### get all landing
-GET {{ endpoint-dev }}/api/landing
-
-### get one landing
-GET {{ endpoint-dev }}/api/landing/2
-
-### get all liftOff
-GET {{ endpoint-dev }}/api/liftOff
-
-### get one liftOff
-GET {{ endpoint-dev }}/api/liftOff/2
-
-### Test tableau landings
-POST {{ endpoint-dev }}/api/landings
-content-type: application/json
-
-{
-    "ids": [1,2,45,98]
-}
-
-### Test tableau landings heroku
-POST https://apiovol.herokuapp.com/api/landings
-content-type: application/json
-
-{
-    "ids": [1,2,45,98]
-}
-
-### Créer un item
-POST {{ endpoint-dev }}/api/item
-content-type: application/json
-
-{
-    "label": "item2"
-}
-### Créer un mauvais item
-POST {{ endpoint-dev }}/api/item
-content-type: application/json
-
-{
-    "label": 2222
-}
+### delete one hiking
+DELETE  {{ endpoint-dev }}/api/hiking/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 
 ### login
 POST {{ endpoint-dev }}/api/login
@@ -104,46 +65,6 @@ content-type: application/json
 ### Post a hiking : recuperer l'accessToken avant avec la route login et le copier si dessous
 POST {{ endpoint-dev }}/api/hiking
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
-
-### Post a landing
-POST {{ endpoint-dev }}/api/landing
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
-content-type: application/json
-
-{
-      "name":"new liftOff",
-      "typeOfTerrain":"new type de terrain",
-      "description":"new description",
-      "danger":"new danger",
-      "fflvLink":"new fflvLink",
-      "latitude":23.234,
-      "longitude":34.23,
-      "favorableWind":["O"],
-      "unfavorableWind":["O"],
-      "altitude":23123,
-       "photos": [{"name": "photo rando pourri", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
-      {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
-}
-### Post a liftOff
-POST {{ endpoint-dev }}/api/liftOff
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
-content-type: application/json
-
-{
-      "name":"new liftOff",
-      "typeOfTerrain":"new type de terrain",
-      "description":"new description",
-      "danger":"new danger",
-      "fflvLink":"new fflvLink",
-      "latitude":23.234,
-      "longitude":34.23,
-      "favorableWind":["O"],
-      "unfavorableWind":["O"],
-      "altitude":23123,
-      "idLandings": [1,2],
-       "photos": [{"name": "photo rando pourri", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
-      {"name": "photo rando pourri2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
-}
 
 ### Patch hiking for modify a hiking sans modif de photo
 PATCH  {{ endpoint-dev }}/api/hiking/2
@@ -174,7 +95,7 @@ content-type: application/json
     {
       "id": 4,
       "title": "Photo Jura 2",
-      "url": "https://get.pxhere.com/photo/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661.jpg",
+      "url": "URL cassé Olivier",
       "idHiking": 2
     }]
 }
@@ -189,6 +110,38 @@ content-type: application/json
     "img_card" : "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg",
     "photo_hiking" : [{
       "id": 3,
-      "titre": "title changé patch"
+      "title": "title changé patch"
+    }]
+}
+
+### Patch hiking for modify a hiking avec modif de photo mais pas de manque d'info + 1photo supp
+PATCH  {{ endpoint-dev }}/api/hiking/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+    "name": "rando Renomé",
+    "mountain": "Himalaya",
+    "img_card" : "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg",
+    "photo_hiking" : [
+    {
+      "id": 3,
+      "title": "titre modifier OLIVIER",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/La_Petite_Montagne_vue_du_Molard_de_la_Justice%2C_Jura%2C_France.jpg",
+      "idHiking": 2
+    },
+    {
+      "id": 4,
+      "title": "Photo Jura 2",
+      "url": "URL cassé Olivier",
+      "idHiking": 2
+    },
+    {
+      "title": "Photo ajouté pendant la mise à jour",
+      "url": "URL cassé 4 Olivier"
+    },
+    {
+      "title": "Photo2 ajouté pendant la mise à jour",
+      "url": "URL cassé 5 Olivier"
     }]
 }

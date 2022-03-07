@@ -13,3 +13,6 @@ coverage
 log/*
 # on garde le .gitkeep pour obliger a commit le folder log
 !log/.gitkeep
+
+#ficher test
+testOlivier.js
