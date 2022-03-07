@@ -12,12 +12,13 @@ GET {{ endpoint-dev }}/api/landing/23423
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/2
+GET {{ endpoint-dev }}/api/landing/3
 
 ### Test tableau landings
 POST {{ endpoint-dev }}/api/landings
 content-type: application/json
 
 {
-    "ids": [1,2]
+    "ids": [1,2,3]
 }
+
