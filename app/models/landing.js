@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const client = require('../config/postgres');
 
 /**
@@ -16,7 +17,7 @@ const client = require('../config/postgres');
  */
 
 module.exports = function datamapper() {
-  const findAll =  async () => {
+  const findAll = async () => {
     const result = await client.query('SELECT * FROM "landing"');
     return result.rows;
   };
@@ -30,19 +31,12 @@ module.exports = function datamapper() {
   };
 
   const findLandings = async (ids) => {
-    let query = 'SELECT * FROM "landing" JOIN "img_landing" ON "img_landing"."idLanding" = "landing"."id" WHERE "landing"."id" IN ';
-    let querytempo = '(';
-    const tablelongeur = ids.length;
-    ids.forEach((id, index) => {
-      if (index === tablelongeur - 1) {
-        querytempo += `${id})`;
-        query += querytempo;
-      } else {
-        querytempo += `${id}, `;
-      }
-    });
-    const result = await client.query(query);
-    return result.rows;
+    // TODO : voir pour requete obtimisé
+    const result = [];
+    await Promise.all(ids.map(async (id) => {
+      result.push(await findByPk(id));
+    }));
+    return result;
   };
 
   const createOne = async (data) => {
@@ -185,6 +179,24 @@ module.exports = function datamapper() {
     createOne,
     update,
     deleteOne,
-  }
+  };
   return returnDatamapper;
 };
+
+/*
+const findLandings = async (ids) => {
+  const promises = [];
+  const result = []
+  for (const id of ids) {
+    promises.push(new Promise((res, err) => {
+      findByPk(id).then((data) => {
+        res(data);
+      });
+    }));
+  }
+ await Promise.all(promises).then((data) => {
+   result.push(data)
+ });
+  return result
+};
+*/

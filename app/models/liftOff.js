@@ -16,13 +16,13 @@ const client = require('../config/postgres');
  * @property {number} altitude - altitude
  */
 
-module.exports = {
-  async findAll() {
+module.exports = function datamapper() {
+  const findAll = async () => {
     const result = await client.query('SELECT * FROM "liftOff"');
     return result.rows;
-  },
+  };
 
-  async findOne(idLiftOff) {
+  const findOne = async (idLiftOff) => {
     const result = await client.query('SELECT * FROM getLiftOff($1)', [idLiftOff]);
     if (result.rowCount === 0) {
       return null;
@@ -32,25 +32,9 @@ module.exports = {
     const array = result.rows[0]['photo_liftOff'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
     result.rows[0]['photo_liftOff'] = array;
     return result.rows;
-  },
+  };
 
-  async findLandings(ids) {
-    let query = 'SELECT * FROM "landing" JOIN "img_landing" ON "img_landing"."idLanding" = "landing"."id" WHERE "landing"."id" IN ';
-    let querytempo = '(';
-    const tablelongeur = ids.length;
-    ids.forEach((id, index) => {
-      if (index === tablelongeur - 1) {
-        querytempo += `${id})`;
-        query += querytempo;
-      } else {
-        querytempo += `${id}, `;
-      }
-    });
-    const result = await client.query(query);
-    return result.rows;
-  },
-
-  async createOne(data) {
+  const createOne = async (data) => {
     const query1 = {
       text: `INSERT INTO "liftOff"
                 ("name",
@@ -80,7 +64,6 @@ module.exports = {
 
     const result = await client.query(query1);
     // Request to put photo in the img_liftOff table
-    // TODO : si data.photos est null ,on insert une photo par default
     if (data.photos.length > 0) {
       data.photos.forEach(async (photo) => {
         const query2 = {
@@ -126,9 +109,15 @@ module.exports = {
       await client.query(query3);
     });
     return result.rows;
-  },
+  };
   // TODO : update
   // gerer les photos et les landings
   // TODO : delete
   // gerer les photos et les landings
+  const returnDatamapper = {
+    findAll,
+    findOne,
+    createOne,
+  };
+  return returnDatamapper;
 };
