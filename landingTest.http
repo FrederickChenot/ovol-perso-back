@@ -41,6 +41,7 @@ content-type: application/json
 
 {
           "photos": [
-            {"name": "update photo rando test", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"}
+            {"name": "update photo rando test", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
+            {"name": "update photo rasdfsdfndo test", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"}
       ]
 }
