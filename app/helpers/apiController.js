@@ -8,6 +8,6 @@ module.exports = (controller) => async (req, res, next) => {
     await controller(req, res, next);
   } catch (err) {
     console.error(err);
-    res.status(500).send(err);
+    res.status(505).send(err);
   }
 };
