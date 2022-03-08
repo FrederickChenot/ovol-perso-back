@@ -51,43 +51,56 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
+    // "O,N" = > ['O','N']
+    // "O" => ['O']
+    // "" => []
+    const arrayfavorableWind = data.favorableWind.split(',');
+    console.log(arrayfavorableWind);
+    const arrarUnfavorableWind = data.unfavorableWind.split(',');
+    console.log(arrarUnfavorableWind);
+
     const query1 = {
       text: `INSERT INTO "landing"
-                ("name",
-                "typeOfTerrain",
-                "description",
-                "danger",
-                "fflvLink",
-                "latitude",
-                "longitude",
-                "favorableWind",
-                "unfavorableWind",
-                "altitude")
-          VALUES
-              ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
+                  ("name",
+                  "typeOfTerrain",
+                  "description",
+                  "danger",
+                  "fflvLink",
+                  "latitude",
+                  "longitude",
+                  "favorableWind",
+                  "unfavorableWind",
+                  "altitude")
+            VALUES
+                ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
       values: [
         data.name,
         data.typeOfTerrain,
         data.description,
         data.danger,
         data.fflvLink,
-        data.latitude,
-        data.longitude,
-        data.favorableWind,
-        data.unfavorableWind,
-        data.altitude],
+        Number(data.latitude),
+        Number(data.longitude),
+        arrayfavorableWind,
+        arrarUnfavorableWind,
+        Number(data.altitude)],
     };
 
     const result = await client.query(query1);
     // Request to put photo in the img_landing table
-    if (data.photos.length > 0) {
-      data.photos.forEach(async (photo) => {
+    if (data.photo_liftOff === '') {
+      data.photo_liftOff = [];
+      console.log('je suis passé par ici,il repassera par la');
+    }
+
+    if (data.photo_liftOff.length > 0) {
+      data.photo_liftOff.forEach(async (photo) => {
         const query2 = {
           text: `INSERT INTO "img_landing"
-        ("title",
-        "url",
-        "idLanding")
-        VALUES ($1, $2, $3)`,
+          ("title",
+          "url",
+          "idLanding")
+          VALUES ($1, $2, $3)`,
           values: [
             photo.name,
             photo.url,
@@ -99,10 +112,10 @@ module.exports = function datamapper() {
     } else {
       const query2 = {
         text: `INSERT INTO "img_landing"
-        ("title",
-        "url",
-        "idLanding")
-        VALUES ($1, $2, $3)`,
+          ("title",
+          "url",
+          "idLanding")
+          VALUES ($1, $2, $3)`,
         values: [
           'default_landing',
           'https://res.cloudinary.com/ovol/image/upload/v1646311339/assets/parachute-landing_mbaiu0.jpg',

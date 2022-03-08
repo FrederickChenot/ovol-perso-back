@@ -1,6 +1,5 @@
 const express = require('express');
-const { route } = require('express/lib/application');
-
+const apiController = require('../helpers/apiController');
 const router = express.Router();
 
 const landingController = require('../controllers/landing.controllers');
@@ -34,7 +33,7 @@ router.route('/')
   * @tags Landing
   * @return {[Landing]} 200 - success response - application/json
   */
-  .get(landingController.getAll)
+  .get(apiController((landingController.getAll))
   /**
   * POST /api/landing
   * @summary POST create one landing
@@ -65,9 +64,7 @@ router.route('/')
     "id": 5
   }
   */
-  .post(auth(), landingController.create);
-
-router.route('/test').post((req, _res) => { console.log(req); });
+  .post(auth(), apiController(landingController.create));
 
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });

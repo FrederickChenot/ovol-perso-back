@@ -84,3 +84,20 @@ content-type: application/json
   "idLandings": [1,2],
    "photos": [{"name": "PATCH photo rando déco2", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"}]
 }
+
+###Envoyer par fred
+{
+name: 'essai',
+typeOfTerrain: 'ras le bonbon',
+description: 'ff',
+danger: 'ff',
+fflvLink: 'ff',
+latitude: '50',
+longitude: '5',
+favorableWind: 'o',
+unfavorableWind: 'n',
+altitude: '1000',
+photo_liftOff: 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg',
+id: '5',
+idLandings: '10'
+}

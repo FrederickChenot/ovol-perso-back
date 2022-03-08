@@ -55,7 +55,7 @@ module.exports = function datamapper() {
         data.description,
         data.danger,
         data.fflvLink,
-        data.latitude,
+        Number(data.latitude),
         data.longitude,
         data.favorableWind,
         data.unfavorableWind,
