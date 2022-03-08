@@ -12,23 +12,23 @@ GET {{ endpoint-dev }}/api/landing/23423
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/1
+GET {{ endpoint-dev }}/api/landing/8
 
 ### Test tableau landings
 POST {{ endpoint-dev }}/api/landings
 content-type: application/json
 
 {
-    "ids": [1,2,3]
+    "ids": [1,5]
 }
 
 ### Test  landings
-POST {{ endpoint-dev }}/api/landing
+POST {{ endpoint-dev }}/api/landing/
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 content-type: application/json
 
 {
-"name": "essai26",
+"name": "essai1",
 "typeOfTerrain": "ras le bonbon",
 "description": "ff",
 "danger": "ff",
@@ -39,7 +39,8 @@ content-type: application/json
 "unfavorableWind": "",
 "altitude": "1000",
 "photo_landing": "",
-"id": "5"
+"id": "5",
+"idLandings": "10"
 }
 
 ### PATCH a landing with litte information

@@ -69,7 +69,7 @@ module.exports = function datamapper() {
     };
 
     const result = await client.query(query1);
-    data.photo_liftoff.split(',')
+    data.photo_liftoff.split(',');
     if (data.photo_liftoff.length > 0) {
       data.photo_liftoff.forEach(async (photo) => {
         const query2 = {

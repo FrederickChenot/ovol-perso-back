@@ -87,10 +87,8 @@ module.exports = function datamapper() {
 
     const result = await client.query(query1);
     // Request to put photo in the img_landing table
-    if (data.photo_landing === '') {
-      data.photo_landing = [];
-      console.log('je suis passé par ici,il repassera par la');
-    }
+    data.photo_landing.split(',');
+    console.log('------>', data.photo_landing);
 
     if (data.photo_landing.length > 0) {
       data.photo_landing.forEach(async (photo) => {
