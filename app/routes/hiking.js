@@ -10,7 +10,7 @@ router.route('/:id(\\d+)')
 /**
    * GET /api/hiking/{id}
    * @summary Get one hiking with the associated photo(s) on the id
-   * @tags GET  on Hiking  on Id
+   * @tags Hiking
    * @return {[Hiking]} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
    */
@@ -18,7 +18,7 @@ router.route('/:id(\\d+)')
   /**
    * PATCH /api/hiking/{id}
    * @summary PATH one hiking on the id
-   * @tags Hiking Id
+   * @tags Hiking
    * @return {[Hiking]} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
    * @param {hiking} request.body.required - hiking info
@@ -27,7 +27,7 @@ router.route('/:id(\\d+)')
   /**
    * DELETE /api/hiking/{id}
    * @summary Delete one hiking with the associated photo(s) on the id
-   * @tags DELETE one Hiking with associed photo(s) on Id
+   * @tags Hiking
    * @security BearerAuth
    * @return {string} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
@@ -38,14 +38,14 @@ router.route('/')
   /**
    * GET /api/hiking
    * @summary Get all hiking
-   * @tags GET all The Hikings
+   * @tags Hiking
    * @return {array<Hiking>} 200 - success response - application/json
    */
   .get(hikingController.getAll)
   /**
    * POST /api/hiking
    * @summary POST create one hiking
-   * @tags Create a Hiking
+   * @tags Hiking
    * @security BearerAuth
    * @param {[Hiking]} request.body.required - hiking info
    * @return {json} 200 - success response - application/json
