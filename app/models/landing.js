@@ -5,6 +5,13 @@
 const client = require('../config/postgres');
 
 /**
+ * @typedef {object} img_Landing
+ * @property {number} title - Indentifiant unique, Pk de la table
+ * @property {string} url - url of the photo
+ * @property {number} idLanding - id of the landing associate
+ */
+
+/**
  * @typedef {object} Landing
  * @property {number} id - Indentifiant unique, Pk de la table
  * @property {string} name - name
@@ -17,6 +24,7 @@ const client = require('../config/postgres');
  * @property {[string]} favorableWind - favorable Wind
  * @property {[string]} unfavorableWind - unfavorableWind
  * @property {number} altitude - altitude
+ * @property {[img_Landing]} photos - array of photos
  */
 
 module.exports = function datamapper() {
@@ -27,7 +35,6 @@ module.exports = function datamapper() {
 
   const findByPk = async (idLanding) => {
     const result = await client.query('SELECT * FROM getLanding($1)', [idLanding]);
-    console.log(result.rows)
     if (result.rowCount === 0) {
       return null;
     }
@@ -35,7 +42,7 @@ module.exports = function datamapper() {
   };
 
   const findLandings = async (ids) => {
-    // TODO : voir pour requete obtimisé
+    // TODO : voir pour requete optimisé
     const result = [];
     await Promise.all(ids.map(async (id) => {
       result.push(await findByPk(id));
@@ -109,11 +116,8 @@ module.exports = function datamapper() {
 
   const update = async (id, data) => {
     // TODO: update les photos
-    console.log("id",id)
     const landing = await findByPk(id);
-    console.log(landing);
     const oldLanding = landing[0];
-    console.log('oldLanding', oldLanding);
     const newLanding = { ...oldLanding, ...data };
     const query = {
       text: `UPDATE "landing" SET
