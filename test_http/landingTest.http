@@ -1,0 +1,47 @@
+################################################################################
+# Fichier de test des routes HTTP de l'API
+# Nécessite l'extension REST Client pour VSCode
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+################################################################################
+@endpoint-dev = http://localhost:{{$dotenv PORT}}
+
+### 404 landing
+GET {{ endpoint-dev }}/api/landing/23423
+
+### get all landing
+GET {{ endpoint-dev }}/api/landing
+
+### get one landing
+GET {{ endpoint-dev }}/api/landing/1
+
+### Test tableau landings
+POST {{ endpoint-dev }}/api/landings
+content-type: application/json
+
+{
+    "ids": [1,2,3]
+}
+
+### PATCH a landing with litte information
+PATCH {{ endpoint-dev }}/api/landing/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+      "name":"update liftOff",
+      "typeOfTerrain":"update type de terrain",
+      "description":"update description",
+      "danger":"update danger"
+      
+}
+### Patch landing 
+PATCH {{ endpoint-dev }}/api/landing/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+          "photos": [
+            {"name": "update photo rando test", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
+            {"name": "update photo rasdfsdfndo test", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"}
+      ]
+}

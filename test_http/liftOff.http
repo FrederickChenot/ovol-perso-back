@@ -1,0 +1,86 @@
+################################################################################
+# Fichier de test des routes HTTP de l'API
+# Nécessite l'extension REST Client pour VSCode
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+################################################################################
+@endpoint-dev = http://localhost:{{$dotenv PORT}}
+
+### 404
+GET {{ endpoint-dev }}/itemm
+
+### login
+POST {{ endpoint-dev }}/api/login
+content-type: application/json
+
+{
+  "user": "admin",
+  "pass": "pass"
+}
+
+### bad login
+POST {{ endpoint-dev }}/api/login
+content-type: application/json
+
+{
+  "user": "adminnnn",
+  "pass": "pass"
+}
+
+### get all liftOff
+GET {{ endpoint-dev }}/api/liftOff
+
+### get one liftOff
+GET {{ endpoint-dev }}/api/liftOff/1
+
+### Post a liftOff
+POST {{ endpoint-dev }}/api/liftOff
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+  "name":"new liftOff",
+  "typeOfTerrain":"new type de terrain",
+  "description":"new description",
+  "danger":"new danger",
+  "fflvLink":"new fflvLink",
+  "latitude":23.234,
+  "longitude":34.23,
+  "favorableWind":["O"],
+  "unfavorableWind":["N"],
+  "altitude":23123,
+  "idLandings": [1,2],
+   "photos": [{"name": "photo rando déco2", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
+  {"name": "photo rando déco", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
+}
+
+### Patch a liftOff with partiel info and no photo
+PATCH {{ endpoint-dev }}/api/liftOff/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+  "name":"PatchliftOff",
+  "typeOfTerrain":"Patch type de terrain",
+  "favorableWind":["N"],
+  "unfavorableWind":["O"],
+  "altitude":23123,
+  "idLandings": [1,2]
+}
+
+### Patch a liftOff with partiel info and photo
+PATCH {{ endpoint-dev }}/api/liftOff/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+  "name":"PATCH liftOff",
+  "typeOfTerrain":"PATCHtype de terrain",
+  "description":"new description",
+  "danger":"new danger",
+  "fflvLink":"new fflvLink",
+  "favorableWind":["O"],
+  "unfavorableWind":["N"],
+  "altitude":23,
+  "idLandings": [1,2],
+   "photos": [{"name": "PATCH photo rando déco2", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"}]
+}
