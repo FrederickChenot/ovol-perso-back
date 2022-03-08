@@ -27,6 +27,7 @@ module.exports = function datamapper() {
 
   const findByPk = async (idLanding) => {
     const result = await client.query('SELECT * FROM getLanding($1)', [idLanding]);
+    console.log(result.rows)
     if (result.rowCount === 0) {
       return null;
     }
@@ -108,11 +109,9 @@ module.exports = function datamapper() {
 
   const update = async (id, data) => {
     // TODO: update les photos
+    console.log("id",id)
     const landing = await findByPk(id);
     console.log(landing);
-    if (landing.rowCount === 0) {
-      return null;
-    }
     const oldLanding = landing[0];
     console.log('oldLanding', oldLanding);
     const newLanding = { ...oldLanding, ...data };
@@ -144,17 +143,13 @@ module.exports = function datamapper() {
     };
 
     const result = await client.query(query);
-    // PHOTOS
-
     if (data.photos) {
-      const oldPhotos = landing[0].photo_landing;
-      console.log('data.photo', data.photos);
-      console.log('old photo', oldPhotos);
-      const newPhotos = { ...oldLanding, ...data.photos };
-      console.log('newPhoto', newPhotos);
-      newPhotos.forEach(async (photo) => {
+      // on supprime toutes les refs avec l'id du landing
+      await client.query('DELETE FROM "img_landing" WHERE "idLanding" = $1', [id]);
+      // puis on ajoute les nouvelles données de photos
+      data.photos.forEach(async (photo) => {
         const query2 = {
-          text: `INSERT INTO "img_landing" VALUES
+          text: `INSERT INTO "img_landing"
         ("title",
         "url",
         "idLanding")
@@ -166,8 +161,7 @@ module.exports = function datamapper() {
           ],
         };
         await client.query(query2);
-      }
-      );
+      });
     }
     //
     return result.rows;
@@ -193,21 +187,3 @@ module.exports = function datamapper() {
   };
   return returnDatamapper;
 };
-
-/*
-const findLandings = async (ids) => {
-  const promises = [];
-  const result = []
-  for (const id of ids) {
-    promises.push(new Promise((res, err) => {
-      findByPk(id).then((data) => {
-        res(data);
-      });
-    }));
-  }
- await Promise.all(promises).then((data) => {
-   result.push(data)
- });
-  return result
-};
-*/
