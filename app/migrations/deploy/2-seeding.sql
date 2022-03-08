@@ -2,7 +2,6 @@
 
 BEGIN;
 
-
 INSERT INTO "user"("login","role","email","password") VALUES
 ('admin','admin','ovolclock@gmail.com','pass');
 
