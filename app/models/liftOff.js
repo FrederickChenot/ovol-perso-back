@@ -116,8 +116,8 @@ module.exports = function datamapper() {
     // TODO V2 delete les photos sur cloudinary avant supprimer table
     // Récupère les lien cloudinary sur
     // axios suppression photos
-    await client.query('DELETE FROM "img_liftOff"" WHERE "idLiftOff" = $1', [id]);
-    const result = await client.query('DELETE FROM "liftOff" WHERE id = $1', [id]);
+    await client.query('DELETE FROM "img_liftOff" WHERE "idLiftOff" = $1', [id]);
+    const result = await client.query('DELETE FROM "liftOff" WHERE "id" = $1', [id]);
     return !!result.rowCount;
   };
 

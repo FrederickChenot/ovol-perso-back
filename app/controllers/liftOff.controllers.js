@@ -22,14 +22,6 @@ module.exports = {
     return res.send('erreur liftOff');
   },
 
-  async delete(req, res) {
-    const result = await liftOffDataMapper().deleteOne(Number(req.params.id));
-    if (!result) {
-      return res.status(404).json({ message: 'page not found' });
-    }
-    return res.json(result);
-  },
-
   async update(req, res) {
     const result = await liftOffDataMapper().updateOne(Number(req.params.id), req.body);
     if (!result) {

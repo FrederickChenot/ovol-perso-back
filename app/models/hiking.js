@@ -226,15 +226,22 @@ module.exports = function datamapper() {
     // TODO V2 delete les photos sur cloudinary avant supprimer table
     // Récupère les lien cloudinary sur
     // axios suppression photos
-    await landingDataMapper().deleteOne(id);
-    await liftOffDataMapper().deleteOne(id);
     await client.query('DELETE FROM "img_hiking" WHERE "idHiking" = $1', [id]);
     const result = await client.query('DELETE FROM "hiking" WHERE "id" = $1', [id]);
     if (result.rowCount === 0) {
-      return null;
+      return !!result.rowCount;
     }
-    return result.command;
+    const landingDelete = await landingDataMapper().deleteOne(id);
+    if (!landingDelete) {
+      return landingDelete;
+    }
+    const liftOffDelete = await liftOffDataMapper().deleteOne(id);
+    if (!liftOffDelete) {
+      return liftOffDelete;
+    }
+    return true;
   };
+
   const retunrDatamapper = {
     findAll,
     findByPk,
