@@ -64,36 +64,38 @@ module.exports = function datamapper() {
 
     const result = await client.query(query1);
     // Request to put photo in the img_liftOff table
-    if (data.photos.length > 0) {
-      data.photos.forEach(async (photo) => {
+    if (!data.photo) {
+      if (data.photos.length > 0) {
+        data.photos.forEach(async (photo) => {
+          const query2 = {
+            text: `INSERT INTO "img_liftOff"
+          ("title",
+          "url",
+          "idLiftOff")
+          VALUES ($1, $2, $3)`,
+            values: [
+              photo.name,
+              photo.url,
+              result.rows[0].id,
+            ],
+          };
+          await client.query(query2);
+        });
+      } else {
         const query2 = {
           text: `INSERT INTO "img_liftOff"
-        ("title",
-        "url",
-        "idLiftOff")
-        VALUES ($1, $2, $3)`,
+          ("title",
+          "url",
+          "idLiftOff")
+          VALUES ($1, $2, $3)`,
           values: [
-            photo.name,
-            photo.url,
+            'default_liftOff',
+            'https://res.cloudinary.com/ovol/image/upload/v1646312780/assets/parachute_liftOff_wau7fx.jpg',
             result.rows[0].id,
           ],
         };
         await client.query(query2);
-      });
-    } else {
-      const query2 = {
-        text: `INSERT INTO "img_liftOff"
-        ("title",
-        "url",
-        "idLiftOff")
-        VALUES ($1, $2, $3)`,
-        values: [
-          'default_liftOff',
-          'https://res.cloudinary.com/ovol/image/upload/v1646312780/assets/parachute_liftOff_wau7fx.jpg',
-          result.rows[0].id,
-        ],
-      };
-      await client.query(query2);
+      }
     }
     data.idLandings.forEach(async (landing) => {
       const query3 = {
@@ -196,16 +198,16 @@ module.exports = function datamapper() {
                 "altitude" = $10
             WHERE id = $11`,
       values: [
-        data.name,
-        data.typeOfTerrain,
-        data.description,
-        data.danger,
-        data.fflvLink,
-        data.latitude,
-        data.longitude,
-        data.favorableWind,
-        data.unfavorableWind,
-        data.altitude,
+        newData.name,
+        newData.typeOfTerrain,
+        newData.description,
+        newData.danger,
+        newData.fflvLink,
+        newData.latitude,
+        newData.longitude,
+        newData.favorableWind,
+        newData.unfavorableWind,
+        newData.altitude,
         id],
     };
     await client.query(query);
