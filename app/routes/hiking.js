@@ -1,4 +1,5 @@
 const express = require('express');
+const apiController = require('../helpers/apiController');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.route('/:id(\\d+)')
    * @return {[Hiking]} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
    */
-  .get(hikingController.getOne)
+  .get(apiController(hikingController.getOne))
   /**
    * PATCH /api/hiking/{id}
    * @summary PATH one hiking on the id
@@ -23,7 +24,7 @@ router.route('/:id(\\d+)')
    * @param {number} id.path - id of the hiking
    * @param {hiking} request.body.required - hiking info
    */
-  .patch(auth(), hikingController.updateOne)
+  .patch(auth(), apiController(hikingController.updateOne))
   /**
    * DELETE /api/hiking/{id}
    * @summary Delete one hiking with the associated photo(s) on the id
@@ -32,7 +33,7 @@ router.route('/:id(\\d+)')
    * @return {string} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
    */
-  .delete(auth(), hikingController.deleteOne);
+  .delete(auth(), apiController(hikingController.deleteOne));
 // all
 router.route('/')
   /**
@@ -41,7 +42,7 @@ router.route('/')
    * @tags Hiking
    * @return {array<Hiking>} 200 - success response - application/json
    */
-  .get(hikingController.getAll)
+  .get(apiController(hikingController.getAll))
   /**
    * POST /api/hiking
    * @summary POST create one hiking
@@ -79,7 +80,7 @@ router.route('/')
     "id": 5
   }
    */
-  .post(auth(), hikingController.create);
+  .post(auth(), apiController(hikingController.create));
 
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });

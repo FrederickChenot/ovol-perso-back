@@ -23,7 +23,7 @@ content-type: application/json
 }
 
 ### Test  landings
-POST {{ endpoint-dev }}/api/landing/
+POST {{ endpoint-dev }}/api/landing
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 content-type: application/json
 
@@ -38,9 +38,8 @@ content-type: application/json
 "favorableWind": "O,E,ES",
 "unfavorableWind": "",
 "altitude": "1000",
-"photo_liftOff": "",
-"id": "5",
-"idLandings": "10"
+"photo_landing": "",
+"id": "5"
 }
 
 ### PATCH a landing with litte information

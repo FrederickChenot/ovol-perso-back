@@ -1,5 +1,6 @@
 const express = require('express');
 const apiController = require('../helpers/apiController');
+
 const router = express.Router();
 
 const landingController = require('../controllers/landing.controllers');
@@ -14,7 +15,7 @@ router.route('/:id(\\d+)')
    * @return {[Landing]} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
    */
-  .get(landingController.getOne)
+  .get(apiController(landingController.getOne))
   /**
    * PATCH /api/landing/{id}
    * @summary PATH one landing on the id
@@ -23,7 +24,7 @@ router.route('/:id(\\d+)')
    * @param {number} id.path - id of the landing
    * @param {landing} request.body.required - landing info
    */
-  .patch(auth(), landingController.patch);
+  .patch(auth(), apiController(landingController.patch));
 
 // all
 router.route('/')
@@ -33,7 +34,7 @@ router.route('/')
   * @tags Landing
   * @return {[Landing]} 200 - success response - application/json
   */
-  .get(apiController((landingController.getAll))
+  .get(apiController(landingController.getAll))
   /**
   * POST /api/landing
   * @summary POST create one landing

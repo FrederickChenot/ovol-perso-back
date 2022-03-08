@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
@@ -55,9 +56,7 @@ module.exports = function datamapper() {
     // "O" => ['O']
     // "" => []
     const arrayfavorableWind = data.favorableWind.split(',');
-    console.log(arrayfavorableWind);
     const arrarUnfavorableWind = data.unfavorableWind.split(',');
-    console.log(arrarUnfavorableWind);
 
     const query1 = {
       text: `INSERT INTO "landing"
@@ -88,13 +87,13 @@ module.exports = function datamapper() {
 
     const result = await client.query(query1);
     // Request to put photo in the img_landing table
-    if (data.photo_liftOff === '') {
-      data.photo_liftOff = [];
+    if (data.photo_landing === '') {
+      data.photo_landing = [];
       console.log('je suis passé par ici,il repassera par la');
     }
 
-    if (data.photo_liftOff.length > 0) {
-      data.photo_liftOff.forEach(async (photo) => {
+    if (data.photo_landing.length > 0) {
+      data.photo_landing.forEach(async (photo) => {
         const query2 = {
           text: `INSERT INTO "img_landing"
           ("title",

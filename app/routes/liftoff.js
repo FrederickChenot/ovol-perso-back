@@ -1,4 +1,5 @@
 const express = require('express');
+const apiController = require('../helpers/apiController');
 
 const router = express.Router();
 
@@ -7,8 +8,8 @@ const auth = require('../helpers/auth.helpers');
 
 // id
 router.route('/:id(\\d+)')
-  .get(liftOffController.getOne)
-  .patch(liftOffController.update);
+  .get(apiController(liftOffController.getOne))
+  .patch(apiController(liftOffController.update));
 // all
 router.route('/')
   /**
@@ -17,8 +18,8 @@ router.route('/')
  * @tags LiftOff
  * @return {[LiftOff]} 200 - success response - application/json
  */
-  .get(liftOffController.getAll)
-  .post(auth(), liftOffController.create);
+  .get(apiController(liftOffController.getAll))
+  .post(auth(), apiController(liftOffController.create));
 
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });

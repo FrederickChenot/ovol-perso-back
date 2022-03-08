@@ -30,7 +30,7 @@ content-type: application/json
 GET {{ endpoint-dev }}/api/liftOff
 
 ### get one liftOff
-GET {{ endpoint-dev }}/api/liftOff/1
+GET {{ endpoint-dev }}/api/liftOff/5
 
 ### Post a liftOff
 POST {{ endpoint-dev }}/api/liftOff
@@ -52,6 +52,28 @@ content-type: application/json
    "photos": [{"name": "photo rando déco2", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
   {"name": "photo rando déco", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
 }
+
+### Test  landings
+POST {{ endpoint-dev }}/api/liftoff/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+"name": "essdfdsdffgsdfsa26",
+"typeOfTerrain": "ras le bonbon",
+"description": "ff",
+"danger": "ff",
+"fflvLink": "ff",
+"latitude": "50",
+"longitude": "5",
+"favorableWind": "O,E,ES",
+"unfavorableWind": "",
+"altitude": "1000",
+"photo_liftoff": "",
+"id": "5",
+"idLandings": "1"
+}
+
 
 ### Patch a liftOff with partiel info and no photo
 PATCH {{ endpoint-dev }}/api/liftOff/1
@@ -83,21 +105,4 @@ content-type: application/json
   "altitude":23,
   "idLandings": [1,2],
    "photos": [{"name": "PATCH photo rando déco2", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"}]
-}
-
-###Envoyer par fred
-{
-name: 'essai',
-typeOfTerrain: 'ras le bonbon',
-description: 'ff',
-danger: 'ff',
-fflvLink: 'ff',
-latitude: '50',
-longitude: '5',
-favorableWind: 'o',
-unfavorableWind: 'n',
-altitude: '1000',
-photo_liftOff: 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg',
-id: '5',
-idLandings: '10'
 }

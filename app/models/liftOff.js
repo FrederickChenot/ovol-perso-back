@@ -35,6 +35,12 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
+    // "O,N" = > ['O','N']
+    // "O" => ['O']
+    // "" => []
+    const arrayfavorableWind = data.favorableWind.split(',');
+    const arrarUnfavorableWind = data.unfavorableWind.split(',');
+
     const query1 = {
       text: `INSERT INTO "liftOff"
                 ("name",
@@ -56,32 +62,16 @@ module.exports = function datamapper() {
         data.danger,
         data.fflvLink,
         Number(data.latitude),
-        data.longitude,
-        data.favorableWind,
-        data.unfavorableWind,
-        data.altitude],
+        Number(data.longitude),
+        arrayfavorableWind,
+        arrarUnfavorableWind,
+        Number(data.altitude)],
     };
 
     const result = await client.query(query1);
-    // Request to put photo in the img_liftOff table
-    if (data.photo) {
-      if (data.photos.length > 0) {
-        data.photos.forEach(async (photo) => {
-          const query2 = {
-            text: `INSERT INTO "img_liftOff"
-          ("title",
-          "url",
-          "idLiftOff")
-          VALUES ($1, $2, $3)`,
-            values: [
-              photo.name,
-              photo.url,
-              result.rows[0].id,
-            ],
-          };
-          await client.query(query2);
-        });
-      } else {
+    data.photo_liftoff.split(',')
+    if (data.photo_liftoff.length > 0) {
+      data.photo_liftoff.forEach(async (photo) => {
         const query2 = {
           text: `INSERT INTO "img_liftOff"
           ("title",
@@ -89,15 +79,31 @@ module.exports = function datamapper() {
           "idLiftOff")
           VALUES ($1, $2, $3)`,
           values: [
-            'default_liftOff',
-            'https://res.cloudinary.com/ovol/image/upload/v1646312780/assets/parachute_liftOff_wau7fx.jpg',
+            photo.name,
+            photo.url,
             result.rows[0].id,
           ],
         };
         await client.query(query2);
-      }
+      });
+    } else {
+      const query2 = {
+        text: `INSERT INTO "img_liftOff"
+          ("title",
+          "url",
+          "idLiftOff")
+          VALUES ($1, $2, $3)`,
+        values: [
+          'default_liftOff',
+          'https://res.cloudinary.com/ovol/image/upload/v1646312780/assets/parachute_liftOff_wau7fx.jpg',
+          result.rows[0].id,
+        ],
+      };
+      await client.query(query2);
     }
-    data.idLandings.forEach(async (landing) => {
+    // TODO : verifier que les id landing exist
+    const arrayIdLandings = data.idLandings.split(',');
+    arrayIdLandings.forEach(async (landing) => {
       const query3 = {
         text: `INSERT INTO "liftOff_has_landing"
         ("liftOff_id",
