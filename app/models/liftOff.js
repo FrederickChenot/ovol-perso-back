@@ -64,7 +64,7 @@ module.exports = function datamapper() {
 
     const result = await client.query(query1);
     // Request to put photo in the img_liftOff table
-    if (!data.photo) {
+    if (data.photo) {
       if (data.photos.length > 0) {
         data.photos.forEach(async (photo) => {
           const query2 = {
