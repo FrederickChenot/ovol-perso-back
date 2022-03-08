@@ -22,6 +22,14 @@ content-type: application/json
     "ids": [1,2,3]
 }
 
+### Test  landings
+POST {{ endpoint-dev }}/api/landing/test
+content-type: application/json
+
+{
+    "olivier_test": "ceci est un TEST de FORMAT"
+}
+
 ### PATCH a landing with litte information
 PATCH {{ endpoint-dev }}/api/landing/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
@@ -32,9 +40,9 @@ content-type: application/json
       "typeOfTerrain":"update type de terrain",
       "description":"update description",
       "danger":"update danger"
-      
+
 }
-### Patch landing 
+### Patch landing
 PATCH {{ endpoint-dev }}/api/landing/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 content-type: application/json

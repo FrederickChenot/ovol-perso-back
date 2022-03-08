@@ -170,6 +170,7 @@ module.exports = function datamapper() {
     //
     return result.rows;
   };
+
   // TODO delete
   const deleteOne = async (id) => {
     await client.query('DELETE FROM "liftOff_has_landing" WHERE "landing_id" = $1', [id]);

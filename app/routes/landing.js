@@ -1,4 +1,5 @@
 const express = require('express');
+const { route } = require('express/lib/application');
 
 const router = express.Router();
 
@@ -65,6 +66,8 @@ router.route('/')
   }
   */
   .post(auth(), landingController.create);
+
+router.route('/test').post((req, _res) => { console.log(req); });
 
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });
