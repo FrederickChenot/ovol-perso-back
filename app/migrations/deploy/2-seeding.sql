@@ -5,7 +5,7 @@ BEGIN;
 INSERT INTO "user"("login","role","email","password") VALUES
 ('admin','admin','ovolclock@gmail.com','pass');
 
-INSERT INTO "liftOff"("name","typeOfTerrain","description","danger","fflvLink","latitude","longitude","favorableWind","unfavorableWind","altitude")
+INSERT INTO "liftOff"("name","typeOfTerrain","description","danger","fflvLink","latitude","longitude","favorableWind","unfavorableWind","balise","altitude")
 VALUES
     ('Déco Semnoz',
     'Herbe',
@@ -16,6 +16,7 @@ VALUES
     6.1006,
     ARRAY ['O'],
     null,
+    67,
     1616),
 
     ('Déco SEPTMONCEL',
@@ -27,6 +28,7 @@ VALUES
     5.8985,
     ARRAY ['O'],
     null,
+      67,
     1026),
 
     ('Déco Notre Dame D''Hermon',
@@ -38,6 +40,7 @@ VALUES
     6.518,
     ARRAY ['N','NO'],
     ARRAY ['NE', 'E', 'SE', 'S', 'SO'],
+      67,
     1290),
 
     ('Déco MONT-LACHAT',
@@ -49,6 +52,7 @@ VALUES
     6.4765,
     ARRAY ['SO'],
     null,
+      67,
     2020);
 
 

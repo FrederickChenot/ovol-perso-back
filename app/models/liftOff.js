@@ -27,7 +27,6 @@ module.exports = function datamapper() {
     if (result.rowCount === 0) {
       return null;
     }
-    console.log('model', result.rows[0]);
     // on supprime les photos en doublon dans l'array photo_liftOff
     const array = result.rows[0]['photo_liftOff'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
     result.rows[0]['photo_liftOff'] = array;

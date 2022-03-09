@@ -22,6 +22,7 @@ CREATE TABLE "liftOff"(
   "longitude" FLOAT,
   "favorableWind" TEXT [],
   "unfavorableWind" TEXT [],
+  "balise" INT,
   "altitude" INT
  );
 

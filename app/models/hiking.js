@@ -32,10 +32,10 @@ const liftOffDataMapper = require('./liftOff');
 module.exports = function datamapper() {
   const findAll = async () => {
     const result = await client.query('SELECT * FROM "hiking"');
-    // add calculate duration from (overall_length and positive_elevation) to result
+    // add calculate duration from (overall_length and positive_elevation) to result. source:https://horspistesblog.fr/guide-pratique/vitesse-marche-randonnee
     for (const hiking of result.rows) {
-      const vitesse = 4.8;
-      const TOverallLength = hiking.overall_length / vitesse;
+      const speed = 4.8;
+      const TOverallLength = hiking.overall_length / speed;
       const TPositiveElevation = ((hiking.positive_elevation * 60) / 600) / 60;
       const duration = TOverallLength + TPositiveElevation;
       hiking.duration = duration;

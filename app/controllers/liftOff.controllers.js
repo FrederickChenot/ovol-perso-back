@@ -11,6 +11,7 @@ module.exports = {
     if (!result) {
       return res.status(404).json({ message: 'page not found' });
     }
+    console.log('liftoff result', result);
     return res.json(result);
   },
 
