@@ -27,7 +27,6 @@ module.exports = {
     return res.json(result);
   },
   async create(req, res) {
-    console.log(req);
     const result = await landingDataMapper().createOne(req.body);
     if (result) {
       return res.send(result);

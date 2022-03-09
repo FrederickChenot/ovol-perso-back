@@ -95,7 +95,7 @@ module.exports = function datamapper() {
     if (data.photo_landing) {
       console.log('LE STRING PHOTO FRED :', data.photo_landing);
       const newPhoto = data.photo_landing.split(',');
-      console.log('TABLEAU NO TRAITE :', newPhoto );
+      console.log('TABLEAU NO TRAITE :', newPhoto);
       const newPhotoTable = [];
       let jsonTopush = { name: '', url: '' };
       // Faire un tableau D'objet commme suivant:
