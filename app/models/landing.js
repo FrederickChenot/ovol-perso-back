@@ -52,22 +52,7 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
-    // "O,N" = > ['O','N']
-    // "O" => ['O']
-    // "" => []
-    console.log('data', data);
-    console.log('condition1', !data.name);
-    console.log('condition2', !data.typeOfTerrain);
-    console.log('condition3', !data.description);
-    console.log('condition4', !data.danger);
-    console.log('condition5', !data.latitude);
-    console.log('condition6', !data.longitude);
-    console.log('condition7', !data.altitude);
-    console.log('condition8', !data.favorableWind);
-    console.log('condition9', !data.unfavorableWind);
-
     if (!data.name || !data.typeOfTerrain || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind) {
-      console.log('Je rentre la');
       return 'Manque DATA';
     }
     const arrayfavorableWind = data.favorableWind.split(',');
@@ -107,31 +92,40 @@ module.exports = function datamapper() {
     const result = await client.query(query1);
     // Request to put photo in the img_landing table
     if (data.photo_landing) {
-      console.log('JE PASSE ICI');
       const newPhoto = data.photo_landing.split(',');
-      console.log('------>', data.photo_landing);
-      console.log('--*****->', newPhoto);
+      const newPhotoTable = [];
+      let jsonTopush = { name: '', url: '' };
+      // Faire un tableau D'objet commme suivant:
+      // [{"name": "name_photo", "url": "url_Photo"}, {"name": "name_photo", "url": "url_Photo"}]
+      newPhoto.forEach((element, index) => {
+        if (index % 2 === 0) {
+          const reg = /(?!n)(?!a)(?!m)(?!e)(?!')(?!:)(?! )[a-zA-Z  ].+[1-9a-zA-Z]/gm;
+          const name = reg.exec(element);
+          jsonTopush = { ...jsonTopush, name: name[0] };
+        }
+        if (index % 2 !== 0) {
+          const reg = /(https?:\/\/|www\.)[a-zA-Z.0-9_\-\/\?=&]{1,}/gm;
+          const url = reg.exec(element);
+          jsonTopush = { ...jsonTopush, url: url[0] };
+          newPhotoTable.push(jsonTopush);
+        }
+      });
 
-      if (newPhoto.length > 0) {
-        console.log('newPhoto.length:', newPhoto.length);
-
-        /*
-        data.photo_landing.forEach(async (photo) => {
-          const query2 = {
-            text: `INSERT INTO "img_landing"
+      newPhotoTable.forEach(async (photo) => {
+        const query2 = {
+          text: `INSERT INTO "img_landing"
             ("title",
             "url",
             "idLanding")
             VALUES ($1, $2, $3)`,
-            values: [
-              photo.name,
-              photo.url,
-              result.rows[0].id,
-            ],
-          };
-          await client.query(query2);
-        }); */
-      }
+          values: [
+            photo.name,
+            photo.url,
+            result.rows[0].id,
+          ],
+        };
+        await client.query(query2);
+      });
     } else {
       const query2 = {
         text: `INSERT INTO "img_landing"

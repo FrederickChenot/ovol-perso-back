@@ -12,7 +12,7 @@ GET {{ endpoint-dev }}/api/landing/23423
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/7
+GET {{ endpoint-dev }}/api/landing/33
 
 ### Test tableau landings
 POST {{ endpoint-dev }}/api/landings
@@ -28,7 +28,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp
 content-type: application/json
 
 {
-"name": "essai1",
+"name": "essai29",
 "typeOfTerrain": "ras le bonbon",
 "description": "ff",
 "danger": "ff",
@@ -38,30 +38,7 @@ content-type: application/json
 "favorableWind": "O,E,ES",
 "unfavorableWind": "",
 "altitude": "1000",
-"photo_landing": "'name': 'update photo rando test2', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg', 'name': 'update photo rasdfsdfndo test', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg'",
-"id": "5",
-"idLandings": "10"
-}
-
-### Test  landings
-POST {{ endpoint-dev }}/api/landing/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
-content-type: application/json
-
-{
-"name": "essai1",
-"typeOfTerrain": "ras le bonbon",
-"description": "ff",
-"danger": "ff",
-"fflvLink": "ff",
-"latitude": "50",
-"longitude": "5",
-"favorableWind": "O,E,ES",
-"unfavorableWind": "",
-"altitude": "1000",
-"photo_landing": "'name': 'update photo rando test2', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg', 'name': 'update photo rasdfsdfndo test', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg'",
-"id": "5",
-"idLandings": "10"
+"photo_landing": "'name': 'update photo  test2', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg', 'name': 'update photo rasdfsdfndo test', 'url': 'https://idata.over-blog.com/image.jpg', 'name': 'Oliv3', 'url': 'https://idata.over-blog.com/Olivier_url.jpg'"
 }
 
 
