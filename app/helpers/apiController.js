@@ -7,7 +7,9 @@ module.exports = (controller) => async (req, res, next) => {
   try {
     await controller(req, res, next);
   } catch (err) {
-    console.error(err);
+    console.error('Le status', err.message);
+    console.error('le message de l\'erreur', err.status);
+    console.error('Errur entier:', err);
     res.status(500).send(err);
   }
 };
