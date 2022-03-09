@@ -1,3 +1,7 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-console */
 /* eslint-disable dot-notation */
 const client = require('../config/postgres');
 const landingDataMapper = require('./landing');
@@ -21,12 +25,21 @@ const liftOffDataMapper = require('./liftOff');
  * @property {number} hight_point - hight point length of the hiking
  * @property {number} low_point - low point length of the hiking
  * @property {string} difficulty - difficulty length of the hiking
+ * @property {number} duration - duration of the hiking
  * @property {number} user_id - id of the owner
  * @property {number} liftOff_id - id of the liftoff
  */
 module.exports = function datamapper() {
   const findAll = async () => {
     const result = await client.query('SELECT * FROM "hiking"');
+    // add calculate duration from (overall_length and positive_elevation) to result
+    for (const hiking of result.rows) {
+      const vitesse = 4.8;
+      const TOverallLength = hiking.overall_length / vitesse;
+      const TPositiveElevation = ((hiking.positive_elevation * 60) / 600) / 60;
+      const duration = TOverallLength + TPositiveElevation;
+      hiking.duration = duration;
+    }
     if (result.rowCount === 0) {
       return null;
     }
