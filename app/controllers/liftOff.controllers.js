@@ -8,11 +8,6 @@ module.exports = {
 
   async getOne(req, res) {
     const result = await liftOffDataMapper().findByPk(Number(req.params.id));
-    // COMPASS
-    //TODO : attribuer une balise
-    const balise = 67;
-    result[0].balise = balise
-    //
     if (!result) {
       return res.status(404).json({ message: 'page not found' });
     }
