@@ -44,6 +44,7 @@ CREATE OR REPLACE FUNCTION getLiftOff(int) RETURNS TABLE (
 	"longitude" float,
 	"favorableWind" text[],
 	"unfavorableWind" text[],
+	"balise" int,
 	"altitude" int,
 	"idLandings" int[],
 	"photo_liftOff" json[]
@@ -58,6 +59,7 @@ SELECT "liftOff"."id",
 	"liftOff"."longitude",
 	"liftOff"."favorableWind",
 	"liftOff"."unfavorableWind",
+	"liftOff"."balise",
 	"liftOff"."altitude",
 	array_agg(DISTINCT "landing"."id") AS "idLandings",
     array_agg(row_to_json("img_liftOff")) AS "photo_liftOff" FROM "liftOff"

@@ -30,7 +30,7 @@ content-type: application/json
 GET {{ endpoint-dev }}/api/liftOff
 
 ### get one liftOff
-GET {{ endpoint-dev }}/api/liftOff/5
+GET {{ endpoint-dev }}/api/liftOff/1
 
 ### Post a liftOff
 POST {{ endpoint-dev }}/api/liftOff
