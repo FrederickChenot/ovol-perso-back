@@ -90,9 +90,12 @@ module.exports = function datamapper() {
     };
 
     const result = await client.query(query1);
+
     // Request to put photo in the img_landing table
     if (data.photo_landing) {
+      console.log('LE STRING PHOTO FRED :', data.photo_landing);
       const newPhoto = data.photo_landing.split(',');
+      console.log('TABLEAU NO TRAITE :', newPhoto );
       const newPhotoTable = [];
       let jsonTopush = { name: '', url: '' };
       // Faire un tableau D'objet commme suivant:
@@ -110,6 +113,7 @@ module.exports = function datamapper() {
           newPhotoTable.push(jsonTopush);
         }
       });
+      console.log('TABLEAU FORMATER :', newPhotoTable);
 
       newPhotoTable.forEach(async (photo) => {
         const query2 = {
