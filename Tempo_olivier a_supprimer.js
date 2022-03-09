@@ -50,3 +50,13 @@ axios.post('https://apiovol.herokuapp.com/api/liftoff', {
     // handle error
     console.log(error);
   });
+
+
+// Const createrando = async () => {
+//   const NewLanding = await axios.post('api/landing', data);
+//   const NewLiftOff= await axios.post('api/liftOff', { ...data, ...{ "IdLanding": NewLanding.id}});
+//   const NewHiking= await axios.post('api/hiking', { ...data, ...{ "IdLanding": NewLanding.id, "IdLiftOff": NewLiftOff.id}});;
+//   });
+// }
+
+// post landing --> Key --> liftOff--->
