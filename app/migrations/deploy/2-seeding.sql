@@ -103,7 +103,7 @@ VALUES
     2),
 
     ('La Chapelle d''Hermone à partir du Col du Feu',
-    'https://res.cloudinary.com/ovol/image/upload/v1646906179/img-seeding/1920px-Chapelle_des_Hermones_s7pcr3.jpg',
+    'https://res.cloudinary.com/ovol/image/upload/q_50/v1646906179/img-seeding/1920px-Chapelle_des_Hermones_s7pcr3.jpg',
     'Chablais',
     'Cette courte randonnée, qui constitue une voie usuelle pour monter à la Chapelle d''Hermone, met à l''honneur le petit patrimoine religieux, très présent tout le long du parcours, et offre au sommet de superbes points de vue sur le Léman',
     'D/A : km 0 - alt. 1117m - Col du Feu
@@ -126,7 +126,7 @@ VALUES
     3),
 
     ('MONT-LACHAT',
-    'https://res.cloudinary.com/ovol/image/upload/v1646906218/img-seeding/Tho%CC%82nes_mont_lachat_m4maym.jpg',
+    'https://res.cloudinary.com/ovol/image/upload/q_50/v1646906218/img-seeding/Tho%CC%82nes_mont_lachat_m4maym.jpg',
     'Bornes',
     'Au départ d''une auberge de montagne pleine de charme, voici une boucle qui vous offrira une vue somptueuse sur la chaîne des Aravis et une exposition plein Sud. Au col, vous aurez la vue sur la chaîne du Bargy et le Jalouvre. Le circuit peut se faire tant en été qu''en hiver avec des raquettes.',
     'D/A : km 0 - alt. 1348m - Parking du Croix
