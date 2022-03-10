@@ -37,6 +37,7 @@ module.exports = function datamapper() {
     // "O,N" = > ['O','N']
     // "O" => ['O']
     // "" => []
+    console.log('La data reçu', data);
     const arrayfavorableWind = data.favorableWind.split(',');
     const arrarUnfavorableWind = data.unfavorableWind.split(',');
 
