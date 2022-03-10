@@ -28,7 +28,7 @@ VALUES
     5.8985,
     ARRAY ['O'],
     null,
-      67,
+      2563,
     1026),
 
     ('Déco Notre Dame D''Hermon',
@@ -40,7 +40,7 @@ VALUES
     6.518,
     ARRAY ['N','NO'],
     ARRAY ['NE', 'E', 'SE', 'S', 'SO'],
-      67,
+      2243,
     1290),
 
     ('Déco MONT-LACHAT',
@@ -52,7 +52,7 @@ VALUES
     6.4765,
     ARRAY ['SO'],
     null,
-      67,
+      117,
     2020);
 
 
