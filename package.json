@@ -28,7 +28,8 @@
     "express": "^4.17.3",
     "express-jsdoc-swagger": "^1.6.7",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "winston": "^3.6.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",

@@ -6,13 +6,6 @@
 const client = require('../config/postgres');
 
 /**
- * @typedef {object} img_Landing
- * @property {number} title - Indentifiant unique, Pk de la table
- * @property {string} url - url of the photo
- * @property {number} idLanding - id of the landing associate
- */
-
-/**
  * @typedef {object} Landing
  * @property {number} id - Indentifiant unique, Pk de la table
  * @property {string} name - name
@@ -25,7 +18,7 @@ const client = require('../config/postgres');
  * @property {[string]} favorableWind - favorable Wind
  * @property {[string]} unfavorableWind - unfavorableWind
  * @property {number} altitude - altitude
- * @property {[img_Landing]} photos - array of photos
+ * @property {string} photo_landing - string of photo(s)
  */
 
 module.exports = function datamapper() {
@@ -93,9 +86,7 @@ module.exports = function datamapper() {
 
     // Request to put photo in the img_landing table
     if (data.photo_landing) {
-      console.log('LE STRING PHOTO FRED :', data.photo_landing);
       const newPhoto = data.photo_landing.split(',');
-      console.log('TABLEAU NO TRAITE :', newPhoto);
       const newPhotoTable = [];
       let jsonTopush = { name: '', url: '' };
       // Faire un tableau D'objet commme suivant:
@@ -113,7 +104,6 @@ module.exports = function datamapper() {
           newPhotoTable.push(jsonTopush);
         }
       });
-      console.log('TABLEAU FORMATER :', newPhotoTable);
 
       newPhotoTable.forEach(async (photo) => {
         const query2 = {
@@ -149,7 +139,6 @@ module.exports = function datamapper() {
   };
 
   const update = async (id, data) => {
-    // TODO: update les photos
     const landing = await findByPk(id);
     const oldLanding = landing[0];
     const newLanding = { ...oldLanding, ...data };

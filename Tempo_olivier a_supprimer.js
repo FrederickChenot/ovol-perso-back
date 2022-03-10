@@ -73,6 +73,6 @@ newPhoto.forEach((element, index) => {
   }
 });
 
-data.photo_landing : "'name': " + "'" + img + "', " + "'url': " + "'"  url + "'" ;
+data.photo_landing = `'name': '${img}', 'url': '${url}'`;
 
 { ...data, 'photo_landing': img + url}
