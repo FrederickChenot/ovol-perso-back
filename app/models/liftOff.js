@@ -69,9 +69,15 @@ module.exports = function datamapper() {
     };
 
     const result = await client.query(query1);
-    data.photo_liftoff.split(',');
-    if (data.photo_liftoff.length > 0) {
-      data.photo_liftoff.forEach(async (photo) => {
+    console.log(photo_liftOff);
+    if (photo_liftOff) {
+      console.log('Présence PHOTO');
+    } else {
+      console.log('ABSENCE PHOTO');
+    }
+    if (data.photo_liftOff) {
+      data.photo_liftOff.split(',');
+      data.photo_liftOff.forEach(async (photo) => {
         const query2 = {
           text: `INSERT INTO "img_liftOff"
           ("title",
