@@ -93,7 +93,6 @@ module.exports = function datamapper() {
 
     // Request to put photo in the img_landing table
     if (data.photo_landing) {
-      console.log('LE STRING PHOTO FRED :', data.photo_landing);
       const newPhoto = data.photo_landing.split(',');
       console.log('TABLEAU NO TRAITE :', newPhoto);
       const newPhotoTable = [];

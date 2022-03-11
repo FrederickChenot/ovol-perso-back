@@ -65,6 +65,29 @@ module.exports = function datamapper() {
 
   const creatOne = async (data) => {
     console.log(data);
+
+    console.log('data.name', data.name, '->', !data.name);
+    console.log('data.img_card', data.img_card, '->', !data.img_card);
+    console.log('data.mountain', data.mountain, '->', !data.mountain);
+    console.log('data.resume', data.resume, '->', !data.resume);
+    console.log('data.key_stage', data.key_stage, '->', !data.key_stage);
+    console.log('data.starting_point', data.starting_point, '->', !data.starting_point);
+    console.log('data.hiking_plan', data.hiking_plan, '->', !data.hiking_plan);
+    console.log('data.positive_elevation', data.positive_elevation, '->', !data.positive_elevation);
+    console.log('data.negative_elevation', data.negative_elevation, '->', !data.negative_elevation);
+    console.log('data.overall_length', data.overall_length, '->', !data.overall_length);
+    console.log('data.land_type', data.land_type, '->', !data.land_type);
+    console.log('data.ign_card_reference', data.ign_card_reference, '->', !data.ign_card_reference);
+    console.log('data.hight_point', data.hight_point, '->', !data.hight_point);
+    console.log('data.low_point', data.low_point, '->', !data.low_point);
+    console.log('data.difficulty', data.difficulty, '->', !data.difficulty);
+    console.log('data.user_id', data.user_id, '->', !data.user_id);
+    console.log('data.liftOff_id', data.liftOff_id, '->', !data.liftOff_id);
+
+    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !data.ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.user_id || !data.liftOff_id) {
+      return 'Manque DATA';
+    }
+
     const query = {
       text: `INSERT INTO "hiking"
             ("name",
@@ -85,43 +108,110 @@ module.exports = function datamapper() {
             "user_id",
             "liftOff_id")
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
-            RETURNING id`,
+            RETURNING *`,
       values: [
         data.name,
-        data.imgCard,
+        data.img_card,
         data.mountain,
         data.resume,
-        data.keyStage,
-        data.startingPoint,
-        data.hikingPlan,
-        data.positiveElevation,
-        data.negativeElevation,
-        data.overallLength,
-        data.landType,
-        data.ignCardReference,
-        data.hightPoint,
-        data.lowPoint,
+        data.key_stage,
+        data.starting_point,
+        data.hiking_plan,
+        Number(data.positive_elevation),
+        Number(data.negative_elevation),
+        data.overall_length,
+        data.land_type,
+        data.ign_card_reference,
+        Number(data.hight_point),
+        Number(data.low_point),
         data.difficulty,
-        data.userId,
-        data.liftOffId],
+        Number(data.user_id),
+        data.liftOff_id],
     };
     const result = await client.query(query);
-    // Request to put photo in the img_hiking table
-    data.photos.forEach(async (photo) => {
+
+    //!!Le traitement des photos
+    console.log(data.photo_hiking);
+    if (data.photo_hiking) {
+      console.log('Présence PHOTO');
+    } else {
+      console.log('ABSENCE PHOTO');
+    }
+    if (data.photo_hiking) {
+      //todo Traitement regex
+      console.log('LE STRING PHOTO hiking:', data.photo_hiking);
+      const newPhoto = data.photo_hiking.split(',');
+      console.log('TABLEAU NO TRAITE :', newPhoto);
+      const newPhotoTable = [];
+      let jsonTopush = { name: '', url: '' };
+
+      newPhoto.forEach((element, index) => {
+        if (index % 2 === 0) {
+          const reg = /(?!n)(?!a)(?!m)(?!e)(?!')(?!:)(?! )[a-zA-Z  ].+[1-9a-zA-Z]/gm;
+          const name = reg.exec(element);
+          jsonTopush = { ...jsonTopush, name: name[0] };
+        }
+        if (index % 2 !== 0) {
+          const reg = /(https?:\/\/|www\.)[a-zA-Z.0-9_\-\/\?=&]{1,}/gm;
+          const url = reg.exec(element);
+          jsonTopush = { ...jsonTopush, url: url[0] };
+          newPhotoTable.push(jsonTopush);
+        }
+      });
+      console.log('TABLEAU FORMATER :', newPhotoTable);
+
+      newPhotoTable.forEach(async (photo) => {
+        const query2 = {
+          text: `INSERT INTO "img_hiking"
+          ("title",
+          "url",
+          "idHiking")
+          VALUES ($1, $2, $3)`,
+          values: [
+            photo.name,
+            photo.url,
+            result.rows[0].id,
+          ],
+        };
+        await client.query(query2);
+      });
+    } else {
       const query2 = {
         text: `INSERT INTO "img_hiking"
-        ("title",
-        "url",
-        "idHiking")
-        VALUES ($1, $2, $3)`,
+          ("title",
+          "url",
+          "idHiking")
+          VALUES ($1, $2, $3)`,
         values: [
-          photo.name,
-          photo.url,
+          'default_liftOff',
+          'https://res.cloudinary.com/ovol/image/upload/v1646312780/assets/parachute_liftOff_wau7fx.jpg',
           result.rows[0].id,
         ],
       };
       await client.query(query2);
-    });
+    }
+
+
+
+
+    // Request to put photo in the img_hiking table
+
+    // data.photos.forEach(async (photo) => {
+    //   const query2 = {
+    //     text: `INSERT INTO "img_hiking"
+    //     ("title",
+    //     "url",
+    //     "idHiking")
+    //     VALUES ($1, $2, $3)`,
+    //     values: [
+    //       photo.name,
+    //       photo.url,
+    //       result.rows[0].id,
+    //     ],
+    //   };
+    //   await client.query(query2);
+    // });
+
     if (result.rowCount === 0) {
       return null;
     }

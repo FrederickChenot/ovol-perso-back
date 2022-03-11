@@ -34,11 +34,40 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
-    // "O,N" = > ['O','N']
-    // "O" => ['O']
-    // "" => []
+    console.log('REQUETE POUR LIFTOFF BODY:', data.body);
+
+    console.log('name:', data.name);
+    console.log('typeOfTerrain:', data.typeOfTerrain);
+    console.log('balise:', data.balise);
+    console.log('description:', data.description);
+    console.log('danger:', data.danger);
+    console.log('latitude', data.latitude);
+    console.log('altitude', data.altitude);
+    console.log('favorableWind', data.favorableWind);
+    console.log('idLandings', data.idLandings);
+    console.log('balise', data.balise);
+
+    console.log('name:', !data.name);
+    console.log('typeOfTerrain:', !data.typeOfTerrain);
+    console.log('balise:', !data.balise);
+    console.log('description:', !data.description);
+    console.log('danger:', !data.danger);
+    console.log('latitude', !data.latitude);
+    console.log('altitude', !data.altitude);
+    console.log('favorableWind', !data.favorableWind);
+    console.log('idLandings', !data.idLandings);
+    console.log('balise', !data.balise);
+
+    if (!data.name || !data.typeOfTerrain || !data.balise || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind || !data.idLandings) {
+      return 'Manque DATA';
+    }
+
+    console.log('La data reçu', data);
     const arrayfavorableWind = data.favorableWind.split(',');
-    const arrarUnfavorableWind = data.unfavorableWind.split(',');
+    let arrarUnfavorableWind = [];
+    if (data.unfavorableWind) {
+      arrarUnfavorableWind = data.unfavorableWind.split(',');
+    }
 
     const query1 = {
       text: `INSERT INTO "liftOff"
@@ -51,9 +80,10 @@ module.exports = function datamapper() {
                 "longitude",
                 "favorableWind",
                 "unfavorableWind",
-                "altitude")
+                "altitude",
+                "balise")
           VALUES
-              ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
+              ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id`,
       values: [
         data.name,
         data.typeOfTerrain,
@@ -64,13 +94,41 @@ module.exports = function datamapper() {
         Number(data.longitude),
         arrayfavorableWind,
         arrarUnfavorableWind,
-        Number(data.altitude)],
+        Number(data.altitude),
+        Number(data.balise)],
     };
 
     const result = await client.query(query1);
-    data.photo_liftoff.split(',');
-    if (data.photo_liftoff.length > 0) {
-      data.photo_liftoff.forEach(async (photo) => {
+    console.log(data.photo_liftOff);
+    if (data.photo_liftOff) {
+      console.log('Présence PHOTO');
+    } else {
+      console.log('ABSENCE PHOTO');
+    }
+    if (data.photo_liftOff) {
+      //todo Traitement regex
+      console.log('LE STRING PHOTO Lift-Off:', data.photo_landing);
+      const newPhoto = data.photo_liftOff.split(',');
+      console.log('TABLEAU NO TRAITE :', newPhoto);
+      const newPhotoTable = [];
+      let jsonTopush = { name: '', url: '' };
+
+      newPhoto.forEach((element, index) => {
+        if (index % 2 === 0) {
+          const reg = /(?!n)(?!a)(?!m)(?!e)(?!')(?!:)(?! )[a-zA-Z  ].+[1-9a-zA-Z]/gm;
+          const name = reg.exec(element);
+          jsonTopush = { ...jsonTopush, name: name[0] };
+        }
+        if (index % 2 !== 0) {
+          const reg = /(https?:\/\/|www\.)[a-zA-Z.0-9_\-\/\?=&]{1,}/gm;
+          const url = reg.exec(element);
+          jsonTopush = { ...jsonTopush, url: url[0] };
+          newPhotoTable.push(jsonTopush);
+        }
+      });
+      console.log('TABLEAU FORMATER :', newPhotoTable);
+
+      newPhotoTable.forEach(async (photo) => {
         const query2 = {
           text: `INSERT INTO "img_liftOff"
           ("title",
@@ -100,9 +158,11 @@ module.exports = function datamapper() {
       };
       await client.query(query2);
     }
+
     // TODO : verifier que les id landing exist
-    const arrayIdLandings = data.idLandings.split(',');
-    arrayIdLandings.forEach(async (landing) => {
+    // const arrayIdLandings = data.idLandings.split(',');
+    data.idLandings.forEach(async (landing) => {
+      console.log('type du landing:', typeof landing, '->', landing);
       const query3 = {
         text: `INSERT INTO "liftOff_has_landing"
         ("liftOff_id",
@@ -110,7 +170,7 @@ module.exports = function datamapper() {
         VALUES ($1, $2)`,
         values: [
           result.rows[0].id,
-          landing,
+          Number(landing),
         ],
       };
       await client.query(query3);
