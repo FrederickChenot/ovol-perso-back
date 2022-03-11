@@ -120,7 +120,7 @@ module.exports = function datamapper() {
         Number(data.positive_elevation),
         Number(data.negative_elevation),
         data.overall_length,
-        data.land type,
+        data.land_type,
         data.ign_card_reference,
         Number(data.hight_point),
         Number(data.low_point),
