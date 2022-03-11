@@ -158,8 +158,8 @@ module.exports = function datamapper() {
     }
 
     // TODO : verifier que les id landing exist
-    const arrayIdLandings = data.idLandings.split(',');
-    arrayIdLandings.forEach(async (landing) => {
+    // const arrayIdLandings = data.idLandings.split(',');
+    data.idLandings.forEach(async (landing) => {
       const query3 = {
         text: `INSERT INTO "liftOff_has_landing"
         ("liftOff_id",
