@@ -81,10 +81,10 @@ module.exports = function datamapper() {
     console.log('data.hight_point', data.hight_point, '->', !data.hight_point);
     console.log('data.low_point', data.low_point, '->', !data.low_point);
     console.log('data.difficulty', data.difficulty, '->', !data.difficulty);
-    console.log('data.userId', data.userId, '->', !data.userId);
+    console.log('data.user_id', data.user_id, '->', !data.user_id);
     console.log('data.liftOff_id', data.liftOff_id, '->', !data.liftOff_id);
 
-    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.userId || !data.liftOff_id) {
+    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.user_id || !data.liftOff_id) {
       return 'Manque DATA';
     }
 
@@ -125,7 +125,7 @@ module.exports = function datamapper() {
         Number(data.hight_point),
         Number(data.low_point),
         data.difficulty,
-        Number(data.userId),
+        Number(data.user_id),
         data.liftOff_id],
     };
     const result = await client.query(query);
