@@ -129,22 +129,89 @@ module.exports = function datamapper() {
         data.liftOff_id],
     };
     const result = await client.query(query);
-    // Request to put photo in the img_hiking table
-    data.photos.forEach(async (photo) => {
+
+    //!!Le traitement des photos
+    console.log(data.photo_hiking);
+    if (data.photo_hiking) {
+      console.log('Présence PHOTO');
+    } else {
+      console.log('ABSENCE PHOTO');
+    }
+    if (data.photo_hiking) {
+      //todo Traitement regex
+      console.log('LE STRING PHOTO hiking:', data.photo_hiking);
+      const newPhoto = data.photo_hiking.split(',');
+      console.log('TABLEAU NO TRAITE :', newPhoto);
+      const newPhotoTable = [];
+      let jsonTopush = { name: '', url: '' };
+
+      newPhoto.forEach((element, index) => {
+        if (index % 2 === 0) {
+          const reg = /(?!n)(?!a)(?!m)(?!e)(?!')(?!:)(?! )[a-zA-Z  ].+[1-9a-zA-Z]/gm;
+          const name = reg.exec(element);
+          jsonTopush = { ...jsonTopush, name: name[0] };
+        }
+        if (index % 2 !== 0) {
+          const reg = /(https?:\/\/|www\.)[a-zA-Z.0-9_\-\/\?=&]{1,}/gm;
+          const url = reg.exec(element);
+          jsonTopush = { ...jsonTopush, url: url[0] };
+          newPhotoTable.push(jsonTopush);
+        }
+      });
+      console.log('TABLEAU FORMATER :', newPhotoTable);
+
+      newPhotoTable.forEach(async (photo) => {
+        const query2 = {
+          text: `INSERT INTO "img_hiking"
+          ("title",
+          "url",
+          "idHiking")
+          VALUES ($1, $2, $3)`,
+          values: [
+            photo.name,
+            photo.url,
+            result.rows[0].id,
+          ],
+        };
+        await client.query(query2);
+      });
+    } else {
       const query2 = {
         text: `INSERT INTO "img_hiking"
-        ("title",
-        "url",
-        "idHiking")
-        VALUES ($1, $2, $3)`,
+          ("title",
+          "url",
+          "idHiking")
+          VALUES ($1, $2, $3)`,
         values: [
-          photo.name,
-          photo.url,
+          'default_liftOff',
+          'https://res.cloudinary.com/ovol/image/upload/v1646312780/assets/parachute_liftOff_wau7fx.jpg',
           result.rows[0].id,
         ],
       };
       await client.query(query2);
-    });
+    }
+
+
+
+
+    // Request to put photo in the img_hiking table
+
+    // data.photos.forEach(async (photo) => {
+    //   const query2 = {
+    //     text: `INSERT INTO "img_hiking"
+    //     ("title",
+    //     "url",
+    //     "idHiking")
+    //     VALUES ($1, $2, $3)`,
+    //     values: [
+    //       photo.name,
+    //       photo.url,
+    //       result.rows[0].id,
+    //     ],
+    //   };
+    //   await client.query(query2);
+    // });
+
     if (result.rowCount === 0) {
       return null;
     }
