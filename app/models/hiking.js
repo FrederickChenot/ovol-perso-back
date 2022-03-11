@@ -64,7 +64,11 @@ module.exports = function datamapper() {
   };
 
   const creatOne = async (data) => {
-    console.log(data);
+    console.log(data.body);
+    if (!data.name || !data.imgCard || !data.mountain || !data.resume || !data.keyStage || !data.startingPoint || !data.hikingPlan || !data.positiveElevation || !data.negativeElevation || !data.overallLength || !data.landType || !ignCardReference || !data.hightPoint|| !data.lowPoint || !data.difficulty || !data.userId || !data.liftOffId) {
+      return 'Manque DATA';
+    }
+
     const query = {
       text: `INSERT INTO "hiking"
             ("name",
@@ -94,15 +98,15 @@ module.exports = function datamapper() {
         data.keyStage,
         data.startingPoint,
         data.hikingPlan,
-        data.positiveElevation,
-        data.negativeElevation,
+        Number(data.positiveElevation),
+        Number(data.negativeElevation),
         data.overallLength,
         data.landType,
         data.ignCardReference,
-        data.hightPoint,
-        data.lowPoint,
+        Number(data.hightPoint),
+        Number(data.lowPoint),
         data.difficulty,
-        data.userId,
+        Number(data.userId),
         data.liftOffId],
     };
     const result = await client.query(query);

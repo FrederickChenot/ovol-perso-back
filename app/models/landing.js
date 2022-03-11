@@ -52,7 +52,6 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
-    console.log('REQUETE POUR LANDING BODY:', data.body);
     if (!data.name || !data.typeOfTerrain || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind) {
       return 'Manque DATA';
     }
@@ -94,9 +93,7 @@ module.exports = function datamapper() {
 
     // Request to put photo in the img_landing table
     if (data.photo_landing) {
-      console.log('LE STRING PHOTO Landing :', data.photo_landing);
       const newPhoto = data.photo_landing.split(',');
-      console.log('TABLEAU NO TRAITE :', newPhoto);
       const newPhotoTable = [];
       let jsonTopush = { name: '', url: '' };
       // Faire un tableau D'objet commme suivant:

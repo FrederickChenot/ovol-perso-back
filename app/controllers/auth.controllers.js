@@ -18,7 +18,7 @@ module.exports = {
       return res.status(401).send('Login/Password invalide');
     }
     const accessToken = generateAccessToken(user);
-    // on retourne le token 
-    return res.send({ accessToken });
+    // on retourne le token
+    return res.send({ accessToken, user }); //ToDO : check si front reçoi le IDUser
   },
 };
