@@ -34,6 +34,8 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
+    console.log('REQUETE POUR LIFTOFF BODY:', data.body);
+
     console.log('name:', data.name);
     console.log('typeOfTerrain:', data.typeOfTerrain);
     console.log('balise:', data.balise);

@@ -52,6 +52,7 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
+    console.log('REQUETE POUR LANDING BODY:', data.body);
     if (!data.name || !data.typeOfTerrain || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind) {
       return 'Manque DATA';
     }
