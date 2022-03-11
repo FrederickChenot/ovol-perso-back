@@ -64,7 +64,7 @@ module.exports = function datamapper() {
   };
 
   const creatOne = async (data) => {
-    console.log(data.body);
+    console.log(data);
 
     console.log('data.name', data.name, '->', !data.name);
     console.log('data.img_card', data.img_card, '->', !data.img_card);
