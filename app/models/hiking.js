@@ -36,7 +36,7 @@ module.exports = function datamapper() {
     for (const hiking of result.rows) {
       const speed = 4.8;
       const TOverallLength = hiking.overall_length / speed;
-      const TPositive_elevation = ((hiking.positive_elevation * 60) / 600) / 60;
+      const TPositiveElevation = ((hiking.positive_elevation * 60) / 600) / 60;
       const duration = TOverallLength + TPositiveElevation;
       hiking.duration = duration;
     }
