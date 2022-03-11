@@ -65,6 +65,25 @@ module.exports = function datamapper() {
 
   const creatOne = async (data) => {
     console.log(data.body);
+
+    console.log('data.name', data.name, '->', !data.name);
+    console.log('data.imgCard', data.imgCard, '->', !data.imgCard);
+    console.log('data.mountain', data.mountain, '->', !data.mountain);
+    console.log('data.resume', data.resume, '->', !data.resume);
+    console.log('data.keyStage', data.keyStage, '->', !data.keyStage);
+    console.log('data.startingPoint', data.startingPoint, '->', !data.startingPoint);
+    console.log('data.hikingPlan', data.hikingPlan, '->', !data.hikingPlan);
+    console.log('data.positiveElevation', data.positiveElevation, '->', !data.positiveElevation);
+    console.log('data.negativeElevation', data.negativeElevation, '->', !data.negativeElevation);
+    console.log('data.overallLength', data.overallLength, '->', !data.overallLength);
+    console.log('data.landType', data.landType, '->', !data.landType);
+    console.log('data.ignCardReference', data.ignCardReference, '->', !data.ignCardReference);
+    console.log('data.hightPoint', data.hightPoint, '->', !data.hightPoint);
+    console.log('data.lowPoint', data.lowPoint, '->', !data.lowPoint);
+    console.log('data.difficulty', data.difficulty, '->', !data.difficulty);
+    console.log('data.userId', data.userId, '->', !data.userId);
+    console.log('data.liftOffId', data.liftOffId, '->', !data.liftOffId);
+
     if (!data.name || !data.imgCard || !data.mountain || !data.resume || !data.keyStage || !data.startingPoint || !data.hikingPlan || !data.positiveElevation || !data.negativeElevation || !data.overallLength || !data.landType || !ignCardReference || !data.hightPoint|| !data.lowPoint || !data.difficulty || !data.userId || !data.liftOffId) {
       return 'Manque DATA';
     }
