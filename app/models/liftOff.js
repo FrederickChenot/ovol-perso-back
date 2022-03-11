@@ -43,6 +43,18 @@ module.exports = function datamapper() {
     console.log('altitude', data.altitude);
     console.log('favorableWind', data.favorableWind);
     console.log('idLandings', data.idLandings);
+    console.log('balise', data.balise);
+
+    console.log('name:', !data.name);
+    console.log('typeOfTerrain:', !data.typeOfTerrain);
+    console.log('balise:', !data.balise);
+    console.log('description:', !data.description);
+    console.log('danger:', !data.danger);
+    console.log('latitude', !data.latitude);
+    console.log('altitude', !data.altitude);
+    console.log('favorableWind', !data.favorableWind);
+    console.log('idLandings', !data.idLandings);
+    console.log('balise', !data.balise);
 
     if (!data.name || !data.typeOfTerrain || !data.balise || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind || !data.idLandings) {
       return 'Manque DATA';
