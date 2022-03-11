@@ -42,7 +42,7 @@ router.route('/')
   * @security BearerAuth
   * @param {[Landing]} request.body.required - landing info
   * @return {json} 200 - success response - application/json
-  * * {
+  * {
    * "id": 5
    * }
    * @example request - landing info
@@ -54,12 +54,10 @@ router.route('/')
       "fflvLink":"new fflvLink",
       "latitude":23.234,
       "longitude":34.23,
-      "favorableWind":["O"],
-      "unfavorableWind":["O"],
+      "favorableWind":"O",
+      "unfavorableWind":"O",
       "altitude":2313,
-       "photos": [{"name": "photo rando", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
-      {"name": "photo rando2", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
-}
+       "photo_landing": "'name': 'update photo  test2', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg', 'name': 'update photo rasdfsdfndo test', 'url': 'https://idata.over-blog.com/image.jpg', 'name': 'Oliv3', 'url': 'https://idata.over-blog.com/Olivier_url.jpg'"}
    *@example response - 200 - Return json with the new id of the landing
   {
     "id": 5

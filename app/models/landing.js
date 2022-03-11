@@ -94,6 +94,7 @@ module.exports = function datamapper() {
     // Request to put photo in the img_landing table
     if (data.photo_landing) {
       const newPhoto = data.photo_landing.split(',');
+      console.log('TABLEAU NO TRAITE :', newPhoto);
       const newPhotoTable = [];
       let jsonTopush = { name: '', url: '' };
       // Faire un tableau D'objet commme suivant:

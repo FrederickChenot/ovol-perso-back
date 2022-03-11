@@ -28,7 +28,7 @@ VALUES
     5.8985,
     ARRAY ['O'],
     null,
-      67,
+      2563,
     1026),
 
     ('Déco Notre Dame D''Hermon',
@@ -40,7 +40,7 @@ VALUES
     6.518,
     ARRAY ['N','NO'],
     ARRAY ['NE', 'E', 'SE', 'S', 'SO'],
-      67,
+      2243,
     1290),
 
     ('Déco MONT-LACHAT',
@@ -52,14 +52,14 @@ VALUES
     6.4765,
     ARRAY ['SO'],
     null,
-      67,
+      117,
     2020);
 
 
 INSERT INTO "hiking"("name","img_card","mountain","resume","key_stage","starting_point","hiking_plan","positive_elevation","negative_elevation","overall_length","land_type","ign_card_reference","hight_point","low_point","difficulty","user_id","liftOff_id")
 VALUES
     ('Semnoz Grotte des fours',
-    'https://upload.wikimedia.org/wikipedia/commons/4/40/Annecy-Semnoz_%282013%29.JPG',
+    'https://res.cloudinary.com/ovol/image/upload/q_50/v1646905878/img-seeding/Annecy-Semnoz__2013_hyn3lu.jpg',
     'Bauges',
     'Montée soutenue en forêt avec en bonus des grottes à visiter. Attention falaise à surmonter au niveau de la grotte des four. Le sentier est balisé sur toute la longueur',
     'D/A : km 0 - alt. 595m - Cimetière de Viuz-la-Chiésaz
@@ -83,7 +83,7 @@ VALUES
     1),
 
     ('Septmoncel - Montbrillant',
-    'https://upload.wikimedia.org/wikipedia/commons/c/c6/Septmoncel-Jura-Saut-du-chien.JPG',
+    'https://res.cloudinary.com/ovol/image/upload/q_50/v1646906135/img-seeding/Septmoncel-Jura-Saut-du-chien_bpoztr.jpg',
     'Jura',
     'Au départ de Montbrillant, montée soutenue sur Septmoncel par le Chemin des Moines. Les chemins sont très praticables, pas de difficultés techniques.',
     'D : km 0 - alt. 556m - Parking de Montbrillant, après la fromagerie
@@ -103,7 +103,7 @@ VALUES
     2),
 
     ('La Chapelle d''Hermone à partir du Col du Feu',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Chapelle_des_Hermones.jpg/1920px-Chapelle_des_Hermones.jpg',
+    'https://res.cloudinary.com/ovol/image/upload/q_50/v1646906179/img-seeding/1920px-Chapelle_des_Hermones_s7pcr3.jpg',
     'Chablais',
     'Cette courte randonnée, qui constitue une voie usuelle pour monter à la Chapelle d''Hermone, met à l''honneur le petit patrimoine religieux, très présent tout le long du parcours, et offre au sommet de superbes points de vue sur le Léman',
     'D/A : km 0 - alt. 1117m - Col du Feu
@@ -126,7 +126,7 @@ VALUES
     3),
 
     ('MONT-LACHAT',
-    'https://upload.wikimedia.org/wikipedia/commons/a/ab/Th%C3%B4nes_mont_lachat.jpg',
+    'https://res.cloudinary.com/ovol/image/upload/q_50/v1646906218/img-seeding/Tho%CC%82nes_mont_lachat_m4maym.jpg',
     'Bornes',
     'Au départ d''une auberge de montagne pleine de charme, voici une boucle qui vous offrira une vue somptueuse sur la chaîne des Aravis et une exposition plein Sud. Au col, vous aurez la vue sur la chaîne du Bargy et le Jalouvre. Le circuit peut se faire tant en été qu''en hiver avec des raquettes.',
     'D/A : km 0 - alt. 1348m - Parking du Croix
@@ -215,30 +215,30 @@ VALUES
 
 INSERT INTO "img_hiking"("title", "url", "idHiking")
 VALUES
-    ('Photo Semnoz', 'https://live.staticflickr.com/65535/50932308243_a19f408059_b.jpg', 1),
-    ('Photo Semnoz 2', 'https://cdn.pixabay.com/photo/2019/12/13/13/17/landscape-4692947_1280.jpg', 1),
-    ('Photo Jura 1', 'https://upload.wikimedia.org/wikipedia/commons/4/4e/La_Petite_Montagne_vue_du_Molard_de_la_Justice%2C_Jura%2C_France.jpg', 2),
-    ('Photo Jura 2', 'https://get.pxhere.com/photo/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661.jpg', 2),
-    ('Photo Vailly 1', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Town_hall_of_Vailly_02.jpg/1200px-Town_hall_of_Vailly_02.jpg?20200825173820', 3),
-    ('Photo Vailly 2', 'https://upload.wikimedia.org/wikipedia/commons/4/41/Landscape_in_commune_of_of_Vailly.jpg', 3),
-    ('Photo Vailly 3', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG/1200px-Vailly-sur-Aisne_%28Aisne%29_Cimeti%C3%A8re_brittannique_%28CWGC%29.JPG?20120712174044', 3),
-    ('Photo grand Bornand', 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Mont_Lachat_-_panoramio.jpg', 4);
-
+    ('Photo Semnoz', 'https://res.cloudinary.com/ovol/image/upload/v1646906366/img-seeding/semnoz1_nhq40f.jpg', 1),
+    ('Photo Semnoz 2', 'https://res.cloudinary.com/ovol/image/upload/v1646906470/img-seeding/semnoz2_clvdfp.webp', 1),
+    ('Photo Jura 1', 'https://res.cloudinary.com/ovol/image/upload/q_50/v1646906551/img-seeding/La_Petite_Montagne_vue_du_Molard_de_la_Justice__Jura__France_jnp5i2.jpg', 2),
+    ('Photo Jura 2', 'https://res.cloudinary.com/ovol/image/upload/v1646906608/img-seeding/landscape-nature-rock-waterfall-mountain-valley-mountain-range-cliff-jungle-tourism-terrain-national-park-ridge-rocks-vegetation-poland-plateau-water-feature-ecosystem-jura-krakowsko-czestochowa-mountainous-landforms-608661_izin4n.jpg', 2),
+    ('Photo Vailly 1', 'https://res.cloudinary.com/ovol/image/upload/v1646906718/img-seeding/Town_hall_of_Vailly_02_zodqxx.jpg', 3),
+    ('Photo Vailly 2', 'https://res.cloudinary.com/ovol/image/upload/v1646906970/img-seeding/Landscape_in_commune_of_of_Vailly_vi0mmg.jpg', 3),
+    ('Photo Vailly 3', 'https://res.cloudinary.com/ovol/image/upload/v1646907090/img-seeding/Vailly-sur-Aisne_g0hjdo.jpg', 3),
+    ('Photo grand Bornand', 'https://res.cloudinary.com/ovol/image/upload/q_50/v1646907339/img-seeding/Mont_Lachat_-_panoramio_idtjm8.jpg', 4);
+ 
 INSERT INTO "img_landing"("title", "url", "idLanding")
 VALUES
-    ('Photo atero Semnoz', 'https://www.lofficiel.net/img/guide/2917-atterissage-bois-du-bouchet-karine-payot-fiche.jpg', 1),
-    ('Photo atero Jura', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
-    ('Photo atero Jura2', 'https://c.pxhere.com/photos/f6/60/paratrooper_jump_double_baptism_landing-1104626.jpg!d', 2),
-    ('Photo atero Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3),
-    ('Photo atero Vailly', 'https://lh5.googleusercontent.com/p/AF1QipNPpNs4005pLpzwVf9k0R6HlQB-ngAWU5bCqGFr=w426-h240-k-no', 3),
-    ('Photo atero grand Bornand', 'https://c.pxhere.com/photos/65/b3/skydiving_parachute_parachutist_sport_sunset_landing-1392169.jpg!d', 4),
-    ('Photo atero Guffy', 'https://c.pxhere.com/photos/65/b3/skydiving_parachute_parachutist_sport_sunset_landing-1392169.jpg!d', 5);
+    ('Photo atero Semnoz', 'https://res.cloudinary.com/ovol/image/upload/v1646907429/img-seeding/bois-du-bouchet_hown3q.jpg', 1),
+    ('Photo atero Jura', 'https://res.cloudinary.com/ovol/image/upload/v1646907429/img-seeding/bois-du-bouchet_hown3q.jpg', 2),
+    ('Photo atero Jura2', 'https://res.cloudinary.com/ovol/image/upload/v1646907790/img-seeding/paratrooper_bzpj1c.jpg', 2),
+    ('Photo atero Vailly2', 'https://res.cloudinary.com/ovol/image/upload/v1646907690/img-seeding/2021-06-13_nmeuya.jpg', 3),
+    ('Photo atero Vailly', 'https://res.cloudinary.com/ovol/image/upload/v1646907790/img-seeding/paratrooper_bzpj1c.jpg', 3),
+    ('Photo atero grand Bornand', 'https://res.cloudinary.com/ovol/image/upload/v1646907860/img-seeding/sport_lx2l5r.jpg', 4),
+    ('Photo atero Guffy', 'https://res.cloudinary.com/ovol/image/upload/v1646907429/img-seeding/bois-du-bouchet_hown3q.jpg', 5);
 
 INSERT INTO "img_liftOff"("title", "url", "idLiftOff")
 VALUES
-    ('Photo deco Semnoz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Parapente_-_162.jpg/800px-Parapente_-_162.jpg?2015110313514', 1),
-    ('Photo deco Jura', 'https://upload.wikimedia.org/wikipedia/commons/8/87/Parapente_-_146.jpg', 2),
-    ('Photo deco Vailly', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 3),
-    ('Photo deco Vailly2', 'https://lh5.googleusercontent.com/p/AF1QipN5YstKeNw4w_V24PgOYCRZNr9-M9h-nSs8nh3A=w408-h306-k-no', 4);
+    ('Photo deco Semnoz', 'https://res.cloudinary.com/ovol/image/upload/v1646908077/img-seeding/Parapente_-_162_o9i5i1.jpg', 1),
+    ('Photo deco Jura', 'https://res.cloudinary.com/ovol/image/upload/q_50/v1646908152/img-seeding/Parapent_qfbd6d.jpg', 2),
+    ('Photo deco Vailly', 'https://res.cloudinary.com/ovol/image/upload/v1646908190/img-seeding/2020-08-02_w5j8uy.jpg', 3),
+    ('Photo deco Vailly2', 'https://res.cloudinary.com/ovol/image/upload/v1646908190/img-seeding/2020-08-02_w5j8uy.jpg', 4);
 
 COMMIT;
