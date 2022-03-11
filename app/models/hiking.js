@@ -84,7 +84,7 @@ module.exports = function datamapper() {
     console.log('data.user_id', data.user_id, '->', !data.user_id);
     console.log('data.liftOff_id', data.liftOff_id, '->', !data.liftOff_id);
 
-    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.user_id || !data.liftOff_id) {
+    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !data.ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.user_id || !data.liftOff_id) {
       return 'Manque DATA';
     }
 
