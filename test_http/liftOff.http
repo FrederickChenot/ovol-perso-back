@@ -30,7 +30,7 @@ content-type: application/json
 GET {{ endpoint-dev }}/api/liftOff
 
 ### get one liftOff
-GET {{ endpoint-dev }}/api/liftOff/1
+GET {{ endpoint-dev }}/api/liftOff/13
 
 ### Post a liftOff
 POST {{ endpoint-dev }}/api/liftOff
@@ -38,19 +38,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp
 content-type: application/json
 
 {
-  "name":"new liftOff",
+  "name":"new liftOff6",
   "typeOfTerrain":"new type de terrain",
   "description":"new description",
   "danger":"new danger",
   "fflvLink":"new fflvLink",
   "latitude":23.234,
   "longitude":34.23,
-  "favorableWind":["O"],
-  "unfavorableWind":["N"],
+  "balise": 5,
+  "favorableWind": "O",
+  "unfavorableWind": "N",
   "altitude":23123,
-  "idLandings": [1,2],
-   "photos": [{"name": "photo rando déco2", "url": "https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg"},
-  {"name": "photo rando déco", "url": "https://www.alibabuy.com/photos/library/1500/11681.jpg"}]
+  "idLandings": "1",
+   "photo_liftOff": "'name': 'update photo  test2', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg', 'name': 'update photo rasdfsdfndo test', 'url': 'https://idata.over-blog.com/image.jpg', 'name': 'Oliv3', 'url': 'https://idata.over-blog.com/Olivier_url.jpg'"
 }
 
 ### Test  landings
@@ -71,7 +71,7 @@ content-type: application/json
 "altitude": "1000",
 "photo_liftoff": "",
 "id": "5",
-"idLandings": "1"
+"idLandings": "1,"
 }
 
 
