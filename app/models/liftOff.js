@@ -160,6 +160,7 @@ module.exports = function datamapper() {
     // TODO : verifier que les id landing exist
     // const arrayIdLandings = data.idLandings.split(',');
     data.idLandings.forEach(async (landing) => {
+      console.log('type du landing:', typeof landing, '->', landing);
       const query3 = {
         text: `INSERT INTO "liftOff_has_landing"
         ("liftOff_id",
@@ -167,7 +168,7 @@ module.exports = function datamapper() {
         VALUES ($1, $2)`,
         values: [
           result.rows[0].id,
-          landing,
+          Number(landing),
         ],
       };
       await client.query(query3);
