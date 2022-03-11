@@ -36,7 +36,7 @@ module.exports = function datamapper() {
     for (const hiking of result.rows) {
       const speed = 4.8;
       const TOverallLength = hiking.overall_length / speed;
-      const TPositiveElevation = ((hiking.positive_elevation * 60) / 600) / 60;
+      const TPositive_elevation = ((hiking.positive_elevation * 60) / 600) / 60;
       const duration = TOverallLength + TPositiveElevation;
       hiking.duration = duration;
     }
@@ -70,21 +70,21 @@ module.exports = function datamapper() {
     console.log('data.img_card', data.img_card, '->', !data.img_card);
     console.log('data.mountain', data.mountain, '->', !data.mountain);
     console.log('data.resume', data.resume, '->', !data.resume);
-    console.log('data.keyStage', data.keyStage, '->', !data.keyStage);
-    console.log('data.startingPoint', data.startingPoint, '->', !data.startingPoint);
+    console.log('data.key_stage', data.key_stage, '->', !data.key_stage);
+    console.log('data.starting_point', data.starting_point, '->', !data.starting_point);
     console.log('data.hiking_plan', data.hiking_plan, '->', !data.hiking_plan);
-    console.log('data.positiveElevation', data.positiveElevation, '->', !data.positiveElevation);
-    console.log('data.negativeElevation', data.negativeElevation, '->', !data.negativeElevation);
-    console.log('data.overallLength', data.overallLength, '->', !data.overallLength);
-    console.log('data.landType', data.landType, '->', !data.landType);
-    console.log('data.ignCardReference', data.ignCardReference, '->', !data.ignCardReference);
+    console.log('data.positive_elevation', data.positive_elevation, '->', !data.positive_elevation);
+    console.log('data.negative_elevation', data.negative_elevation, '->', !data.negative_elevation);
+    console.log('data.overall_length', data.overall_length, '->', !data.overall_length);
+    console.log('data.land_type', data.land_type, '->', !data.land_type);
+    console.log('data.ign_card_reference', data.ign_card_reference, '->', !data.ign_card_reference);
     console.log('data.hight_point', data.hight_point, '->', !data.hight_point);
     console.log('data.low_point', data.low_point, '->', !data.low_point);
     console.log('data.difficulty', data.difficulty, '->', !data.difficulty);
     console.log('data.userId', data.userId, '->', !data.userId);
-    console.log('data.liftOffId', data.liftOffId, '->', !data.liftOffId);
+    console.log('data.liftOff_id', data.liftOff_id, '->', !data.liftOff_id);
 
-    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.keyStage || !data.startingPoint || !data.hiking_plan || !data.positiveElevation || !data.negativeElevation || !data.overallLength || !data.landType || !ignCardReference || !data.hight_point|| !data.low_point || !data.difficulty || !data.userId || !data.liftOffId) {
+    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.userId || !data.liftOff_id) {
       return 'Manque DATA';
     }
 
@@ -114,19 +114,19 @@ module.exports = function datamapper() {
         data.img_card,
         data.mountain,
         data.resume,
-        data.keyStage,
-        data.startingPoint,
+        data.key_stage,
+        data.starting_point,
         data.hiking_plan,
-        Number(data.positiveElevation),
-        Number(data.negativeElevation),
-        data.overallLength,
-        data.landType,
-        data.ignCardReference,
+        Number(data.positive_elevation),
+        Number(data.negative_elevation),
+        data.overall_length,
+        data.land type,
+        data.ign_card_reference,
         Number(data.hight_point),
         Number(data.low_point),
         data.difficulty,
         Number(data.userId),
-        data.liftOffId],
+        data.liftOff_id],
     };
     const result = await client.query(query);
     // Request to put photo in the img_hiking table
