@@ -53,7 +53,11 @@ module.exports = function datamapper() {
 
   const createOne = async (data) => {
     if (!data.name || !data.typeOfTerrain || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind) {
-      return 'Manque DATA';
+      const error = {
+        message: 'Incomplete forms landing',
+        statusCode: 415,
+      };
+      throw error;
     }
     const arrayfavorableWind = data.favorableWind.split(',');
 
