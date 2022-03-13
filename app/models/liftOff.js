@@ -59,7 +59,11 @@ module.exports = function datamapper() {
     console.log('balise', !data.balise);
 
     if (!data.name || !data.typeOfTerrain || !data.balise || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind || !data.idLandings) {
-      return 'Manque DATA';
+      const error = {
+        message: 'Incomplete forms liftOff',
+        statusCode: 415,
+      };
+      throw error;
     }
 
     console.log('La data reçu', data);
