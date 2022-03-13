@@ -28,7 +28,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp
 content-type: application/json
 
 {
-"name": "",
+"name": "essai32",
 "typeOfTerrain": "ras le bonbon",
 "description": "ff",
 "danger": "ff",
