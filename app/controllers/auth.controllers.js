@@ -17,6 +17,7 @@ module.exports = {
 
     const accessToken = generateAccessToken(user);
     // on retourne le token
-    return res.send({ accessToken });
+    const { id } = result;
+    return res.send({ accessToken, id });
   },
 };
