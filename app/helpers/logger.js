@@ -41,9 +41,9 @@ Log level list
 //   });
 // }
 
-// const logger = bunyan.createLogger({
-//   name: 'cadex-api',
-//   streams,
-// });
+const logger = bunyan.createLogger({
+  name: 'cadex-api',
+  streams,
+});
 
 module.exports = logger;
