@@ -17,6 +17,8 @@ Log level list
     Logging from external libraries used by
     your app or very detailed application logging.
 */
+
+
 const bunyan = require('bunyan');
 
 const streams = [];
@@ -24,7 +26,7 @@ const streams = [];
 if (process.env.NODE_ENV === 'production') {
   streams.push({
     level: 'error', // On ne conservera dans ce stream que les informations de niveau 'error' ou supérieur.
-    path: './log/error.log', // Le chemain et le fichier dans lequel on veut sauvegarder les informatons
+    path: './log/error1.log', // Le chemain et le fichier dans lequel on veut sauvegarder les informatons
     type: 'rotating-file', // On peut décider d'archivé des logs passé dans un fichier d'archive
     period: '1d', // Pour cela on décide de la périodicité
     count: 3, // Et de l'historique à conserver
