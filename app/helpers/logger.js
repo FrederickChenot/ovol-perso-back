@@ -19,31 +19,31 @@ Log level list
 */
 
 
-const bunyan = require('bunyan');
+// const bunyan = require('bunyan');
 
-const streams = [];
+// const streams = [];
 
-if (process.env.NODE_ENV === 'production') {
-  streams.push({
-    level: 'error', // On ne conservera dans ce stream que les informations de niveau 'error' ou supérieur.
-    path: './log/error1.log', // Le chemain et le fichier dans lequel on veut sauvegarder les informatons
-    type: 'rotating-file', // On peut décider d'archivé des logs passé dans un fichier d'archive
-    period: '1d', // Pour cela on décide de la périodicité
-    count: 3, // Et de l'historique à conserver
-    /*
-        Cela aura pour conséquence de créer différents fichiers ayant pour suffixe : .0, .1, .2 etc…
-        */
-  });
-} else {
-  streams.push({
-    level: 'error',
-    stream: process.stdout,
-  });
-}
+// if (process.env.NODE_ENV === 'production') {
+//   streams.push({
+//     level: 'error', // On ne conservera dans ce stream que les informations de niveau 'error' ou supérieur.
+//     path: './log/error.log', // Le chemain et le fichier dans lequel on veut sauvegarder les informatons
+//     type: 'rotating-file', // On peut décider d'archivé des logs passé dans un fichier d'archive
+//     period: '1d', // Pour cela on décide de la périodicité
+//     count: 3, // Et de l'historique à conserver
+//     /*
+//         Cela aura pour conséquence de créer différents fichiers ayant pour suffixe : .0, .1, .2 etc…
+//         */
+//   });
+// } else {
+//   streams.push({
+//     level: 'error',
+//     stream: process.stdout,
+//   });
+// }
 
-const logger = bunyan.createLogger({
-  name: 'cadex-api',
-  streams,
-});
+// const logger = bunyan.createLogger({
+//   name: 'cadex-api',
+//   streams,
+// });
 
 module.exports = logger;
