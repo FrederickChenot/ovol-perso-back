@@ -11,13 +11,39 @@ GET {{ endpoint-dev }}/itemm
 ### get all hiking
 GET {{ endpoint-dev }}/api/hiking
 
+
 ### Post hiking for create a hiking
 POST {{ endpoint-dev }}/api/hiking
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
 content-type: application/json
 
 {
-    "name": "rando oliv5",
+    "name": "rando oliv49",
+    "img_card" : "https://upload.wikimedia.org/wikipedia/commons/7/78/Ch%C3%A8vre_naine_-_S%C3%A9rent_8.jpg",
+    "mountain": "jura",
+    "resume": "Une rando qui monte",
+    "key_stage": "A/D: km 0 départ /n 1: km 3.2 tounre à gauche",
+    "starting_point": "45.88847701585252, 6.240168998430284",
+    "hiking_plan" : "test",
+    "positive_elevation": 1235,
+    "negative_elevation": 4321,
+    "overall_length": 5.5,
+    "land_type": "Forestier",
+    "ign_card_reference": "Réf 987654321",
+    "hight_point": 2543,
+    "low_point": 1000,
+    "difficulty": "Très difficile",
+    "user_id": 1,
+    "liftOff_id": 3
+}
+
+### Post hiking for create a hiking
+POST {{ endpoint-dev }}/api/hiking
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+content-type: application/json
+
+{
+    "name": "rando oliv45",
     "imgCard" : "https://upload.wikimedia.org/wikipedia/commons/7/78/Ch%C3%A8vre_naine_-_S%C3%A9rent_8.jpg",
     "mountain": "jura",
     "resume": "Une rando qui monte",
