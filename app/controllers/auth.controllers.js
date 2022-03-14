@@ -11,15 +11,12 @@ module.exports = {
     const { user, pass } = req.body;
     // recupere le user si il existe
     const result = await userDataMapper.findUser(user);
-    if (!result) {
-      return res.status(401).send('Login/Password invalide');
-    }
-    if (result.password !== pass) {
-      return res.status(401).send('Login/Password invalide');
-    }
-    const { id } = result;
+    if (!result) res.status(401).send('Login/Password invalide');
+
+    if (result.password !== pass) res.status(401).send('Login/Password invalide');
+
     const accessToken = generateAccessToken(user);
     // on retourne le token
-    return res.send({ accessToken, id }); // ToDO : check si front reçoi le IDUser
+    return res.send({ accessToken });
   },
 };
