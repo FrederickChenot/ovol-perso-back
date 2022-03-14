@@ -64,33 +64,27 @@ module.exports = function datamapper() {
   };
 
   const creatOne = async (data) => {
-    console.log(data);
-
-    console.log('data.name', data.name, '->', !data.name);
-    console.log('data.img_card', data.img_card, '->', !data.img_card);
-    console.log('data.mountain', data.mountain, '->', !data.mountain);
-    console.log('data.resume', data.resume, '->', !data.resume);
-    console.log('data.key_stage', data.key_stage, '->', !data.key_stage);
-    console.log('data.starting_point', data.starting_point, '->', !data.starting_point);
-    console.log('data.hiking_plan', data.hiking_plan, '->', !data.hiking_plan);
-    console.log('data.positive_elevation', data.positive_elevation, '->', !data.positive_elevation);
-    console.log('data.negative_elevation', data.negative_elevation, '->', !data.negative_elevation);
-    console.log('data.overall_length', data.overall_length, '->', !data.overall_length);
-    console.log('data.land_type', data.land_type, '->', !data.land_type);
-    console.log('data.ign_card_reference', data.ign_card_reference, '->', !data.ign_card_reference);
-    console.log('data.hight_point', data.hight_point, '->', !data.hight_point);
-    console.log('data.low_point', data.low_point, '->', !data.low_point);
-    console.log('data.difficulty', data.difficulty, '->', !data.difficulty);
-    console.log('data.user_id', data.user_id, '->', !data.user_id);
-    console.log('data.liftOff_id', data.liftOff_id, '->', !data.liftOff_id);
-
-    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !data.ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.user_id || !data.liftOff_id) {
-      const error = {
-        message: 'Incomplete forms hiking',
-        statusCode: 415,
-      };
-      throw error;
-    }
+    const error = {
+      message: 'Incomplete forms hiking',
+      statusCode: 415,
+    };
+    if (!data.name) throw error;
+    if (!data.img_card) throw error;
+    if (!data.mountain) throw error;
+    if (!data.resume) throw error;
+    if (!data.key_stage) throw error;
+    if (!data.starting_point) throw error;
+    if (!data.hiking_plan) throw error;
+    if (!data.positive_elevation) throw error;
+    if (!data.negative_elevation) throw error;
+    if (!data.overall_length) throw error;
+    if (!data.land_type) throw error;
+    if (!data.ign_card_reference) throw error;
+    if (!data.hight_point) throw error;
+    if (!data.low_point) throw error;
+    if (!data.difficulty) throw error;
+    if (!data.user_id) throw error;
+    if (!data.liftOff_id) throw error;
 
     const query = {
       text: `INSERT INTO "hiking"
