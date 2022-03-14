@@ -19,7 +19,7 @@ Log level list
 */
 
 
-// const bunyan = require('bunyan');
+const bunyan = require('bunyan');
 
 // const streams = [];
 
