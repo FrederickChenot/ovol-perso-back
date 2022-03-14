@@ -61,7 +61,7 @@ router.route('/')
     "id": 5
   }
   */
-  .post(auth(), apiController(landingController.create));
+  .post(auth(), apiController(landingController.create), () => { console.log('On catch'); });
 
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });

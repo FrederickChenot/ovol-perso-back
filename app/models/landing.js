@@ -29,9 +29,8 @@ module.exports = function datamapper() {
 
   const findByPk = async (idLanding) => {
     const result = await client.query('SELECT * FROM getLanding($1)', [idLanding]);
-    if (result.rowCount === 0) {
-      return null;
-    }
+    if (result.rowCount === 0) return null;
+
     return result.rows;
   };
 
@@ -45,15 +44,24 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
-    if (!data.name || !data.typeOfTerrain || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind) {
-      return 'Manque DATA';
-    }
+    const error = {
+      message: 'Incomplete forms landing',
+      statusCode: 415,
+    };
+
+    if (!data.name) throw error;
+    if (!data.typeOfTerrain) throw error;
+    if (!data.description) throw error;
+    if (!data.danger) throw error;
+    if (!data.latitude) throw error;
+    if (!data.longitude) throw error;
+    if (!data.altitude) throw error;
+    if (!data.favorableWind) throw error;
+
     const arrayfavorableWind = data.favorableWind.split(',');
 
     let arrarUnfavorableWind = [];
-    if (data.unfavorableWind) {
-      arrarUnfavorableWind = data.unfavorableWind.split(',');
-    }
+    if (data.unfavorableWind) arrarUnfavorableWind = data.unfavorableWind.split(',');
 
     const query1 = {
       text: `INSERT INTO "landing"
