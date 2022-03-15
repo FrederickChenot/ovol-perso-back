@@ -44,10 +44,7 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
-    const error = {
-      message: 'Incomplete forms landing',
-      statusCode: 515,
-    };
+    const error = { message: 'Incomplete forms landing', statusCode: 515 };
 
     if (!data.name) throw error;
     if (!data.typeOfTerrain) throw error;
@@ -97,15 +94,20 @@ module.exports = function datamapper() {
       const newPhoto = data.photo_landing.split(',');
       const newPhotoTable = [];
       let jsonTopush = { name: '', url: '' };
-      // Faire un tableau D'objet commme suivant:
+      // Parce data.photo_landing to get a json like below
       // [{"name": "name_photo", "url": "url_Photo"}, {"name": "name_photo", "url": "url_Photo"}]
       newPhoto.forEach((element, index) => {
         if (index % 2 === 0) {
+          // Extacte the name of the photo on a string like below
+          // example: "'name': 'update photo  test2'"" extract = update photo  test2
           const reg = /(?!n)(?!a)(?!m)(?!e)(?!')(?!:)(?! )[a-zA-Z  ].+[1-9a-zA-Z]/gm;
           const name = reg.exec(element);
           jsonTopush = { ...jsonTopush, name: name[0] };
         }
         if (index % 2 !== 0) {
+          // Extacte the url of the photo on a string like below
+          // example: "'url': 'https://res.cloudinary.com/ovol/image/upload/v1646311339/assets/parachute-landing_mbaiu0.jpg'"
+          // extract = https://res.cloudinary.com/ovol/image/upload/v1646311339/assets/parachute-landing_mbaiu0.jpg
           const reg = /(https?:\/\/|www\.)[a-zA-Z.0-9_\-\/\?=&]{1,}/gm;
           const url = reg.exec(element);
           jsonTopush = { ...jsonTopush, url: url[0] };
@@ -202,7 +204,6 @@ module.exports = function datamapper() {
     return result.rows;
   };
 
-  // TODO delete
   const deleteOne = async (id) => {
     await client.query('DELETE FROM "liftOff_has_landing" WHERE "landing_id" = $1', [id]);
     // TODO V2 delete les photos sur cloudinary avant supprimer table
