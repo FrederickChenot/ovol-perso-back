@@ -19,15 +19,14 @@ const client = require('../config/postgres');
 module.exports = function datamapper() {
   const findAll = async () => {
     const result = await client.query('SELECT * FROM "liftOff"');
+    if (!result) return null;
     return result.rows;
   };
 
   const findByPk = async (idLiftOff) => {
     const result = await client.query('SELECT * FROM getLiftOff($1)', [idLiftOff]);
-    if (result.rowCount === 0) {
-      return null;
-    }
-    // on supprime les photos en doublon dans l'array photo_liftOff
+    if (result.rowCount === 0) return null;
+    // if liftoff have many landing photo, delete duplicate result
     const array = result.rows[0]['photo_liftOff'].filter((value, index, arr) => arr.findIndex((t) => (JSON.stringify(t) === JSON.stringify(value))) === index);
     result.rows[0]['photo_liftOff'] = array;
     return result.rows;
@@ -49,7 +48,6 @@ module.exports = function datamapper() {
     if (!data.favorableWind) throw error;
     if (!data.idLandings) throw error;
 
-    console.log('La data reçu', data);
     const arrayfavorableWind = data.favorableWind.split(',');
     let arrarUnfavorableWind = [];
     if (data.unfavorableWind) {
@@ -86,14 +84,13 @@ module.exports = function datamapper() {
     };
 
     const result = await client.query(query1);
-    console.log(data.photo_liftOff);
     if (data.photo_liftOff) {
       console.log('Présence PHOTO');
     } else {
       console.log('ABSENCE PHOTO');
     }
     if (data.photo_liftOff) {
-      //todo Traitement regex
+      // todo Traitement regex
       console.log('LE STRING PHOTO Lift-Off:', data.photo_landing);
       const newPhoto = data.photo_liftOff.split(',');
       console.log('TABLEAU NO TRAITE :', newPhoto);

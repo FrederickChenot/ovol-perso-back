@@ -1,3 +1,5 @@
+/* eslint-disable no-throw-literal */
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const apiController = require('../helpers/apiController');
 
@@ -9,7 +11,7 @@ const auth = require('../helpers/auth.helpers');
 // id
 router.route('/:id(\\d+)')
   .get(apiController(liftOffController.getOne))
-  .patch(apiController(liftOffController.update));
+  .patch(apiController(liftOffController.patch));
 // all
 router.route('/')
   /**
@@ -22,7 +24,7 @@ router.route('/')
   .post(auth(), apiController(liftOffController.create));
 
 router.use((_req, res) => {
-  res.status(404).json({ message: 'page not found' });
+  throw ({ statusCode: 404, message: 'Page liftoff not found' });
 });
 
 module.exports = router;
