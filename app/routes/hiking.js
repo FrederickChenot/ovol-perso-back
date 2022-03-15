@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-throw-literal */
 const express = require('express');
 const apiController = require('../helpers/apiController');
 
@@ -82,8 +84,8 @@ router.route('/')
    */
   .post(auth(), apiController(hikingController.create));
 
-router.use((_req, res) => {
-  res.status(404).json({ message: 'page not found' });
+router.use(() => {
+  throw ({ statusCode: 404, message: 'Page hiking not found' });
 });
 
 module.exports = router;

@@ -1,33 +1,32 @@
 const liftOffDataMapper = require('../models/liftOff');
 
 module.exports = {
+
   async getAll(_req, res) {
     const result = await liftOffDataMapper().findAll();
+    const error = { statusCode: 404, message: 'Liftoff not found' };
+    if (!result) throw error;
     return res.json(result);
   },
 
   async getOne(req, res) {
     const result = await liftOffDataMapper().findByPk(Number(req.params.id));
-    if (!result) {
-      return res.status(404).json({ message: 'page not found' });
-    }
-    console.log('liftoff result', result);
+    const error = { statusCode: 404, message: 'Liftoff not found' };
+    if (!result) throw error;
     return res.json(result);
   },
 
   async create(req, res) {
     const result = await liftOffDataMapper().createOne(req.body);
-    if (result) {
-      return res.send(result);
-    }
-    return res.send('erreur liftOff');
+    if (result) res.send(result);
+    const error = { statusCode: 409, message: 'Erreur create landing' };
+    throw error;
   },
 
-  async update(req, res) {
+  async patch(req, res) {
     const result = await liftOffDataMapper().updateOne(Number(req.params.id), req.body);
-    if (!result) {
-      return res.status(404).json({ message: 'page not found' });
-    }
-    return res.json(result);
+    if (result) res.send(result);
+    const error = { statusCode: 409, message: 'Erreur update landing' };
+    throw error;
   },
 };

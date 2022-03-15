@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
@@ -32,6 +33,8 @@ const liftOffDataMapper = require('./liftOff');
 module.exports = function datamapper() {
   const findAll = async () => {
     const result = await client.query('SELECT * FROM "hiking"');
+    const error = { message: 'Hikings not found', statusCode: 404 };
+    if (result.rowCount === 0) throw error;
     // add calculate duration from (overall_length and positive_elevation) to result. source:https://horspistesblog.fr/guide-pratique/vitesse-marche-randonnee
     for (const hiking of result.rows) {
       const speed = 4.8;
@@ -40,26 +43,19 @@ module.exports = function datamapper() {
       const duration = TOverallLength + TPositiveElevation;
       hiking.duration = duration;
     }
-    if (result.rowCount === 0) {
-      return null;
-    }
     return result.rows;
   };
 
   const findByPk = async (idHiking) => {
     const result = await client.query('SELECT * FROM getOneHiking($1)', [idHiking]);
-    if (result.rowCount === 0) {
-      return null;
-    }
+    let error = { message: 'Hiking not found', statusCode: 404 };
+    if (result.rowCount === 0) throw error;
     const liftOff = await client.query('SELECT * FROM getLiftOff($1)', [result.rows[0]['liftOff_id']]);
-    if (liftOff.rowCount === 0) {
-      return null;
-    }
-
+    error = { message: 'Liftoff not found', statusCode: 404 };
+    if (result.rowCount === 0) throw error;
     result.rows[0].idLandings = liftOff.rows[0].idLandings;
-    if (result.rowCount === 0) {
-      return null;
-    }
+    error = { message: 'landings not found', statusCode: 404 };
+    if (result.rowCount === 0) throw error;
     return result.rows;
   };
 
