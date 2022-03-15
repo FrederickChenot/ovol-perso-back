@@ -11,9 +11,10 @@ module.exports = {
     const { user, pass } = req.body;
     // recupere le user si il existe
     const result = await userDataMapper.findUser(user);
-    if (!result) res.status(401).send('Login/Password invalide');
+    const error = { message: 'Login/Password invalide', statusCode: 401 };
 
-    if (result.password !== pass) res.status(401).send('Login/Password invalide');
+    if (!result) throw error;
+    if (result.password !== pass) throw error;
 
     const accessToken = generateAccessToken(user);
     // on retourne le token

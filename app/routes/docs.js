@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 const express = require('express');
 
 const router = express.Router();
@@ -8,8 +9,8 @@ const docsController = require('../controllers/docs.controllers');
 router.route('/')
   .get(docsController.home);
 
-router.use((_req, res) => {
-  res.json({ message: 'page not found' });
+router.use(() => {
+  throw { message: 'page not found', statusCode: 404 };
 });
 
 module.exports = router;

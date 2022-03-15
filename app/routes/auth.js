@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 const express = require('express');
 const apiController = require('../helpers/apiController');
 
@@ -8,8 +9,8 @@ const authController = require('../controllers/auth.controllers');
 router.route('/')
   .post(apiController(authController.login));
 
-router.use((_req, res) => {
-  res.status(404).json({ message: 'page not found' });
+router.use(() => {
+  throw { message: 'page not found', statusCode: 404 };
 });
 
 module.exports = router;

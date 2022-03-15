@@ -9,7 +9,7 @@
 GET {{ endpoint-dev }}/api/landing/58
 
 ### get all landing
-GET {{ endpoint-dev }}/api/landing
+GET {{ endpoint-dev }}/api/landing/dqsdq
 
 ### get one landing
 GET {{ endpoint-dev }}/api/landing/8
