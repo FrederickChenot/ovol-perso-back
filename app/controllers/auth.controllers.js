@@ -2,10 +2,12 @@ const jwt = require('jsonwebtoken');
 const userDataMapper = require('../models/user');
 
 module.exports = {
-
+  generateAccessToken: (user) => {
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+  },
   async login(req, res) {
     // Genere le token jwt pour le user
-    function generateAccessToken(user) {
+    async function generateAccessToken(user) {
       return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
     }
     const { user, pass } = req.body;
@@ -16,9 +18,33 @@ module.exports = {
     if (!result) throw error;
     if (result.password !== pass) throw error;
 
-    const accessToken = generateAccessToken(user);
+    const accessToken = await generateAccessToken(user);
     // on retourne le token
     const { id } = result;
     return res.send({ accessToken, id });
   },
+
+  async check(req, res) {
+    // Genere le token jwt pour le user
+    async function generateAccessToken(user) {
+      return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    }
+    const { user, pass } = req.body;
+    const result = await userDataMapper.findUser(user);
+    if (!result) throw ({ statusCode: 404, message: 'identifiant inconnu' });
+    if (result.password !== pass) throw ({ statusCode: 404, message: 'mot de passe erroné' });
+    const accessToken = await generateAccessToken(user);
+    if (result) {
+      return res.json({
+        logged: true,
+        user: user,
+        accessToken: accessToken,
+      });
+    }
+    else {
+      throw ({ statusCode: 500, message: 'identification interdite' })
+    }
+
+  }
+
 };
