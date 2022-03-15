@@ -12,7 +12,7 @@ GET {{ endpoint-dev }}/api/landing/58
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/3
+GET {{ endpoint-dev }}/api/landing/8
 
 ### Test tableau landings
 POST {{ endpoint-dev }}/api/landings

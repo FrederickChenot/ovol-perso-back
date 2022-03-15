@@ -34,37 +34,20 @@ module.exports = function datamapper() {
   };
 
   const createOne = async (data) => {
-    console.log('REQUETE POUR LIFTOFF BODY:', data.body);
-
-    console.log('name:', data.name);
-    console.log('typeOfTerrain:', data.typeOfTerrain);
-    console.log('balise:', data.balise);
-    console.log('description:', data.description);
-    console.log('danger:', data.danger);
-    console.log('latitude', data.latitude);
-    console.log('altitude', data.altitude);
-    console.log('favorableWind', data.favorableWind);
-    console.log('idLandings', data.idLandings);
-    console.log('balise', data.balise);
-
-    console.log('name:', !data.name);
-    console.log('typeOfTerrain:', !data.typeOfTerrain);
-    console.log('balise:', !data.balise);
-    console.log('description:', !data.description);
-    console.log('danger:', !data.danger);
-    console.log('latitude', !data.latitude);
-    console.log('altitude', !data.altitude);
-    console.log('favorableWind', !data.favorableWind);
-    console.log('idLandings', !data.idLandings);
-    console.log('balise', !data.balise);
-
-    if (!data.name || !data.typeOfTerrain || !data.balise || !data.description || !data.danger || !data.latitude || !data.longitude || !data.altitude || !data.favorableWind || !data.idLandings) {
-      const error = {
-        message: 'Incomplete forms liftOff',
-        statusCode: 415,
-      };
-      throw error;
-    }
+    const error = {
+      message: 'Incomplete forms liftOff',
+      statusCode: 415,
+    };
+    if (!data.name) throw error;
+    if (!data.typeOfTerrain) throw error;
+    if (!data.balise) throw error;
+    if (!data.description) throw error;
+    if (!data.danger) throw error;
+    if (!data.latitude) throw error;
+    if (!data.longitude) throw error;
+    if (!data.altitude) throw error;
+    if (!data.favorableWind) throw error;
+    if (!data.idLandings) throw error;
 
     console.log('La data reçu', data);
     const arrayfavorableWind = data.favorableWind.split(',');

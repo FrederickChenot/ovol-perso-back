@@ -8,7 +8,7 @@ const landingRouter = require('./landing');
 const docRouter = require('./docs');
 const authRouter = require('./auth');
 
-// const { errorHandler } = require('../helpers/errorHandler');
+const { errorHandler } = require('../helpers/errorHandler');
 
 const landingController = require('../controllers/landing.controllers');
 
@@ -31,10 +31,9 @@ router
   .route('/api/landings')
   .post(landingController.getLandings);
 
-router.use((err) => { console.log('JE PASSE LA erreur2', err); });
-
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });
 });
 
+router.use(errorHandler);
 module.exports = router;

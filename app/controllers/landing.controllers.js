@@ -10,11 +10,17 @@ module.exports = {
     return res.json(result);
   },
 
-  async getOne(req, res) {
+  async getOne(req, res, next) {
     const IdLanding = Number(req.params.id);
     const result = await landingDataMapper().findByPk(IdLanding);
+    const error = {
+      message: 'Test du 404',
+      statusCode: 404,
+    };
+
     if (!result) {
-      return res.status(404).json({ message: 'landing not found' });
+      // return res.status(404).json({ message: 'landing not found' });
+      throw error;
     }
     return res.json(result);
   },

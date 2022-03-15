@@ -9,7 +9,7 @@ module.exports = (controller) => async (req, res, next) => {
     await controller(req, res, next);
   } catch (err) {
     console.log(err);
-    // next(new ApiError(err.statusCode, err.message));
-    res.status(500).send(err);
+    next(new ApiError(err.statusCode, err.message));
+    // res.status(500).send(err);
   }
 };
