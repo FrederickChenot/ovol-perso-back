@@ -15,4 +15,7 @@ app.use(cors(process.env.CORS_DOMAINS ?? '*'));
 
 app.use(router);
 
+router.use((err) => { console.log('JE PASSE LA erreur2', err); });
+// router.use(errorHandler);
+
 module.exports = app;

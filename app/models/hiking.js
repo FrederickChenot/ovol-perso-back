@@ -65,28 +65,45 @@ module.exports = function datamapper() {
 
   const creatOne = async (data) => {
     console.log(data);
+    const error = {
+      message: 'Incomplete forms hiking',
+      statusCode: 415,
+    };
+    console.log(data.name);
+    console.log(data.img_card);
+    console.log(data.mountain);
+    console.log(data.resume);
+    console.log(data.key_stage);
+    console.log(data.starting_point);
+    console.log(data.hiking_plan);
+    console.log(data.positive_elevation);
+    console.log(data.negative_elevation);
+    console.log(data.overall_length);
+    console.log(data.land_type);
+    console.log(data.ign_card_reference);
+    console.log(data.hight_point);
+    console.log(data.low_point);
+    console.log(data.difficulty);
+    console.log(data.user_id);
+    console.log(data.liftOff_id);
 
-    console.log('data.name', data.name, '->', !data.name);
-    console.log('data.img_card', data.img_card, '->', !data.img_card);
-    console.log('data.mountain', data.mountain, '->', !data.mountain);
-    console.log('data.resume', data.resume, '->', !data.resume);
-    console.log('data.key_stage', data.key_stage, '->', !data.key_stage);
-    console.log('data.starting_point', data.starting_point, '->', !data.starting_point);
-    console.log('data.hiking_plan', data.hiking_plan, '->', !data.hiking_plan);
-    console.log('data.positive_elevation', data.positive_elevation, '->', !data.positive_elevation);
-    console.log('data.negative_elevation', data.negative_elevation, '->', !data.negative_elevation);
-    console.log('data.overall_length', data.overall_length, '->', !data.overall_length);
-    console.log('data.land_type', data.land_type, '->', !data.land_type);
-    console.log('data.ign_card_reference', data.ign_card_reference, '->', !data.ign_card_reference);
-    console.log('data.hight_point', data.hight_point, '->', !data.hight_point);
-    console.log('data.low_point', data.low_point, '->', !data.low_point);
-    console.log('data.difficulty', data.difficulty, '->', !data.difficulty);
-    console.log('data.user_id', data.user_id, '->', !data.user_id);
-    console.log('data.liftOff_id', data.liftOff_id, '->', !data.liftOff_id);
-
-    if (!data.name || !data.img_card || !data.mountain || !data.resume || !data.key_stage || !data.starting_point || !data.hiking_plan || !data.positive_elevation || !data.negative_elevation || !data.overall_length || !data.land_type || !data.ign_card_reference || !data.hight_point|| !data.low_point || !data.difficulty || !data.user_id || !data.liftOff_id) {
-      return 'Manque DATA';
-    }
+    if (!data.name) throw error;
+    if (!data.img_card) throw error;
+    if (!data.mountain) throw error;
+    if (!data.resume) throw error;
+    if (!data.key_stage) throw error;
+    if (!data.starting_point) throw error;
+    if (!data.hiking_plan) throw error;
+    if (!data.positive_elevation) throw error;
+    if (!data.negative_elevation) throw error;
+    if (!data.overall_length) throw error;
+    if (!data.land_type) throw error;
+    if (!data.ign_card_reference) throw error;
+    if (!data.hight_point) throw error;
+    if (!data.low_point) throw error;
+    if (!data.difficulty) throw error;
+    if (!data.user_id) throw error;
+    if (!data.liftOff_id) throw error;
 
     const query = {
       text: `INSERT INTO "hiking"
@@ -130,7 +147,7 @@ module.exports = function datamapper() {
     };
     const result = await client.query(query);
 
-    //!!Le traitement des photos
+    //! !Le traitement des photos
     console.log(data.photo_hiking);
     if (data.photo_hiking) {
       console.log('Présence PHOTO');
@@ -138,7 +155,7 @@ module.exports = function datamapper() {
       console.log('ABSENCE PHOTO');
     }
     if (data.photo_hiking) {
-      //todo Traitement regex
+      // todo Traitement regex
       console.log('LE STRING PHOTO hiking:', data.photo_hiking);
       const newPhoto = data.photo_hiking.split(',');
       console.log('TABLEAU NO TRAITE :', newPhoto);
@@ -191,30 +208,14 @@ module.exports = function datamapper() {
       await client.query(query2);
     }
 
+    if (result.rowCount === 0) return null;
+    // calcul of the duration of the hiking
+    const speed = 4.8;
+    const TOverallLength = data.overall_length / speed;
+    const TPositiveElevation = ((data.positive_elevation * 60) / 600) / 60;
+    const duration = TOverallLength + TPositiveElevation;
+    result.rows[0].duration = duration;
 
-
-
-    // Request to put photo in the img_hiking table
-
-    // data.photos.forEach(async (photo) => {
-    //   const query2 = {
-    //     text: `INSERT INTO "img_hiking"
-    //     ("title",
-    //     "url",
-    //     "idHiking")
-    //     VALUES ($1, $2, $3)`,
-    //     values: [
-    //       photo.name,
-    //       photo.url,
-    //       result.rows[0].id,
-    //     ],
-    //   };
-    //   await client.query(query2);
-    // });
-
-    if (result.rowCount === 0) {
-      return null;
-    }
     return result.rows;
   };
 

@@ -38,7 +38,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp
 content-type: application/json
 
 {
-  "name":"new liftOff6",
+  "name":"",
   "typeOfTerrain":"new type de terrain",
   "description":"new description",
   "danger":"new danger",

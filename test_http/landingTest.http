@@ -6,13 +6,13 @@
 @endpoint-dev = http://localhost:{{$dotenv PORT}}
 
 ### 404 landing
-GET {{ endpoint-dev }}/api/landing/23423
+GET {{ endpoint-dev }}/api/landing/58
 
 ### get all landing
 GET {{ endpoint-dev }}/api/landing
 
 ### get one landing
-GET {{ endpoint-dev }}/api/landing/35
+GET {{ endpoint-dev }}/api/landing/8
 
 ### Test tableau landings
 POST {{ endpoint-dev }}/api/landings
@@ -28,7 +28,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp
 content-type: application/json
 
 {
-"name": "essai31",
+"name": "",
 "typeOfTerrain": "ras le bonbon",
 "description": "ff",
 "danger": "ff",

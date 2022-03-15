@@ -41,11 +41,8 @@ router.route('/')
   * @tags Landing
   * @security BearerAuth
   * @param {[Landing]} request.body.required - landing info
-  * @return {json} 200 - success response - application/json
-  * {
-   * "id": 5
-   * }
-   * @example request - landing info
+  * @return {Landing} 200 - success response - application/json
+    @example request - landing info
   {
       "name":"new landing",
       "typeOfTerrain":"new type de terrain",
@@ -57,7 +54,8 @@ router.route('/')
       "favorableWind":"O",
       "unfavorableWind":"O",
       "altitude":2313,
-       "photo_landing": "'name': 'update photo  test2', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg', 'name': 'update photo rasdfsdfndo test', 'url': 'https://idata.over-blog.com/image.jpg', 'name': 'Oliv3', 'url': 'https://idata.over-blog.com/Olivier_url.jpg'"}
+      "photo_landing": "'name': 'update photo  test2', 'url': 'https://idata.over-blog.com/2/08/31/84/gifs/cockpit-avion.jpg', 'name': 'update photo rasdfsdfndo test', 'url': 'https://idata.over-blog.com/image.jpg', 'name': 'Oliv3', 'url': 'https://idata.over-blog.com/Olivier_url.jpg'"
+  }
    *@example response - 200 - Return json with the new id of the landing
   {
     "id": 5

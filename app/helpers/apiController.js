@@ -1,3 +1,4 @@
+const { ApiError } = require('./errorHandler');
 /**
  * Controller wrapper to manage errors
  * @param {object} controller a controller to execute iside a try… catch… block
@@ -7,9 +8,8 @@ module.exports = (controller) => async (req, res, next) => {
   try {
     await controller(req, res, next);
   } catch (err) {
-    console.error('Le status', err.message);
-    console.error('le message de l\'erreur', err.status);
-    console.error('Errur entier:', err);
-    res.status(500).send(err);
+    console.log(err);
+    next(new ApiError(err.statusCode, err.message));
+    // res.status(500).send(err);
   }
 };
