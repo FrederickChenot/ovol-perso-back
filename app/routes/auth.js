@@ -8,7 +8,7 @@ const router = express.Router();
 const authController = require('../controllers/auth.controllers');
 
 router.route('/check')
-  .post(auth(), apiController(authController.check));
+  .post(apiController(auth()), apiController(authController.check));
 
 router.route('/')
   .post(apiController(authController.login));

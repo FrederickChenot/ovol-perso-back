@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
+const apiController = require('../helpers/apiController');
 
 const hikingRouter = require('./hiking');
 const liftOffRouter = require('./liftoff');
@@ -29,7 +30,7 @@ router
 
 router
   .route('/api/landings')
-  .post(landingController.getLandings);
+  .post(apiController(landingController.getLandings));
 
 router.use((_req, res) => {
   res.status(404).json({ message: 'page not found' });

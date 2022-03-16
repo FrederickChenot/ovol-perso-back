@@ -25,7 +25,7 @@ router.route('/:id(\\d+)')
    * @param {number} id.path - id of the landing
    * @param {landing} request.body.required - landing info
    */
-  .patch(auth(), apiController(landingController.patch));
+  .patch(apiController(auth()), apiController(landingController.patch));
 
 // all
 router.route('/')
@@ -62,7 +62,7 @@ router.route('/')
     "id": 5
   }
   */
-  .post(auth(), apiController(landingController.create));
+  .post(apiController(auth()), apiController(landingController.create));
 
 router.use(() => {
   throw { message: 'page not found', statusCode: 404 };

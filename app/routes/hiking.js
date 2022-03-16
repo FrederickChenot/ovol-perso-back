@@ -26,7 +26,7 @@ router.route('/:id(\\d+)')
    * @param {number} id.path - id of the hiking
    * @param {hiking} request.body.required - hiking info
    */
-  .patch(auth(), apiController(hikingController.updateOne))
+  .patch(apiController(auth()), apiController(hikingController.updateOne))
   /**
    * DELETE /api/hiking/{id}
    * @summary Delete one hiking with the associated photo(s) on the id
@@ -35,7 +35,7 @@ router.route('/:id(\\d+)')
    * @return {string} 200 - success response - application/json
    * @param {number} id.path - id of the hiking
    */
-  .delete(auth(), apiController(hikingController.deleteOne));
+  .delete(apiController(auth()), apiController(hikingController.deleteOne));
 // all
 router.route('/')
   /**
@@ -82,7 +82,7 @@ router.route('/')
     "id": 5
   }
    */
-  .post(auth(), apiController(hikingController.create));
+  .post(apiController(auth()), apiController(hikingController.create));
 
 router.use(() => {
   throw ({ statusCode: 404, message: 'Page hiking not found' });

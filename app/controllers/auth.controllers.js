@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const userDataMapper = require('../models/user');
 
 module.exports = {
-  generateAccessToken: (user) => jwt.sign(user, process.env.ACCESS_TOKEN_SECRET),
   async login(req, res) {
     // Genere le token jwt pour le user
 
@@ -39,9 +38,6 @@ module.exports = {
         userId: result.id,
         accessToken,
       });
-    }
-
-    throw ({ statusCode: 500, message: 'identification interdite' });
+    } else throw ({ statusCode: 500, message: 'identification interdite' });
   },
-
 };

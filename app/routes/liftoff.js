@@ -21,7 +21,7 @@ router.route('/')
  * @return {[LiftOff]} 200 - success response - application/json
  */
   .get(apiController(liftOffController.getAll))
-  .post(auth(), apiController(liftOffController.create));
+  .post(apiController(auth()), apiController(liftOffController.create));
 
 router.use((_req, res) => {
   throw ({ statusCode: 404, message: 'Page liftoff not found' });
