@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 const jwt = require('jsonwebtoken');
 const userDataMapper = require('../models/user');
 
@@ -5,6 +6,7 @@ module.exports = {
   generateAccessToken: (user) => jwt.sign(user, process.env.ACCESS_TOKEN_SECRET),
   async login(req, res) {
     // Genere le token jwt pour le user
+
     async function generateAccessToken(user) {
       return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
     }
@@ -27,15 +29,14 @@ module.exports = {
     async function generateAccessToken(user) {
       return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
     }
-    const { user, pass } = req.body;
+    const { user } = req;
     const result = await userDataMapper.findUser(user);
     if (!result) throw ({ statusCode: 404, message: 'identifiant inconnu' });
-    if (result.password !== pass) throw ({ statusCode: 404, message: 'mot de passe erroné' });
     const accessToken = await generateAccessToken(user);
     if (result) {
       return res.json({
         logged: true,
-        user,
+        userId: result.id,
         accessToken,
       });
     }
