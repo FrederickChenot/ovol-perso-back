@@ -14,7 +14,7 @@ GET {{ endpoint-dev }}/api/hiking
 
 ### Post hiking for create a hiking
 POST {{ endpoint-dev }}/api/hiking
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YWRtaW4.fuwJHQFiIlgT1krQ7dHFcldDkjwdp8-vofB_lF0VPL4
+
 content-type: application/json
 
 {
