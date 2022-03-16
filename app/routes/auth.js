@@ -8,11 +8,10 @@ const router = express.Router();
 const authController = require('../controllers/auth.controllers');
 
 router.route('/check')
-  .post(auth(),apiController(authController.check))
+  .post(auth(), apiController(authController.check));
 
 router.route('/')
   .post(apiController(authController.login));
-
 
 router.use(() => {
   throw { message: 'page not found', statusCode: 404 };
