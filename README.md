@@ -28,3 +28,4 @@
    - convention ex: "feat(index): message exemple"
    - flags : { build ,chore ,ci ,docs ,feat ,fix ,perf ,refactor ,revert ,style ,test }
    - start all new feature from develop branch..
+   - test init
